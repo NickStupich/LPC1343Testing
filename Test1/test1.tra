@@ -4,14 +4,15 @@
 ### List of Objects: adding '"startup_lpc13xx.o"'
 ### List of Objects: adding '"main.o"'
 ### List of Objects: adding '"ek_fft128real_32b.o"'
+### List of Objects: adding '"ek_magnitude.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup_lpc13xx.o" "main.o" "ek_fft128real_32b.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--cpu Cortex-M3 "startup_lpc13xx.o" "main.o" "ek_fft128real_32b.o" "ek_magnitude.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
  --list ".\test1.map" -o "test1.axf"### Preparing Environment (PrepEnvAds)
 ### ADS-LD Output File: 'test1.axf'
 ### ADS-LD Command File: 'test1.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'test1.lnp', Handle=0x000014B8
+### Creating CmdFile 'test1.lnp', Handle=0x0000155C
 ### Writing '.lnp' file
 ### ADS-LD Command file 'test1.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

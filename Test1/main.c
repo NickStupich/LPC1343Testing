@@ -282,7 +282,12 @@ void PerformanceTest()
 	
 	start	= TMR32B0TC;
 	//TESTFFT(testData, 128);
-	FFT128Real_32b(testOutput, testData);
+	//FFT128Real_32b(testOutput, testData);
+	//magnitude32_32bIn(&testOutput[2], 128/2-1);
+	//then look at even indeces of testOutput only
+	
+	realFFT128(testData, testOutput);
+	
 	end = TMR32B0TC;
 	elapsed = end - start;
 }
