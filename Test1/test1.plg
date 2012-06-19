@@ -9,270 +9,135 @@ Project File Date:  06/19/2012
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
-main.c(143): warning:  #170-D: pointer points outside of underlying object
-main.c(141): warning:  #550-D: variable "elapsed" was set but never used
-linking...
-Program Size: Code=7336 RO-data=656 RW-data=512 ZI-data=608  
-"test1.axf" - 0 Error(s), 2 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(146): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7408 RO-data=656 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(146): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(146): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(146): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(147): error:  #65: expected a ";"
-main.c(153): warning:  #170-D: pointer points outside of underlying object
+lpc134x.h(46): error:  #5: cannot open source input file "sysdefs.h": No such file or directory
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(153): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7436 RO-data=652 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(23): warning:  #170-D: pointer points outside of underlying object
-main.c(38): error:  #77-D: this declaration has no storage class or type specifier
-main.c(38): error:  #147: declaration is incompatible with "float testData[128]" (declared at line 10)
-main.c(40): error:  #67: expected a "}"
-main.c(167): warning:  #1-D: last line of file ends without a newline
-main.c(167): warning:  #12-D: parsing restarts here after previous syntax error
+lpc134x.h(1918): error:  #256: invalid redeclaration of type name "NVIC_Type" (declared at line 296 of "C:\Keil\ARM\CMSIS\Include\core_cm3.h")
+lpc134x.h(1920): warning:  #47-D: incompatible redefinition of macro "NVIC" (declared at line 1231 of "C:\Keil\ARM\CMSIS\Include\core_cm3.h")
+lpc134x.h(1922): warning:  #260-D: explicit type is missing ("int" assumed)
+lpc134x.h(1922): error:  #65: expected a ";"
+lpc134x.h(1994): warning:  #12-D: parsing restarts here after previous syntax error
+lpc134x.h(1996): warning:  #260-D: explicit type is missing ("int" assumed)
+lpc134x.h(1996): error:  #65: expected a ";"
+lpc134x.h(3502): warning:  #1-D: last line of file ends without a newline
+main.c(273): warning:  #12-D: parsing restarts here after previous syntax error
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+main.c(286): error:  #20: identifier "testData" is undefined
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(23): warning:  #170-D: pointer points outside of underlying object
-main.c(38): error:  #77-D: this declaration has no storage class or type specifier
-main.c(38): error:  #147: declaration is incompatible with "float testData[128]" (declared at line 10)
-main.c(40): error:  #67: expected a "}"
-main.c(167): warning:  #12-D: parsing restarts here after previous syntax error
+lpc134x.h(1918): error:  #256: invalid redeclaration of type name "NVIC_Type" (declared at line 296 of "C:\Keil\ARM\CMSIS\Include\core_cm3.h")
+lpc134x.h(1925): error:  #101: "IRQn" has already been declared in the current scope
+lpc134x.h(1928): error:  #101: "NonMaskableInt_IRQn" has already been declared in the current scope
+lpc134x.h(1929): error:  #101: "MemoryManagement_IRQn" has already been declared in the current scope
+lpc134x.h(1930): error:  #101: "BusFault_IRQn" has already been declared in the current scope
+lpc134x.h(1931): error:  #101: "UsageFault_IRQn" has already been declared in the current scope
+lpc134x.h(1932): error:  #101: "SVCall_IRQn" has already been declared in the current scope
+lpc134x.h(1933): error:  #101: "DebugMonitor_IRQn" has already been declared in the current scope
+lpc134x.h(1934): error:  #101: "PendSV_IRQn" has already been declared in the current scope
+lpc134x.h(1935): error:  #101: "SysTick_IRQn" has already been declared in the current scope
+lpc134x.h(1938): error:  #101: "WAKEUP0_IRQn" has already been declared in the current scope
+lpc134x.h(1939): error:  #101: "WAKEUP1_IRQn" has already been declared in the current scope
+lpc134x.h(1940): error:  #101: "WAKEUP2_IRQn" has already been declared in the current scope
+lpc134x.h(1941): error:  #101: "WAKEUP3_IRQn" has already been declared in the current scope
+lpc134x.h(1942): error:  #101: "WAKEUP4_IRQn" has already been declared in the current scope
+lpc134x.h(1943): error:  #101: "WAKEUP5_IRQn" has already been declared in the current scope
+lpc134x.h(1944): error:  #101: "WAKEUP6_IRQn" has already been declared in the current scope
+lpc134x.h(1945): error:  #101: "WAKEUP7_IRQn" has already been declared in the current scope
+lpc134x.h(1946): error:  #101: "WAKEUP8_IRQn" has already been declared in the current scope
+lpc134x.h(1947): error:  #101: "WAKEUP9_IRQn" has already been declared in the current scope
+lpc134x.h(1948): error:  #101: "WAKEUP10_IRQn" has already been declared in the current scope
+lpc134x.h(1949): error:  #101: "WAKEUP11_IRQn" has already been declared in the current scope
+lpc134x.h(1950): error:  #101: "WAKEUP12_IRQn" has already been declared in the current scope
+lpc134x.h(1951): error:  #101: "WAKEUP13_IRQn" has already been declared in the current scope
+lpc134x.h(1952): error:  #101: "WAKEUP14_IRQn" has already been declared in the current scope
+lpc134x.h(1953): error:  #101: "WAKEUP15_IRQn" has already been declared in the current scope
+lpc134x.h(1954): error:  #101: "WAKEUP16_IRQn" has already been declared in the current scope
+lpc134x.h(1955): error:  #101: "WAKEUP17_IRQn" has already been declared in the current scope
+lpc134x.h(1956): error:  #101: "WAKEUP18_IRQn" has already been declared in the current scope
+lpc134x.h(1957): error:  #101: "WAKEUP19_IRQn" has already been declared in the current scope
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(146): error:  #65: expected a ";"
-main.c(152): warning:  #170-D: pointer points outside of underlying object
+lpc134x.h(1918): error:  #256: invalid redeclaration of type name "NVIC_Type" (declared at line 296 of "C:\Keil\ARM\CMSIS\Include\core_cm3.h")
+lpc134x.h(1996): warning:  #260-D: explicit type is missing ("int" assumed)
+lpc134x.h(1996): error:  #65: expected a ";"
+lpc134x.h(3502): warning:  #1-D: last line of file ends without a newline
+main.c(273): warning:  #12-D: parsing restarts here after previous syntax error
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+main.c(286): error:  #20: identifier "testData" is undefined
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(152): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7436 RO-data=652 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7408 RO-data=656 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7208 RO-data=656 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7464 RO-data=656 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft1.h(62): warning:  #223-D: function "sin" declared implicitly
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7408 RO-data=656 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 2 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3000 RO-data=364 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft2.h(53): error:  #29: expected an expression
-fft2.h(56): error:  #29: expected an expression
-fft2.h(88): error:  #29: expected an expression
-fft2.h(90): error:  #29: expected an expression
-main.c(150): warning:  #170-D: pointer points outside of underlying object
+lpc134x.h(1996): warning:  #260-D: explicit type is missing ("int" assumed)
+lpc134x.h(1996): error:  #65: expected a ";"
+lpc134x.h(3502): warning:  #1-D: last line of file ends without a newline
+main.c(273): warning:  #12-D: parsing restarts here after previous syntax error
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+main.c(286): error:  #20: identifier "testData" is undefined
 Target not created
 Build target 'Target 1'
 compiling main.c...
-fft2.h(43): warning:  #223-D: function "usin" declared implicitly
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-test1.axf: Error: L6218E: Undefined symbol usin (referred from main.o).
+lpc134x.h(3500): error:  #20: identifier "inline" is undefined
+lpc134x.h(3500): error:  #101: "uint32_t" has already been declared in the current scope
+lpc134x.h(3500): error:  #65: expected a ";"
+lpc134x.h(3502): warning:  #1-D: last line of file ends without a newline
+main.c(273): warning:  #12-D: parsing restarts here after previous syntax error
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+main.c(286): error:  #20: identifier "testData" is undefined
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3176 RO-data=328 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3184 RO-data=328 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3196 RO-data=364 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(150): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=3200 RO-data=364 RW-data=528 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft3.h(2): warning:  #1-D: last line of file ends without a newline
-main.c(284): warning:  #223-D: function "TESTFFT" declared implicitly
-assembling Ek_FFT128Real_32b.s...
-Ek_FFT128Real_32b.s(43): warning: A1479W: Requested alignment 8 is greater than area alignment 4, which has been increased
-linking...
-test1.axf: Error: L6218E: Undefined symbol TESTFFT (referred from main.o).
+lpc134x.h(3502): warning:  #1-D: last line of file ends without a newline
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
 Target not created
 Build target 'Target 1'
 compiling main.c...
-main.c(285): warning:  #167-D: argument of type "long *" is incompatible with parameter of type "int *"
-main.c(285): warning:  #167-D: argument of type "long *" is incompatible with parameter of type "int *"
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 2 Warning(s).
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+Target not created
 Build target 'Target 1'
 compiling main.c...
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
+main.c(280): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(281): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(283): error:  #20: identifier "TMR32B0TC" is undefined
+Target not created
 Build target 'Target 1'
 compiling main.c...
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
+main.c(280): warning:  #223-D: function "pREG32" declared implicitly
+main.c(280): error:  #75: operand of "*" must be a pointer
+main.c(281): error:  #75: operand of "*" must be a pointer
+main.c(283): error:  #75: operand of "*" must be a pointer
+main.c(288): error:  #75: operand of "*" must be a pointer
+Target not created
 Build target 'Target 1'
 compiling main.c...
-linking...
-Program Size: Code=2220 RO-data=336 RW-data=528 ZI-data=1128  
-"test1.axf" - 0 Error(s), 0 Warning(s).
+main.c(280): warning:  #223-D: function "pREG32" declared implicitly
+main.c(280): error:  #75: operand of "*" must be a pointer
+main.c(281): error:  #75: operand of "*" must be a pointer
+main.c(283): error:  #75: operand of "*" must be a pointer
+main.c(288): error:  #75: operand of "*" must be a pointer
+Target not created
 Build target 'Target 1'
 compiling main.c...
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=608 RO-data=328 RW-data=12 ZI-data=612  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft3.h(3): warning:  #1-D: last line of file ends without a newline
-main.c(286): warning:  #167-D: argument of type "long *" is incompatible with parameter of type "int *"
-assembling Ek_Magnitude.s...
-Ek_Magnitude.s(124): warning: A1479W: Requested alignment 8 is greater than area alignment 4, which has been increased
-linking...
-Program Size: Code=3088 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 3 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft3.h(3): warning:  #1-D: last line of file ends without a newline
-linking...
-Program Size: Code=3088 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=3088 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=3088 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft3.h(12): warning:  #1-D: last line of file ends without a newline
-linking...
-Program Size: Code=3216 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=3216 RO-data=336 RW-data=524 ZI-data=1132  
-"test1.axf" - 0 Error(s), 0 Warning(s).
+main.c(280): warning:  #223-D: function "pREG32" declared implicitly
+main.c(280): error:  #75: operand of "*" must be a pointer
+main.c(281): error:  #75: operand of "*" must be a pointer
+main.c(283): error:  #75: operand of "*" must be a pointer
+main.c(288): error:  #75: operand of "*" must be a pointer
+Target not created
 Build target 'Target 1'
 compiling main.c...
 linking...

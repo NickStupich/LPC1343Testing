@@ -125,7 +125,7 @@
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>1</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
+            <LimitSpeedToRealTime>1</LimitSpeedToRealTime>
           </Simulator>
           <Target>
             <UseTarget>0</UseTarget>
@@ -333,8 +333,8 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
-            <oTime>0</oTime>
+            <Optim>4</Optim>
+            <oTime>1</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
             <Strict>0</Strict>
@@ -407,6 +407,26 @@
               <FileName>fft1.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\fft1.h</FilePath>
+            </File>
+            <File>
+              <FileName>fft2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft2.h</FilePath>
+            </File>
+            <File>
+              <FileName>fft3.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft3.h</FilePath>
+            </File>
+            <File>
+              <FileName>Ek_FFT128Real_32b.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Ek_FFT128Real_32b.s</FilePath>
+            </File>
+            <File>
+              <FileName>Ek_Magnitude.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\Ek_Magnitude.s</FilePath>
             </File>
           </Files>
         </Group>

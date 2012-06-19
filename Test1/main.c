@@ -274,17 +274,13 @@ unsigned long start, end, elapsed, loop;
 
 int testOutput[130];
 
-void PerformanceTest()
-{	
+void PerformanceTest(){	
 	//enable timer0
 	SYSAHBCLKCTRL |= (1<<9); //power up timer 0
 	TMR32B0TCR = 0x1;	//enable for counting
 	
 	start	= TMR32B0TC;
 	//TESTFFT(testData, 128);
-	//FFT128Real_32b(testOutput, testData);
-	//magnitude32_32bIn(&testOutput[2], 128/2-1);
-	//then look at even indeces of testOutput only
 	
 	realFFT128(testData, testOutput);
 	
@@ -295,7 +291,6 @@ void PerformanceTest()
 int main()
 {
 	PerformanceTest();
-//	TESTFFT(testData, 128);
 	while(1);
 }
 
