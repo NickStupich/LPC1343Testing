@@ -3,183 +3,237 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\Nick\Desktop\MuscleMate\LPC1343Testing\Test1\test1.uvproj
-Project File Date:  06/18/2012
+C:\Users\nstupich\Desktop\LPC1343Testing\Test1\test1.uvproj
+Project File Date:  06/19/2012
 
 <h2>Output:</h2>
 Build target 'Target 1'
-assembling startup_LPC13xx.s...
 compiling main.c...
-linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(1): error:  #5: cannot open source input file "lpc23xx.h": No such file or directory
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(13): warning:  #1-D: last line of file ends without a newline
-linking...
-test1.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_lpc13xx.o).
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(13): error:  #20: identifier "SYSPLLCLKSEL" is undefined
-main.c(16): error:  #20: identifier "SYSPLLCLKUEN" is undefined
-main.c(19): error:  #20: identifier "MAINCLKSEL" is undefined
-main.c(22): error:  #20: identifier "MAINCLKUEN" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=368 RO-data=400 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(7): warning:  #47-D: incompatible redefinition of macro "SYSPLLCLKSEL" (declared at line 3)
-main.c(25): error:  #20: identifier "SYSPLLSTAT" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(7): warning:  #47-D: incompatible redefinition of macro "SYSPLLCLKSEL" (declared at line 3)
-linking...
-Program Size: Code=384 RO-data=384 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=384 RO-data=384 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(29): error:  #20: identifier "PDRUNCFG" is undefined
-main.c(84): error:  #65: expected a ";"
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(7): warning:  #1-D: last line of file ends without a newline
-linking...
-Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(9): warning:  #1-D: last line of file ends without a newline
-main.c(9): error:  #169: expected a declaration
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(8): warning:  #1-D: last line of file ends without a newline
-main.c(8): error:  #169: expected a declaration
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(10): warning:  #1-D: last line of file ends without a newline
-main.c(10): error:  #169: expected a declaration
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=564 RO-data=312 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=564 RO-data=312 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-fft1.h(59): warning:  #223-D: function "sin" declared implicitly
-fft1.h(125): error:  #268: declaration may not appear after executable statement in block
-fft1.h(130): warning:  #1-D: last line of file ends without a newline
-Target not created
-Build target 'Target 1'
-compiling main.c...
-fft1.h(126): error:  #268: declaration may not appear after executable statement in block
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-linking...
-Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(5): error:  #147: declaration is incompatible with "const float data[9]" (declared at line 6 of "fft1.h")
-main.c(9): warning:  #170-D: pointer points outside of underlying object
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(9): warning:  #170-D: pointer points outside of underlying object
-main.c(9): error:  #167: argument of type "const float *" is incompatible with parameter of type "float *"
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(9): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7216 RO-data=640 RW-data=0 ZI-data=1120  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(136): error:  #65: expected a ";"
-main.c(142): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(138): warning:  #170-D: pointer points outside of underlying object
-linking...
-Program Size: Code=7320 RO-data=656 RW-data=512 ZI-data=608  
-"test1.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(138): error:  #20: identifier "T0TC" is undefined
-main.c(139): warning:  #170-D: pointer points outside of underlying object
-main.c(140): error:  #268: declaration may not appear after executable statement in block
-main.c(141): error:  #268: declaration may not appear after executable statement in block
-main.c(141): warning:  #177-D: variable "elapsed" was declared but never referenced
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(141): warning:  #170-D: pointer points outside of underlying object
-main.c(142): error:  #268: declaration may not appear after executable statement in block
-main.c(143): error:  #268: declaration may not appear after executable statement in block
-main.c(143): warning:  #177-D: variable "elapsed" was declared but never referenced
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(142): warning:  #170-D: pointer points outside of underlying object
-main.c(140): warning:  #550-D: variable "elapsed" was set but never used
+main.c(143): warning:  #170-D: pointer points outside of underlying object
+main.c(141): warning:  #550-D: variable "elapsed" was set but never used
 linking...
 Program Size: Code=7336 RO-data=656 RW-data=512 ZI-data=608  
 "test1.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(146): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7408 RO-data=656 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(146): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(146): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(146): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7404 RO-data=652 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(147): error:  #65: expected a ";"
+main.c(153): warning:  #170-D: pointer points outside of underlying object
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(153): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7436 RO-data=652 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(23): warning:  #170-D: pointer points outside of underlying object
+main.c(38): error:  #77-D: this declaration has no storage class or type specifier
+main.c(38): error:  #147: declaration is incompatible with "float testData[128]" (declared at line 10)
+main.c(40): error:  #67: expected a "}"
+main.c(167): warning:  #1-D: last line of file ends without a newline
+main.c(167): warning:  #12-D: parsing restarts here after previous syntax error
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(23): warning:  #170-D: pointer points outside of underlying object
+main.c(38): error:  #77-D: this declaration has no storage class or type specifier
+main.c(38): error:  #147: declaration is incompatible with "float testData[128]" (declared at line 10)
+main.c(40): error:  #67: expected a "}"
+main.c(167): warning:  #12-D: parsing restarts here after previous syntax error
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(146): error:  #65: expected a ";"
+main.c(152): warning:  #170-D: pointer points outside of underlying object
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(152): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7436 RO-data=652 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7408 RO-data=656 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7208 RO-data=656 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7464 RO-data=656 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+fft1.h(62): warning:  #223-D: function "sin" declared implicitly
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7408 RO-data=656 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3000 RO-data=364 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3232 RO-data=364 RW-data=524 ZI-data=612  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+fft2.h(53): error:  #29: expected an expression
+fft2.h(56): error:  #29: expected an expression
+fft2.h(88): error:  #29: expected an expression
+fft2.h(90): error:  #29: expected an expression
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+Target not created
+Build target 'Target 1'
+compiling main.c...
+fft2.h(43): warning:  #223-D: function "usin" declared implicitly
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+test1.axf: Error: L6218E: Undefined symbol usin (referred from main.o).
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3176 RO-data=328 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3184 RO-data=328 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3196 RO-data=364 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(150): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=3200 RO-data=364 RW-data=528 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+fft3.h(2): warning:  #1-D: last line of file ends without a newline
+main.c(284): warning:  #223-D: function "TESTFFT" declared implicitly
+assembling Ek_FFT128Real_32b.s...
+Ek_FFT128Real_32b.s(43): warning: A1479W: Requested alignment 8 is greater than area alignment 4, which has been increased
+linking...
+test1.axf: Error: L6218E: Undefined symbol TESTFFT (referred from main.o).
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(285): warning:  #167-D: argument of type "long *" is incompatible with parameter of type "int *"
+main.c(285): warning:  #167-D: argument of type "long *" is incompatible with parameter of type "int *"
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=2220 RO-data=336 RW-data=528 ZI-data=1128  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=608 RO-data=328 RW-data=12 ZI-data=612  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=2172 RO-data=336 RW-data=524 ZI-data=1132  
+"test1.axf" - 0 Error(s), 0 Warning(s).
