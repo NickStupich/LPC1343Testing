@@ -3,46 +3,183 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\nstupich\Desktop\LPC1343\Test1\test1.uvproj
+C:\Users\Nick\Desktop\MuscleMate\LPC1343Testing\Test1\test1.uvproj
 Project File Date:  06/18/2012
 
 <h2>Output:</h2>
 Build target 'Target 1'
 assembling startup_LPC13xx.s...
 compiling main.c...
-main.c(1): warning:  #951-D: return type of function "main" must be "int"
-main.c(4): warning:  #1-D: last line of file ends without a newline
-linking...
-test1.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_lpc13xx.o).
-Target not created
-Build target 'Target 1'
-compiling main.c...
-linking...
-test1.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_lpc13xx.o).
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(9): warning:  #1-D: last line of file ends without a newline
 linking...
 Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(1): error:  #5: cannot open source input file "lpc23xx.h": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(13): warning:  #1-D: last line of file ends without a newline
+linking...
+test1.axf: Error: L6218E: Undefined symbol SystemInit (referred from startup_lpc13xx.o).
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(13): error:  #20: identifier "SYSPLLCLKSEL" is undefined
+main.c(16): error:  #20: identifier "SYSPLLCLKUEN" is undefined
+main.c(19): error:  #20: identifier "MAINCLKSEL" is undefined
+main.c(22): error:  #20: identifier "MAINCLKUEN" is undefined
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=368 RO-data=400 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(7): warning:  #47-D: incompatible redefinition of macro "SYSPLLCLKSEL" (declared at line 3)
+main.c(25): error:  #20: identifier "SYSPLLSTAT" is undefined
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(7): warning:  #47-D: incompatible redefinition of macro "SYSPLLCLKSEL" (declared at line 3)
+linking...
+Program Size: Code=384 RO-data=384 RW-data=0 ZI-data=608  
 "test1.axf" - 0 Error(s), 1 Warning(s).
 Build target 'Target 1'
 compiling main.c...
 linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+Program Size: Code=384 RO-data=384 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(29): error:  #20: identifier "PDRUNCFG" is undefined
+main.c(84): error:  #65: expected a ";"
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(7): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(9): warning:  #1-D: last line of file ends without a newline
+main.c(9): error:  #169: expected a declaration
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(8): warning:  #1-D: last line of file ends without a newline
+main.c(8): error:  #169: expected a declaration
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(10): warning:  #1-D: last line of file ends without a newline
+main.c(10): error:  #169: expected a declaration
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=584 RO-data=312 RW-data=0 ZI-data=608  
 "test1.axf" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 compiling main.c...
 linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+Program Size: Code=564 RO-data=312 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=564 RO-data=312 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+fft1.h(59): warning:  #223-D: function "sin" declared implicitly
+fft1.h(125): error:  #268: declaration may not appear after executable statement in block
+fft1.h(130): warning:  #1-D: last line of file ends without a newline
+Target not created
+Build target 'Target 1'
+compiling main.c...
+fft1.h(126): error:  #268: declaration may not appear after executable statement in block
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
 "test1.axf" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 compiling main.c...
 linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
+Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
+"test1.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=7220 RO-data=636 RW-data=0 ZI-data=608  
 "test1.axf" - 0 Error(s), 0 Warning(s).
 Build target 'Target 1'
 compiling main.c...
+main.c(5): error:  #147: declaration is incompatible with "const float data[9]" (declared at line 6 of "fft1.h")
+main.c(9): warning:  #170-D: pointer points outside of underlying object
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(9): warning:  #170-D: pointer points outside of underlying object
+main.c(9): error:  #167: argument of type "const float *" is incompatible with parameter of type "float *"
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(9): warning:  #170-D: pointer points outside of underlying object
 linking...
-Program Size: Code=340 RO-data=428 RW-data=0 ZI-data=608  
-"test1.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=7216 RO-data=640 RW-data=0 ZI-data=1120  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(136): error:  #65: expected a ";"
+main.c(142): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(138): warning:  #170-D: pointer points outside of underlying object
+linking...
+Program Size: Code=7320 RO-data=656 RW-data=512 ZI-data=608  
+"test1.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(138): error:  #20: identifier "T0TC" is undefined
+main.c(139): warning:  #170-D: pointer points outside of underlying object
+main.c(140): error:  #268: declaration may not appear after executable statement in block
+main.c(141): error:  #268: declaration may not appear after executable statement in block
+main.c(141): warning:  #177-D: variable "elapsed" was declared but never referenced
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(141): warning:  #170-D: pointer points outside of underlying object
+main.c(142): error:  #268: declaration may not appear after executable statement in block
+main.c(143): error:  #268: declaration may not appear after executable statement in block
+main.c(143): warning:  #177-D: variable "elapsed" was declared but never referenced
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(142): warning:  #170-D: pointer points outside of underlying object
+main.c(140): warning:  #550-D: variable "elapsed" was set but never used
+linking...
+Program Size: Code=7336 RO-data=656 RW-data=512 ZI-data=608  
+"test1.axf" - 0 Error(s), 2 Warning(s).

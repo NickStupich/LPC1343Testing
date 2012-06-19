@@ -139,7 +139,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(450=-1,-1,-1,-1,0)(311=1995,128,2859,652,1)(420=1686,222,1872,351,0)(421=-1,-1,-1,-1,0)(422=-1,-1,-1,-1,0)(107=90,120,446,337,0)(440=-1,-1,-1,-1,0)(431=-1,-1,-1,-1,0)(108=-1,-1,-1,-1,0)(441=-1,-1,-1,-1,0)(432=-1,-1,-1,-1,0)(433=-1,-1,-1,-1,0)(434=-1,-1,-1,-1,0)(301=98,128,464,465,0)(470=-1,-1,-1,-1,0)(460=-1,-1,-1,-1,0)(321=-1,-1,-1,-1,0)(500=-1,-1,-1,-1,0)(510=-1,-1,-1,-1,0)(480=-1,-1,-1,-1,0)(490=-1,-1,-1,-1,0)(360=135,168,875,744,0)(339=1240,128,1552,488,0)(340=-1,-1,-1,-1,0)(341=-1,-1,-1,-1,0)(342=1357,144,1669,504,0)(381=1286,149,1661,929,0)(260=203,241,509,661,0)(231=-1,-1,-1,-1,0)(126=-1,-1,-1,-1,0)(127=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(220=-1,-1,-1,-1,0)(250=-1,-1,-1,-1,0)(450=-1,-1,-1,-1,0)(311=885,150,1749,674,0)(420=1686,222,1872,351,0)(421=-1,-1,-1,-1,0)(422=-1,-1,-1,-1,0)(107=90,120,446,337,0)(440=-686,227,-350,499,0)(431=-568,203,-232,475,0)(108=-1,-1,-1,-1,0)(441=-1,-1,-1,-1,0)(432=-1,-1,-1,-1,0)(433=-1,-1,-1,-1,0)(434=-637,218,-301,490,0)(301=98,128,464,465,0)(470=-1,-1,-1,-1,0)(460=-1,-1,-1,-1,0)(321=-1,-1,-1,-1,0)(500=-1,-1,-1,-1,0)(510=-1,-1,-1,-1,0)(480=-1,-1,-1,-1,0)(490=-1,-1,-1,-1,0)(360=135,168,875,744,0)(339=1240,128,1552,488,0)(340=-1,-1,-1,-1,0)(341=-1,-1,-1,-1,0)(342=1357,144,1669,504,0)(381=1286,149,1661,929,0)(260=203,241,509,661,0)(231=-1,-1,-1,-1,0)(126=-1,-1,-1,-1,0)(127=-1,-1,-1,-1,0)(130=-1,-1,-1,-1,0)(131=-1,-1,-1,-1,0)(160=-1,-1,-1,-1,0)(280=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -152,7 +152,31 @@
           <Name>-O4303 -S0 -C0 -FO7 -FD10000000 -FC800 -FN1 -FF0LPC1xxx_32 -FS00 -FL08000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>145</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\Users\Nick\Desktop\MuscleMate\LPC1343Testing\Test1\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
+      <MemoryWindow1>
+        <Mm>
+          <WinNumber>1</WinNumber>
+          <SubType>0</SubType>
+          <ItemText>0x40048008</ItemText>
+        </Mm>
+      </MemoryWindow1>
       <DebugFlag>
         <trace>0</trace>
         <periodic>1</periodic>
@@ -190,32 +214,60 @@
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <File>
-      <GroupNumber>0</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>1</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>220</TopLine>
-      <CurrentLine>245</CurrentLine>
+      <TopLine>136</TopLine>
+      <CurrentLine>152</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup_LPC13xx.s</PathWithFileName>
       <FilenameWithoutPath>startup_LPC13xx.s</FilenameWithoutPath>
     </File>
     <File>
-      <GroupNumber>0</GroupNumber>
-      <FileNumber>0</FileNumber>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>2</FileNumber>
       <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>11</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>145</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\main.c</PathWithFileName>
+      <FilenameWithoutPath>main.c</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>10</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\main.c</PathWithFileName>
-      <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <PathWithFileName>.\pll.h</PathWithFileName>
+      <FilenameWithoutPath>pll.h</FilenameWithoutPath>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>0</FileNumber>
+      <FileType>5</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\fft1.h</PathWithFileName>
+      <FilenameWithoutPath>fft1.h</FilenameWithoutPath>
     </File>
   </Group>
 

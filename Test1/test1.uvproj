@@ -398,6 +398,16 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>pll.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\pll.h</FilePath>
+            </File>
+            <File>
+              <FileName>fft1.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\fft1.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
