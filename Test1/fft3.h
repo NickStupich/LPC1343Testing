@@ -1,8 +1,8 @@
 
-void FFT128Real_32b(long *y, long *x);
-void magnitude32_32bIn(long   *x,int M);
+void FFT128Real_32b(int *y, int *x);
+void magnitude32_32bIn(int   *x,int M);
 
-void realFFT128(long *in, long*out)
+void realFFT128(int *in, int*out)
 {
 	int i;
 	FFT128Real_32b(out, in);

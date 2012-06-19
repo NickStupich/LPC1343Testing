@@ -140,7 +140,7 @@ float testData[128] = {
 
 */
 
-long testData[128] = {
+int testData[128] = {
 	0,
 12100,
 24085,
@@ -272,7 +272,7 @@ long testData[128] = {
 };
 unsigned long start, end, elapsed, loop;
 
-long testOutput[130];
+int testOutput[130];
 
 void PerformanceTest()
 {	
