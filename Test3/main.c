@@ -1,20 +1,9 @@
-#include "lpc13xx.h"
-#include "lpc1343.h"	//my own definitions
-
-
-
 int main()
-{	
-	LPC_IOCON->PIO0_1 = 0xD8;
-	LPC_GPIO0->DIR |= 0x2;
-	
-	while(1)
-	{
-		LPC_GPIO0->DATA ^= 0x2;
-	}
+{
+
+while(1);	
 }
 
-/*Sets the system to use the PLL, set up convert the frequency up to 72Mhz*/
 void pllSetup()
 {
 	int i;
@@ -65,48 +54,23 @@ void pllSetup()
 }
 
 
-
-/*Enables interrupts on GPIO pin P1_5 on the falling edge*/
-void enableGPIO1_5Interrupt()
+void uartSetup()
 {
-	unsigned int bitPos = 5;
+		__disable_irq();
 	
-	__disable_irq();
-	//set up GPIO0 for external interrupts
+		//RX - 1_6
+	//TX - 1_7
 	
-	LPC_GPIO1->DIR &= ~(1<<bitPos);						//input
-	LPC_GPIO1->IS &= ~( 1<< bitPos);					//edge sensitive
-	LPC_GPIO1->IBE &= ~(1<<bitPos);						//single edge
-	LPC_GPIO1->IEV &= ~(1<<bitPos);						//falling edge sensitive
-	LPC_GPIO1->IE |= (1<<bitPos);							//un-mask interrupt
-	
-	//ISER1 |= 1<<24;	//enable interrupt for GPIO 0
-	NVIC_EnableIRQ(EINT1_IRQn);
-	NVIC_SetPriority(EINT1_IRQn, 0x1F);
-	
-	//IPR14 |= (0x1F << 3);//highest priority for P0_1
-	LPC_IOCON->PIO1_4 = 0x10;		//pull-up, no hysterisis, GPIO function	
-	
-	__enable_irq();
+		LPC_IOCON->PIO1_6 = 
+		LPC_IOCON->PIO1_7 = 
+		
+		__enable_irq();
 }
 
 void SystemInit()
 {
-	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
-												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
-												);	
-	
-	uartSetup();
 	pllSetup();
-	enableGPIO1_5Interrupt();
+	uartSetup();
 	
 }
 
-void PIOINT1_IRQHandler(void)
-{
-	unsigned bitPos = 5;
-	unsigned int bitIntStatus = LPC_GPIO1->MIS & (1 << bitPos);	//get status of <bitPos> interrupt
-	
-	if(bitIntStatus)
-		LPC_GPIO1->IC |= 1<<bitPos;	//clear the interrupt	
-}

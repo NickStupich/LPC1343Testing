@@ -9,7 +9,7 @@ Project File Date:  06/20/2012
 <h2>Output:</h2>
 Build target 'Target 1'
 linking...
-Program Size: Code=472 RO-data=312 RW-data=0 ZI-data=608  
+Program Size: Code=744 RO-data=436 RW-data=0 ZI-data=608  
 "test2.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
 Erase Done.
@@ -17,281 +17,9 @@ Programming Done.
 Verify OK.
 Build target 'Target 1'
 compiling main.c...
+main.c(44): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=488 RO-data=312 RW-data=0 ZI-data=608  
-"test2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Build target 'Target 1'
-compiling main.c...
-main.c(12): error:  #20: identifier "SCB_PDRUNCFG_SYSOSC_MASK" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(13): error:  #20: identifier "SCB_PDRUNCFG_SYSOSC_MASK" is undefined
-main.c(16): error:  #20: identifier "SCB_SYSOSCCTRL_BYPASS_DISABLED" is undefined
-main.c(16): error:  #20: identifier "SCB_SYSOSCCTRL_FREQRANGE_1TO20MHZ" is undefined
-main.c(18): error:  #20: identifier "i" is undefined
-main.c(20): error:  #1113: Inline assembler not permitted when generating Thumb code
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(15): error:  #20: identifier "SCB_PDRUNCFG_SYSOSC_MASK" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_BYPASS_DISABLED" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_FREQRANGE_1TO20MHZ" is undefined
-main.c(22): error:  #1113: Inline assembler not permitted when generating Thumb code
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(15): error:  #20: identifier "SCB_PDRUNCFG_SYSOSC_MASK" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_BYPASS_DISABLED" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_FREQRANGE_1TO20MHZ" is undefined
-main.c(22): warning:  #174-D: expression has no effect
-main.c(26): error:  #136: struct "<unnamed>" has no field "SCB_PLLCLKSEL"
-main.c(26): error:  #20: identifier "SCB_CLKSEL_SOURCE_MAINOSC" is undefined
-main.c(27): error:  #136: struct "<unnamed>" has no field "SCB_PLLCLKUEN"
-main.c(27): error:  #20: identifier "SCB_PLLCLKUEN_UPDATE" is undefined
-main.c(28): error:  #136: struct "<unnamed>" has no field "SCB_PLLCLKUEN"
-main.c(28): error:  #20: identifier "SCB_PLLCLKUEN_DISABLE" is undefined
-main.c(29): error:  #136: struct "<unnamed>" has no field "SCB_PLLCLKUEN"
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(15): error:  #20: identifier "SCB_PDRUNCFG_SYSOSC_MASK" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_BYPASS_DISABLED" is undefined
-main.c(18): error:  #20: identifier "SCB_SYSOSCCTRL_FREQRANGE_1TO20MHZ" is undefined
-main.c(22): warning:  #174-D: expression has no effect
-main.c(26): error:  #20: identifier "SCB_CLKSEL_SOURCE_MAINOSC" is undefined
-main.c(27): error:  #20: identifier "SCB_PLLCLKUEN_UPDATE" is undefined
-main.c(28): error:  #20: identifier "SCB_PLLCLKUEN_DISABLE" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=440 RO-data=328 RW-data=0 ZI-data=608  
-"test2.axf" - 0 Error(s), 1 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-main.c(31): warning:  #174-D: expression has no effect
-main.c(41): error:  #20: identifier "SCB_PLLCLKUEN" is undefined
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(47): error:  #20: identifier "SCB_PLLSTAT" is undefined
-main.c(47): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKSEL" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(52): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(60): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(63): error:  #20: identifier "SCB_SYSAHBCLKDIV" is undefined
-main.c(63): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(31): warning:  #174-D: expression has no effect
-main.c(41): error:  #20: identifier "SCB_PLLCLKUEN" is undefined
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(47): error:  #20: identifier "SCB_PLLSTAT" is undefined
-main.c(47): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(52): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(60): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(63): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(10): warning:  #47-D: incompatible redefinition of macro "SCB_PLLCLKUEN_UPDATE" (declared at line 8)
-main.c(32): warning:  #174-D: expression has no effect
-main.c(37): error:  #29: expected an expression
-main.c(39): error:  #29: expected an expression
-main.c(42): error:  #20: identifier "SCB_PLLCLKUEN" is undefined
-main.c(42): error:  #29: expected an expression
-main.c(45): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(45): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(48): error:  #136: struct "<unnamed>" has no field "PLLSTAT"
-main.c(48): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(52): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(53): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(60): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(61): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(64): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(30): warning:  #174-D: expression has no effect
-main.c(40): error:  #20: identifier "SCB_PLLCLKUEN" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #136: struct "<unnamed>" has no field "PLLSTAT"
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(30): warning:  #174-D: expression has no effect
-main.c(40): error:  #136: struct "<unnamed>" has no field "PLLCLKUEN"
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #136: struct "<unnamed>" has no field "PLLSTAT"
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(30): warning:  #174-D: expression has no effect
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #136: struct "<unnamed>" has no field "PLLSTAT"
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(30): warning:  #174-D: expression has no effect
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(28): warning:  #174-D: expression has no effect
-main.c(40): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(40): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(43): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(46): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(47): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(48): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(55): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(56): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(28): warning:  #174-D: expression has no effect
-main.c(39): error:  #136: struct "<unnamed>" has no field "PLLCTRL"
-main.c(39): error:  #20: identifier "SCB_PLLCTRL_MULT_4" is undefined
-main.c(39): error:  #20: identifier "SCB_PLLCTRL_DIV_BIT" is undefined
-main.c(42): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(42): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(45): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(48): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(57): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(61): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(28): warning:  #174-D: expression has no effect
-main.c(39): error:  #20: identifier "SCB_PLLCTRL_MULT_4" is undefined
-main.c(39): error:  #20: identifier "SCB_PLLCTRL_DIV_BIT" is undefined
-main.c(42): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(42): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(45): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(48): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(57): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(61): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(12): error:  #40: expected an identifier
-main.c(30): warning:  #174-D: expression has no effect
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(44): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(47): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(52): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(60): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(63): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(29): warning:  #174-D: expression has no effect
-main.c(40): warning:  #63-D: shift count is too large
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(29): warning:  #174-D: expression has no effect
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG" is undefined
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(29): warning:  #174-D: expression has no effect
-main.c(43): error:  #20: identifier "SCB_PDRUNCFG_SYSPLL_MASK" is undefined
-main.c(46): error:  #20: identifier "SCB_PLLSTAT_LOCK" is undefined
-main.c(49): error:  #20: identifier "SCB_MAINCLKSEL_SOURCE_SYSPLLCLKOUT" is undefined
-main.c(50): error:  #20: identifier "SCB_MAINCLKUEN_UPDATE" is undefined
-main.c(51): error:  #20: identifier "SCB_MAINCLKUEN_DISABLE" is undefined
-main.c(58): error:  #20: identifier "SCB_PDSLEEPCFG_USBPAD_PD" is undefined
-main.c(59): error:  #20: identifier "SCB_PDSLEEPCFG_USBPLL_PD" is undefined
-main.c(62): error:  #20: identifier "SCB_SYSAHBCLKDIV_DIV1" is undefined
-Target not created
-Build target 'Target 1'
-compiling main.c...
-main.c(38): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=500 RO-data=312 RW-data=0 ZI-data=608  
-"test2.axf" - 0 Error(s), 1 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
-Internal DLL Error
-Build target 'Target 1'
-compiling main.c...
-main.c(38): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=500 RO-data=312 RW-data=0 ZI-data=608  
+Program Size: Code=708 RO-data=436 RW-data=0 ZI-data=608  
 "test2.axf" - 0 Error(s), 1 Warning(s).
 Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
 Erase Done.
@@ -299,9 +27,9 @@ Programming Done.
 Verify OK.
 Build target 'Target 1'
 compiling main.c...
-main.c(39): warning:  #174-D: expression has no effect
+main.c(44): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=500 RO-data=312 RW-data=0 ZI-data=608  
+Program Size: Code=744 RO-data=436 RW-data=0 ZI-data=608  
 "test2.axf" - 0 Error(s), 1 Warning(s).
 Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
 Erase Done.
@@ -309,9 +37,9 @@ Programming Done.
 Verify OK.
 Build target 'Target 1'
 compiling main.c...
-main.c(40): warning:  #174-D: expression has no effect
+main.c(44): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=632 RO-data=436 RW-data=0 ZI-data=608  
+Program Size: Code=708 RO-data=436 RW-data=0 ZI-data=608  
 "test2.axf" - 0 Error(s), 1 Warning(s).
 Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
 Erase Done.
@@ -319,7 +47,11 @@ Programming Done.
 Verify OK.
 Build target 'Target 1'
 compiling main.c...
-main.c(38): warning:  #174-D: expression has no effect
+main.c(44): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=696 RO-data=436 RW-data=0 ZI-data=608  
+Program Size: Code=744 RO-data=436 RW-data=0 ZI-data=608  
 "test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
