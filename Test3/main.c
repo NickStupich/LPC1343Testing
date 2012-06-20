@@ -1,7 +1,20 @@
+#include "../Test2/lpc1343.h"
+#include "lpc13xx.h"
+
 int main()
 {
-
-while(1);	
+	unsigned char toSend = 67;
+	
+	LPC_IOCON->PIO0_1 = 0xD8;
+	LPC_GPIO0->DIR |= 0x2;
+	
+	while(1)
+	{
+			while(!(LPC_UART->LSR & (1<<6)));		
+			LPC_UART->THR = toSend;
+			
+			LPC_GPIO0->DATA ^= 0x2;
+	}
 }
 
 void pllSetup()
@@ -54,21 +67,57 @@ void pllSetup()
 }
 
 
+
+/* sets up for a baud rate of 115200*/
 void uartSetup()
 {
+		unsigned int temp;
 		__disable_irq();
 	
 		//RX - 1_6
 	//TX - 1_7
 	
-		LPC_IOCON->PIO1_6 = 
-		LPC_IOCON->PIO1_7 = 
+		LPC_IOCON->PIO1_6 = 0x1;	//RX
+		LPC_IOCON->PIO1_7 = 0x1;	//TX
+	
+		LPC_SYSCON->UARTCLKDIV = 1;	//uart clock divider
+	
+		LPC_UART->LCR = (		UART_U0LCR_Word_Length_Select_8Chars |
+												UART_U0LCR_Stop_Bit_Select_1Bits |
+												UART_U0LCR_Parity_Disabled |
+												UART_U0LCR_Parity_Select_OddParity |
+												UART_U0LCR_Break_Control_Disabled |
+												UART_U0LCR_Divisor_Latch_Access_Enabled);
+	
+		//baud rate divider section
+		LPC_UART->FDR = 1<<4;	//DIVADDVAL = 0 - no fractional baud rate effect
+		LPC_UART->DLM = 0;
+		LPC_UART->DLL = 39;
+		
+		  /* Set DLAB back to 0 */
+		LPC_UART->LCR = (		UART_U0LCR_Word_Length_Select_8Chars |
+												UART_U0LCR_Stop_Bit_Select_1Bits |
+												UART_U0LCR_Parity_Disabled |
+												UART_U0LCR_Parity_Select_OddParity |
+												UART_U0LCR_Break_Control_Disabled |
+												UART_U0LCR_Divisor_Latch_Access_Disabled);
+		
+		LPC_UART->FCR = (		UART_U0FCR_FIFO_Enabled | 
+												UART_U0FCR_Rx_FIFO_Reset | 
+												UART_U0FCR_Tx_FIFO_Reset); 
+												
+		temp = LPC_UART->LSR;	//read to clear the line status
 		
 		__enable_irq();
+		LPC_UART->IER = 		UART_U0IER_RBR_Interrupt_Enabled;
 }
 
 void SystemInit()
 {
+	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
+												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
+												| SCB_SYSAHBCLKCTRL_UART		//uart gets a clock
+												);	
 	pllSetup();
 	uartSetup();
 	

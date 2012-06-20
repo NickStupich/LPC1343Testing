@@ -4,6 +4,7 @@
 #define SCB_SYSAHBCLKCTRL				(*((volatile unsigned long *) 0x40048080))
 #define SCB_SYSAHBCLKCTRL_GPIO	(1<<6)
 #define SCB_SYSAHBCLKCTRL_IOCON	(1<<16)
+#define SCB_SYSAHBCLKCTRL_UART	(1<<12)
 
 
 
@@ -37,5 +38,20 @@
 #define SCB_PDSLEEPCFG_USBPAD_PD						0x400
 #define SCB_PDSLEEPCFG_USBPLL_PD						0x100
 #define SCB_SYSAHBCLKDIV_DIV1								0x1
+
+
+#define UART_U0LCR_Word_Length_Select_8Chars      ((unsigned int) 0x00000003)
+#define UART_U0LCR_Stop_Bit_Select_1Bits          ((unsigned int) 0x00000000)
+#define UART_U0LCR_Parity_Disabled                ((unsigned int) 0x00000000)
+#define UART_U0LCR_Parity_Select_OddParity        ((unsigned int) 0x00000000)
+#define UART_U0LCR_Break_Control_Disabled         ((unsigned int) 0x00000000)
+#define UART_U0LCR_Divisor_Latch_Access_Enabled   ((unsigned int) 0x00000080)
+#define UART_U0LCR_Divisor_Latch_Access_Disabled  ((unsigned int) 0x00000000)
+#define UART_U0FCR_FIFO_Enabled                   ((unsigned int) 0x00000001)
+#define UART_U0FCR_Rx_FIFO_Reset                  ((unsigned int) 0x00000002) // Clear Rx FIFO
+#define UART_U0FCR_Tx_FIFO_Reset                  ((unsigned int) 0x00000004) // Clear Tx FIFO
+#define UART_U0IER_RBR_Interrupt_Enabled          ((unsigned int) 0x00000001)
+
+
 
 #endif
