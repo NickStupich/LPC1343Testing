@@ -40,18 +40,29 @@
 #define SCB_SYSAHBCLKDIV_DIV1								0x1
 
 
-#define UART_U0LCR_Word_Length_Select_8Chars      ((unsigned int) 0x00000003)
-#define UART_U0LCR_Stop_Bit_Select_1Bits          ((unsigned int) 0x00000000)
-#define UART_U0LCR_Parity_Disabled                ((unsigned int) 0x00000000)
-#define UART_U0LCR_Parity_Select_OddParity        ((unsigned int) 0x00000000)
-#define UART_U0LCR_Break_Control_Disabled         ((unsigned int) 0x00000000)
-#define UART_U0LCR_Divisor_Latch_Access_Enabled   ((unsigned int) 0x00000080)
-#define UART_U0LCR_Divisor_Latch_Access_Disabled  ((unsigned int) 0x00000000)
-#define UART_U0FCR_FIFO_Enabled                   ((unsigned int) 0x00000001)
-#define UART_U0FCR_Rx_FIFO_Reset                  ((unsigned int) 0x00000002) // Clear Rx FIFO
-#define UART_U0FCR_Tx_FIFO_Reset                  ((unsigned int) 0x00000004) // Clear Tx FIFO
-#define UART_U0IER_RBR_Interrupt_Enabled          ((unsigned int) 0x00000001)
+#define UART_LCR_Word_Length_Select_8Chars      ((unsigned int) 0x00000003)
+#define UART_LCR_Stop_Bit_Select_1Bits          ((unsigned int) 0x00000000)
+#define UART_LCR_Parity_Disabled                ((unsigned int) 0x00000000)
+#define UART_LCR_Parity_Select_OddParity        ((unsigned int) 0x00000000)
+#define UART_LCR_Break_Control_Disabled         ((unsigned int) 0x00000000)
+#define UART_LCR_Divisor_Latch_Access_Enabled   ((unsigned int) 0x00000080)
+#define UART_LCR_Divisor_Latch_Access_Disabled  ((unsigned int) 0x00000000)
+#define UART_FCR_FIFO_Enabled                   ((unsigned int) 0x00000001)
+#define UART_FCR_Rx_FIFO_Reset                  ((unsigned int) 0x00000002) // Clear Rx FIFO
+#define UART_FCR_Tx_FIFO_Reset                  ((unsigned int) 0x00000004) // Clear Tx FIFO
+#define UART_IER_RBR_Interrupt_Enabled          ((unsigned int) 0x00000001)
+#define UART_LSR_THRE              	            ((unsigned int) 0x00000020)
+#define UART_LSR_TEMT                           ((unsigned int) 0x00000040)
+#define UART_LSR_RDR_DATA                       ((unsigned int) 0x00000001) // U0RBR contains valid data
+#define UART_IER_RBR_Interrupt_Enabled          ((unsigned int) 0x00000001)
+#define UART_IER_RLS_Interrupt_Enabled          ((unsigned int) 0x00000004)
+#define UART_IER_THRE_Interrupt_Enabled         ((unsigned int) 0x00000002)
 
+#define UART_IntId_RDA													0x4
+#define UART_IntId_THRE													0x2
+#define UART_IntId_RLS													0x6
+#define UART_IntId_CTI													0xB
+#define UART_IntId_MASK                     		0xE // Interrupt identification
 
 
 #endif
