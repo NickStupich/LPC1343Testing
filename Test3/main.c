@@ -1,27 +1,24 @@
+#include "../Test2/lpc1343.h"
 #include "lpc13xx.h"
-#include "lpc1343.h"	//my own definitions
-#include "SPI_Protocol.h"
-
-
 
 int main()
-{	
+{
+	unsigned char toSend = 67;
+	
 	LPC_IOCON->PIO0_1 = 0xD8;
 	LPC_GPIO0->DIR |= 0x2;
 	
 	while(1)
 	{
-		LPC_GPIO0->DATA ^= 0x2;
+			while(!(LPC_UART->LSR & (1<<6)));		
+			LPC_UART->THR = toSend;
+			
+			LPC_GPIO0->DATA ^= 0x2;
 	}
 }
 
-/*Sets the system to use the PLL, set up convert the frequency up to 72Mhz*/
 void pllSetup()
 {
-<<<<<<< HEAD
-	InitSPI();
-	while(1);
-=======
 	int i;
 	
 	//power up system oscillator
@@ -67,72 +64,62 @@ void pllSetup()
 
   // Enabled IOCON clock for I/O related peripherals
   LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_IOCON;
->>>>>>> 7ad25dd9b0d341bd083bcdab4ebed330db51153e
 }
 
 
 
-/*Enables interrupts on GPIO pin P1_5 on the falling edge*/
-void enableGPIO1_5Interrupt()
+/* sets up for a baud rate of 115200*/
+void uartSetup()
 {
-	unsigned int bitPos = 5;
+		unsigned int temp;
+		__disable_irq();
 	
-	__disable_irq();
-	//set up GPIO0 for external interrupts
+		//RX - 1_6
+	//TX - 1_7
 	
-	LPC_GPIO1->DIR &= ~(1<<bitPos);						//input
-	LPC_GPIO1->IS &= ~( 1<< bitPos);					//edge sensitive
-	LPC_GPIO1->IBE &= ~(1<<bitPos);						//single edge
-	LPC_GPIO1->IEV &= ~(1<<bitPos);						//falling edge sensitive
-	LPC_GPIO1->IE |= (1<<bitPos);							//un-mask interrupt
+		LPC_IOCON->PIO1_6 = 0x1;	//RX
+		LPC_IOCON->PIO1_7 = 0x1;	//TX
 	
-	//ISER1 |= 1<<24;	//enable interrupt for GPIO 0
-	NVIC_EnableIRQ(EINT1_IRQn);
-	NVIC_SetPriority(EINT1_IRQn, 0x1F);
+		LPC_SYSCON->UARTCLKDIV = 1;	//uart clock divider
 	
-	//IPR14 |= (0x1F << 3);//highest priority for P0_1
-	LPC_IOCON->PIO1_4 = 0x10;		//pull-up, no hysterisis, GPIO function	
+		LPC_UART->LCR = (		UART_U0LCR_Word_Length_Select_8Chars |
+												UART_U0LCR_Stop_Bit_Select_1Bits |
+												UART_U0LCR_Parity_Disabled |
+												UART_U0LCR_Parity_Select_OddParity |
+												UART_U0LCR_Break_Control_Disabled |
+												UART_U0LCR_Divisor_Latch_Access_Enabled);
 	
-	__enable_irq();
+		//baud rate divider section
+		LPC_UART->FDR = 1<<4;	//DIVADDVAL = 0 - no fractional baud rate effect
+		LPC_UART->DLM = 0;
+		LPC_UART->DLL = 39;
+		
+		  /* Set DLAB back to 0 */
+		LPC_UART->LCR = (		UART_U0LCR_Word_Length_Select_8Chars |
+												UART_U0LCR_Stop_Bit_Select_1Bits |
+												UART_U0LCR_Parity_Disabled |
+												UART_U0LCR_Parity_Select_OddParity |
+												UART_U0LCR_Break_Control_Disabled |
+												UART_U0LCR_Divisor_Latch_Access_Disabled);
+		
+		LPC_UART->FCR = (		UART_U0FCR_FIFO_Enabled | 
+												UART_U0FCR_Rx_FIFO_Reset | 
+												UART_U0FCR_Tx_FIFO_Reset); 
+												
+		temp = LPC_UART->LSR;	//read to clear the line status
+		
+		__enable_irq();
+		LPC_UART->IER = 		UART_U0IER_RBR_Interrupt_Enabled;
 }
 
 void SystemInit()
 {
 	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
 												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
+												| SCB_SYSAHBCLKCTRL_UART		//uart gets a clock
 												);	
-	
-	uartSetup();
 	pllSetup();
-	enableGPIO1_5Interrupt();
+	uartSetup();
 	
 }
 
-void PIOINT1_IRQHandler(void)
-{
-	unsigned bitPos = 5;
-	unsigned int bitIntStatus = LPC_GPIO1->MIS & (1 << bitPos);	//get status of <bitPos> interrupt
-	
-	if(bitIntStatus)
-		LPC_GPIO1->IC |= 1<<bitPos;	//clear the interrupt	
-}
-
-/*
-//setup a pin for GPIO input/output. offset address from 0x000 to 0x0BC. Pin direction - 0 for input pin and 1 for output pin
-void GPIOPinSetup(unsigned char offset, char direction){
-	if (offset < 0) return;
-	
-	unsigned long IOCON_Address = LPC_IOCON_BASE + offset;
-	
-	//Cast the address of the pin selected to a varaible
-	IOCON_Value = (*((volatile unsigned long *) IOCON_Address))
-		
-		
-	IOCON_Value = 0xD0			//GPIO function, pull-up resistor, no hysteris 
-	
-}
-*/
-
-
-	
-	

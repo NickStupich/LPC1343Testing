@@ -1,7 +1,13 @@
 Dependencies for Project 'test2', Target 'Target 1': (DO NOT MODIFY !)
+<<<<<<< HEAD
 F (.\startup_LPC13xx.s)(0x4FE1EA02)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC13xx --list "startup_LPC13xx.lst" --xref -o "startup_LPC13xx.o" --depend "startup_LPC13xx.d")
 F (.\main.c)(0x4FE24B3C)(-c --cpu Cortex-M3 -D__EVAL -g -O3 -Otime --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC13xx -o "main.o" --omf_browse "main.crf" --depend "main.d")
 I (C:\Keil\ARM\Inc\NXP\LPC13xx\lpc13xx.h)(0x4FE2285B)
+=======
+F (.\startup_LPC13xx.s)(0x4FE0DFB8)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC13xx --list "startup_LPC13xx.lst" --xref -o "startup_LPC13xx.o" --depend "startup_LPC13xx.d")
+F (.\main.c)(0x4FE22ED7)(-c --cpu Cortex-M3 -D__EVAL -g -O3 -Otime --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC13xx -o "main.o" --omf_browse "main.crf" --depend "main.d")
+I (C:\Keil\ARM\Inc\NXP\LPC13xx\lpc13xx.h)(0x4F58EE40)
+>>>>>>> 7ad25dd9b0d341bd083bcdab4ebed330db51153e
 I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x4F6B3E42)
 I (C:\Keil\ARM\RV31\Inc\stdint.h)(0x4F58EC4C)
 I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x4FAA6ABC)
