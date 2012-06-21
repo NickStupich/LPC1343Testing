@@ -1,5 +1,6 @@
 #include "lpc13xx.h"
 #include "lpc1343.h"	//my own definitions
+#include "SPI_Protocol.h"
 
 
 
@@ -7,7 +8,7 @@ int main()
 {	
 	LPC_IOCON->PIO0_1 = 0xD8;
 	LPC_GPIO0->DIR |= 0x2;
-	
+	InitSPI();
 	while(1)
 	{
 		LPC_GPIO0->DATA ^= 0x2;
@@ -17,6 +18,7 @@ int main()
 /*Sets the system to use the PLL, set up convert the frequency up to 72Mhz*/
 void pllSetup()
 {
+
 	int i;
 	
 	//power up system oscillator
@@ -62,6 +64,7 @@ void pllSetup()
 
   // Enabled IOCON clock for I/O related peripherals
   LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_IOCON;
+
 }
 
 
@@ -92,11 +95,9 @@ void enableGPIO1_5Interrupt()
 
 void SystemInit()
 {
-	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
-												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
-												);	
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<6);	//enable GPIO clock
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<16);	//Enable IOCON clock
 	
-	uartSetup();
 	pllSetup();
 	enableGPIO1_5Interrupt();
 	
@@ -110,3 +111,23 @@ void PIOINT1_IRQHandler(void)
 	if(bitIntStatus)
 		LPC_GPIO1->IC |= 1<<bitPos;	//clear the interrupt	
 }
+
+/*
+//setup a pin for GPIO input/output. offset address from 0x000 to 0x0BC. Pin direction - 0 for input pin and 1 for output pin
+void GPIOPinSetup(unsigned char offset, char direction){
+	if (offset < 0) return;
+	
+	unsigned long IOCON_Address = LPC_IOCON_BASE + offset;
+	
+	//Cast the address of the pin selected to a varaible
+	IOCON_Value = (*((volatile unsigned long *) IOCON_Address))
+		
+		
+	IOCON_Value = 0xD0			//GPIO function, pull-up resistor, no hysteris 
+	
+}
+*/
+
+
+	
+	
