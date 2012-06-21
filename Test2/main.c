@@ -8,7 +8,7 @@ int main()
 {	
 	LPC_IOCON->PIO0_1 = 0xD8;
 	LPC_GPIO0->DIR |= 0x2;
-	
+	InitSPI();
 	while(1)
 	{
 		LPC_GPIO0->DATA ^= 0x2;
@@ -18,10 +18,7 @@ int main()
 /*Sets the system to use the PLL, set up convert the frequency up to 72Mhz*/
 void pllSetup()
 {
-<<<<<<< HEAD
-	InitSPI();
-	while(1);
-=======
+
 	int i;
 	
 	//power up system oscillator
@@ -67,7 +64,7 @@ void pllSetup()
 
   // Enabled IOCON clock for I/O related peripherals
   LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_IOCON;
->>>>>>> 7ad25dd9b0d341bd083bcdab4ebed330db51153e
+
 }
 
 
@@ -98,11 +95,9 @@ void enableGPIO1_5Interrupt()
 
 void SystemInit()
 {
-	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
-												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
-												);	
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<6);	//enable GPIO clock
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<16);	//Enable IOCON clock
 	
-	uartSetup();
 	pllSetup();
 	enableGPIO1_5Interrupt();
 	
