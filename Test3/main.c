@@ -1,19 +1,34 @@
 #include "../Test2/lpc1343.h"
 #include "lpc13xx.h"
 #include "uart.h"
+#include "dataConversion.h"
+
+
+unsigned int start, end, elapsed;
 
 int main()
 {
 	//unsigned char toSend = 67;
-	
+
 	LPC_IOCON->PIO0_1 = 0xD8;
 	LPC_GPIO0->DIR |= 0x2;
+	
+	//SYSAHBCLKCTRL |= (1<<9); //power up timer 0
+	LPC_TMR32B0->TCR = 0x1;	//enable for counting
+	
+	start	= LPC_TMR32B0->TC;
+	//TESTFFT(testData, 128);
+	
+	testDataConversion();
+	
+	end = LPC_TMR32B0->TC;
+	elapsed = end - start;
 	
 	while(1)
 	{
 			//while(!(LPC_UART->LSR & UART_LSR_THRE));		
 			//LPC_UART->THR = toSend;
-			uart_write(71);
+			uart_write(elapsed);
 			LPC_GPIO0->DATA ^= 0x2;
 	}
 }
@@ -73,6 +88,7 @@ void SystemInit()
 	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
 												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
 												| SCB_SYSAHBCLKCTRL_UART		//uart gets a clock
+												| (1<<9)										//timer 0 gets a clock
 												);	
 	pllSetup();
 	uartSetup();

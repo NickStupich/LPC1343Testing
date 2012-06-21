@@ -9,149 +9,484 @@ Project File Date:  06/21/2012
 <h2>Output:</h2>
 Build target 'Target 1'
 compiling main.c...
-uart.h(25): error:  #20: identifier "uartReceiveBuffer" is undefined
-uart.h(43): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(74): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1056 RO-data=408 RW-data=236 ZI-data=620  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(11): error:  #40: expected an identifier
+main.c(12): error:  #40: expected an identifier
+main.c(13): error:  #40: expected an identifier
+main.c(14): error:  #40: expected an identifier
+main.c(15): error:  #40: expected an identifier
+main.c(16): error:  #40: expected an identifier
+main.c(17): error:  #40: expected an identifier
+main.c(18): error:  #40: expected an identifier
+main.c(19): error:  #40: expected an identifier
+main.c(19): warning:  #65-D: expected a ";"
+main.c(85): warning:  #550-D: variable "au" was set but never used
+main.c(106): warning:  #174-D: expression has no effect
 Target not created
 Build target 'Target 1'
 compiling main.c...
-uart.h(29): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(43): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(83): warning:  #550-D: variable "au" was set but never used
+main.c(104): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=872 RO-data=408 RW-data=16 ZI-data=608  
+Program Size: Code=1084 RO-data=408 RW-data=240 ZI-data=3824  
 "test3.axf" - 0 Error(s), 4 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-uart.h(33): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(17): warning:  #177-D: variable "lsrValue" was declared but never referenced
-uart.h(50): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(90): error:  #137: expression must be a modifiable lvalue
+main.c(91): error:  #137: expression must be a modifiable lvalue
+main.c(92): error:  #137: expression must be a modifiable lvalue
+main.c(93): error:  #137: expression must be a modifiable lvalue
+main.c(94): error:  #137: expression must be a modifiable lvalue
+main.c(95): error:  #137: expression must be a modifiable lvalue
+main.c(96): error:  #137: expression must be a modifiable lvalue
+main.c(97): error:  #137: expression must be a modifiable lvalue
+main.c(111): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(111): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=908 RO-data=408 RW-data=16 ZI-data=608  
+Program Size: Code=1248 RO-data=408 RW-data=240 ZI-data=3824  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(32): warning:  #223-D: function "testDataConversion" declared implicitly
+main.c(81): error:  #159: declaration is incompatible with previous "testDataConversion" (declared at line 32)
+main.c(111): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(112): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1252 RO-data=408 RW-data=240 ZI-data=3824  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=1252 RO-data=408 RW-data=240 ZI-data=3824  
+"test3.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(84): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1252 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(84): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1252 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(44): error:  #268: declaration may not appear after executable statement in block
+main.c(44): warning:  #177-D: variable "x" was declared but never referenced
+main.c(86): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(37): warning:  #550-D: variable "x" was set but never used
+main.c(87): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1256 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(37): warning:  #550-D: variable "x1" was set but never used
+main.c(37): warning:  #550-D: variable "x2" was set but never used
+main.c(89): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1256 RO-data=408 RW-data=52 ZI-data=3820  
 "test3.axf" - 0 Error(s), 5 Warning(s).
 Build target 'Target 1'
 compiling main.c...
-uart.h(33): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(50): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=908 RO-data=408 RW-data=16 ZI-data=608  
-"test3.axf" - 0 Error(s), 4 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-uart.h(33): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(97): error:  #20: identifier "UART_IER_THRE_Interrupt_Enabled" is undefined
-uart.h(50): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-Target not created
-Build target 'Target 1'
-compiling main.c...
-uart.h(33): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(50): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=908 RO-data=408 RW-data=16 ZI-data=608  
-"test3.axf" - 0 Error(s), 4 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-uart.h(33): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(50): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=908 RO-data=408 RW-data=16 ZI-data=608  
-"test3.axf" - 0 Error(s), 4 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-uart.h(34): error:  #136: struct "<unnamed>" has no field "THRE"
-uart.h(46): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(69): error:  #20: identifier "uartSendBufferIndex" is undefined
-uart.h(70): error:  #20: identifier "uartSendBufferStart" is undefined
-uart.h(64): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-Target not created
-Build target 'Target 1'
-compiling main.c...
-uart.h(46): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(69): error:  #20: identifier "uartSendBufferIndex" is undefined
-uart.h(70): error:  #20: identifier "uartSendBufferStart" is undefined
-uart.h(64): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-Target not created
-Build target 'Target 1'
-compiling main.c...
-uart.h(46): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(64): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=960 RO-data=408 RW-data=16 ZI-data=624  
-"test3.axf" - 0 Error(s), 4 Warning(s).
-Build target 'Target 1'
-compiling main.c...
-uart.h(7): error:  #35: #error directive: Uart receive buf length must be 4, or change the union and this message
-Target not created
-Build target 'Target 1'
-compiling main.c...
-uart.h(46): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(64): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=960 RO-data=408 RW-data=16 ZI-data=624  
-"test3.axf" - 0 Error(s), 4 Warning(s).
-Build target 'Target 1'
-compiling main.c...
 uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
-uart.h(78): error:  #137: expression must be a modifiable lvalue
-uart.h(78): error:  #137: expression must be a modifiable lvalue
 uart.h(85): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
+main.c(25): error:  #125: expected a "("
+main.c(25): error:  #661: expected an integer constant
+main.c(25): error:  #18: expected a ")"
+main.c(40): warning:  #550-D: variable "x1" was set but never used
+main.c(40): warning:  #550-D: variable "x2" was set but never used
+main.c(92): warning:  #174-D: expression has no effect
 Target not created
 Build target 'Target 1'
 compiling main.c...
 uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
 uart.h(85): warning:  #550-D: variable "temp" was set but never used
-main.c(7): warning:  #177-D: variable "toSend" was declared but never referenced
-main.c(31): warning:  #174-D: expression has no effect
+main.c(40): warning:  #550-D: variable "x1" was set but never used
+main.c(40): warning:  #550-D: variable "x2" was set but never used
+main.c(92): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=1056 RO-data=408 RW-data=20 ZI-data=620  
-"test3.axf" - 0 Error(s), 4 Warning(s).
+Program Size: Code=1252 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
 Build target 'Target 1'
 compiling main.c...
 uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
 uart.h(85): warning:  #550-D: variable "temp" was set but never used
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=1056 RO-data=408 RW-data=20 ZI-data=620  
-"test3.axf" - 0 Error(s), 3 Warning(s).
+main.c(7): error:  #40: expected an identifier
+main.c(54): error:  #65: expected a ";"
+main.c(42): warning:  #550-D: variable "x1" was set but never used
+main.c(42): warning:  #550-D: variable "x2" was set but never used
+main.c(94): warning:  #174-D: expression has no effect
+Target not created
 Build target 'Target 1'
 compiling main.c...
 uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
 uart.h(85): warning:  #550-D: variable "temp" was set but never used
-main.c(31): warning:  #174-D: expression has no effect
-linking...
-Program Size: Code=1060 RO-data=408 RW-data=20 ZI-data=620  
-"test3.axf" - 0 Error(s), 3 Warning(s).
+main.c(54): error:  #65: expected a ";"
+main.c(42): warning:  #550-D: variable "x1" was set but never used
+main.c(42): warning:  #550-D: variable "x2" was set but never used
+main.c(94): warning:  #174-D: expression has no effect
+Target not created
 Build target 'Target 1'
 compiling main.c...
 uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
 uart.h(85): warning:  #550-D: variable "temp" was set but never used
-main.c(31): warning:  #174-D: expression has no effect
+main.c(42): warning:  #550-D: variable "x1" was set but never used
+main.c(42): warning:  #550-D: variable "x2" was set but never used
+main.c(94): warning:  #174-D: expression has no effect
 linking...
-Program Size: Code=1060 RO-data=408 RW-data=20 ZI-data=620  
-"test3.axf" - 0 Error(s), 3 Warning(s).
+Program Size: Code=1260 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(42): warning:  #550-D: variable "x1" was set but never used
+main.c(42): warning:  #550-D: variable "x2" was set but never used
+main.c(94): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1316 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(42): warning:  #550-D: variable "x1" was set but never used
+main.c(42): warning:  #550-D: variable "x2" was set but never used
+main.c(94): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1268 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(57): warning:  #63-D: shift count is too large
+main.c(57): error:  #65: expected a ";"
+main.c(58): warning:  #63-D: shift count is too large
+main.c(58): error:  #65: expected a ";"
+main.c(59): warning:  #63-D: shift count is too large
+main.c(59): error:  #65: expected a ";"
+main.c(60): warning:  #63-D: shift count is too large
+main.c(60): error:  #65: expected a ";"
+main.c(61): warning:  #63-D: shift count is too large
+main.c(61): error:  #65: expected a ";"
+main.c(62): warning:  #63-D: shift count is too large
+main.c(62): error:  #65: expected a ";"
+main.c(63): warning:  #63-D: shift count is too large
+main.c(63): error:  #65: expected a ";"
+main.c(64): warning:  #63-D: shift count is too large
+main.c(64): error:  #65: expected a ";"
+main.c(45): warning:  #550-D: variable "x1" was set but never used
+main.c(45): warning:  #550-D: variable "x2" was set but never used
+main.c(97): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(57): error:  #65: expected a ";"
+main.c(58): error:  #65: expected a ";"
+main.c(59): error:  #65: expected a ";"
+main.c(60): error:  #65: expected a ";"
+main.c(61): error:  #65: expected a ";"
+main.c(62): error:  #65: expected a ";"
+main.c(63): error:  #65: expected a ";"
+main.c(64): error:  #65: expected a ";"
+main.c(45): warning:  #550-D: variable "x1" was set but never used
+main.c(45): warning:  #550-D: variable "x2" was set but never used
+main.c(97): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(45): warning:  #550-D: variable "x1" was set but never used
+main.c(45): warning:  #550-D: variable "x2" was set but never used
+main.c(97): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1284 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(10): error:  #169: expected a declaration
+main.c(10): error:  #10: "#" not expected here
+main.c(26): warning:  #12-D: parsing restarts here after previous syntax error
+main.c(29): error:  #20: identifier "usefulData" is undefined
+main.c(50): error:  #20: identifier "usefulData" is undefined
+main.c(48): warning:  #550-D: variable "x1" was set but never used
+main.c(48): warning:  #550-D: variable "x2" was set but never used
+main.c(100): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(48): warning:  #550-D: variable "x1" was set but never used
+main.c(48): warning:  #550-D: variable "x2" was set but never used
+main.c(100): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1284 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(35): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1284 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(14): error:  #20: identifier "SYSAHBCLKCTRL" is undefined
+main.c(15): error:  #20: identifier "TMR32B0TCR" is undefined
+main.c(17): error:  #20: identifier "start" is undefined
+main.c(17): error:  #20: identifier "TMR32B0TC" is undefined
+main.c(22): error:  #20: identifier "end" is undefined
+main.c(44): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(17): error:  #20: identifier "start" is undefined
+main.c(22): error:  #20: identifier "end" is undefined
+main.c(44): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(9): warning:  #550-D: variable "start" was set but never used
+main.c(9): warning:  #550-D: variable "end" was set but never used
+main.c(44): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1304 RO-data=408 RW-data=52 ZI-data=3820  
+"test3.axf" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1336 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(57): error:  #29: expected an expression
+dataConversion.h(58): error:  #29: expected an expression
+dataConversion.h(59): error:  #29: expected an expression
+dataConversion.h(60): error:  #29: expected an expression
+dataConversion.h(61): error:  #29: expected an expression
+dataConversion.h(62): error:  #29: expected an expression
+dataConversion.h(63): error:  #29: expected an expression
+dataConversion.h(64): error:  #29: expected an expression
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1368 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(57): error:  #29: expected an expression
+dataConversion.h(58): error:  #29: expected an expression
+dataConversion.h(59): error:  #29: expected an expression
+dataConversion.h(60): error:  #29: expected an expression
+dataConversion.h(61): error:  #29: expected an expression
+dataConversion.h(62): error:  #29: expected an expression
+dataConversion.h(63): error:  #29: expected an expression
+dataConversion.h(64): error:  #29: expected an expression
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(45): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1336 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+testingData.h(2): error:  #20: identifier "ADS_DATA_LENGTH" is undefined
+dataConversion.h(37): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(37): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1336 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
 Build target 'Target 1'
 linking...
-Program Size: Code=1060 RO-data=408 RW-data=20 ZI-data=620  
+Program Size: Code=1336 RO-data=408 RW-data=64 ZI-data=3824  
 "test3.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=1336 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion2.h(8): warning:  #1-D: last line of file ends without a newline
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1112 RO-data=408 RW-data=64 ZI-data=3848  
+"test3.axf" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1112 RO-data=408 RW-data=64 ZI-data=3848  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1140 RO-data=408 RW-data=64 ZI-data=3848  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion2.h(7): warning:  #177-D: variable "i" was declared but never referenced
+dataConversion2.h(14): warning:  #177-D: variable "db" was declared but never referenced
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1120 RO-data=408 RW-data=64 ZI-data=3848  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1140 RO-data=408 RW-data=64 ZI-data=3848  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1188 RO-data=328 RW-data=60 ZI-data=652  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1188 RO-data=328 RW-data=60 ZI-data=652  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1272 RO-data=328 RW-data=60 ZI-data=652  
+"test3.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1296 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+uart.h(54): warning:  #177-D: variable "command" was declared but never referenced
+uart.h(85): warning:  #550-D: variable "temp" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x1" was set but never used
+dataConversion.h(35): warning:  #550-D: variable "x2" was set but never used
+main.c(46): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=1348 RO-data=408 RW-data=64 ZI-data=3824  
+"test3.axf" - 0 Error(s), 5 Warning(s).
