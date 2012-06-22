@@ -30,11 +30,20 @@ int main()
 	end = LPC_TMR32B0->TC;
 	elapsed = end - start;
 	
+	start	= LPC_TMR32B0->TC;
+	for(i=0;i<14400;i++)
+	{
+		uart_write(99);
+		//LPC_GPIO0->DATA ^= 0x2;
+	}
+	end = LPC_TMR32B0->TC;
+	elapsed = end - start;
+	
 	while(1)
 	{
 			//while(!(LPC_UART->LSR & UART_LSR_THRE));		
 			//LPC_UART->THR = toSend;
-			uart_write(elapsed);
+			//uart_write(elapsed);
 			LPC_GPIO0->DATA ^= 0x2;
 	}
 }
@@ -94,9 +103,9 @@ void SystemInit()
 	SCB_SYSAHBCLKCTRL |= 	(	SCB_SYSAHBCLKCTRL_GPIO 		//gpio gets a clock
 												| SCB_SYSAHBCLKCTRL_IOCON  //iocon gets a clock
 												| SCB_SYSAHBCLKCTRL_UART		//uart gets a clock
-												| (1<<9)										//timer 0 gets a clock
+												| SCB_SYSAHBCLKCTRL_TMR32_0	//timer 0 gets a clock
 												);	
 	pllSetup();
-	//uartSetup();
+	uartSetup();
 	
 }

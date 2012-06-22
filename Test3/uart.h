@@ -21,7 +21,7 @@ unsigned int uartSendBufferEmpty = 1;
 void UART_IRQHandler()
 {
 	unsigned char iirValue;
-	unsigned char temp;
+	//unsigned char temp;
 	
 	iirValue = LPC_UART->IIR;	//get the interrupt indentification
 	
@@ -45,9 +45,9 @@ void UART_IRQHandler()
 		break;
 		
 	case UART_IntId_RDA:		//receive data available
-		temp = LPC_UART->RBR;	//reading RBR clears interrupt
-		
-		uartReceiveBuffer.raw[uartReceiveBufferIndex++] = temp;
+	
+		//reading from rbr clears the interrupt
+		uartReceiveBuffer.raw[uartReceiveBufferIndex++] = LPC_UART->RBR;
 		if(uartReceiveBufferIndex == UART_RECEIVE_BUF_LENGTH)
 		{
 			//process a complete 'command'
