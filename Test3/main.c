@@ -1,7 +1,7 @@
 #include "../Test2/lpc1343.h"
 #include "lpc13xx.h"
 #include "uart.h"
-#include "dataConversion.h"
+#include "dataConversion3.h"
 
 
 unsigned int start, end, elapsed;
@@ -9,12 +9,18 @@ unsigned int start, end, elapsed;
 int main()
 {
 	//unsigned char toSend = 67;
+	int i;
 
 	LPC_IOCON->PIO0_1 = 0xD8;
 	LPC_GPIO0->DIR |= 0x2;
 	
 	//SYSAHBCLKCTRL |= (1<<9); //power up timer 0
 	LPC_TMR32B0->TCR = 0x1;	//enable for counting
+	
+	//cu.raw.bytes[0] = 0x0;
+	
+	for(i=0;i<9;i++) cu[i].raw.bytes[0] = 0x0;
+	
 	
 	start	= LPC_TMR32B0->TC;
 	//TESTFFT(testData, 128);
@@ -91,6 +97,6 @@ void SystemInit()
 												| (1<<9)										//timer 0 gets a clock
 												);	
 	pllSetup();
-	uartSetup();
+	//uartSetup();
 	
 }

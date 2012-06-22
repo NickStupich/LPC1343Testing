@@ -30,19 +30,47 @@ typedef union{
 
 #pragma pack()
 
-void testDataConversion()
+void testDataConversion()	// 181 cycles
 {
-	int x1, x2;
 	adsUnion au;
-	usefulData useful;
-	int i;
-	for(i=0;i<ADS_DATA_LENGTH;i++)
-	{
-		au.raw[i] = _rawData[i];
-	}
 	
-	x1 = sizeof(au);
-	x2 = sizeof(useful);
+	unsigned char* dataPtr = &_rawData[0];
+	
+	au.raw[2] = *(dataPtr++);
+	au.raw[1] = *(dataPtr++);
+	au.raw[0] = *(dataPtr++);
+	
+	au.raw[5] = *(dataPtr++);
+	au.raw[4] = *(dataPtr++);
+	au.raw[3] = *(dataPtr++);
+	
+	au.raw[8] = *(dataPtr++);
+	au.raw[7] = *(dataPtr++);
+	au.raw[6] = *(dataPtr++);
+	
+	au.raw[11] = *(dataPtr++);
+	au.raw[10] = *(dataPtr++);
+	au.raw[9] = *(dataPtr++);
+	
+	au.raw[14] = *(dataPtr++);
+	au.raw[13] = *(dataPtr++);
+	au.raw[12] = *(dataPtr++);
+	
+	au.raw[17] = *(dataPtr++);
+	au.raw[16] = *(dataPtr++);
+	au.raw[15] = *(dataPtr++);
+	
+	au.raw[20] = *(dataPtr++);
+	au.raw[19] = *(dataPtr++);
+	au.raw[18] = *(dataPtr++);	
+	
+	au.raw[23] = *(dataPtr++);
+	au.raw[22] = *(dataPtr++);
+	au.raw[21] = *(dataPtr++);
+	
+	au.raw[26] = *(dataPtr++);
+	au.raw[25] = *(dataPtr++);
+	au.raw[24] = *(dataPtr++);
 	
 	channelData[0][channelIndex] = _24TO32BITINTEGER(au.useful.d0);
 	channelData[1][channelIndex] = _24TO32BITINTEGER(au.useful.d1);
