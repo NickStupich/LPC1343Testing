@@ -19,7 +19,7 @@ int main()
 	
 	//cu.raw.bytes[0] = 0x0;
 	
-	for(i=0;i<9;i++) cu[i].raw.bytes[0] = 0x0;
+	//for(i=0;i<9;i++) cu[i].raw.bytes[0] = 0x0;
 	
 	
 	start	= LPC_TMR32B0->TC;

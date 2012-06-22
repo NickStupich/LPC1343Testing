@@ -23,15 +23,13 @@ typedef union{
 
 
 channelUnion cu[9];
-void testDataConversion()	//221 cycles
+void testDataConversion()	//182 cycles
 {	
 	unsigned char* dataPtr;
-	
 	channelUnion* cuPtr;
 	cuPtr	= &cu[0];
 	dataPtr = &_rawData[0];
-	
-	
+		
 	cuPtr->raw.bytes[3] = *(dataPtr++);
 	cuPtr->raw.bytes[2] = *(dataPtr++);
 	(*(cuPtr++)).raw.bytes[1] = *(dataPtr++);
@@ -68,13 +66,14 @@ void testDataConversion()	//221 cycles
 	cuPtr->raw.bytes[2] = *(dataPtr++);
 	(*(cuPtr++)).raw.bytes[1] = *(dataPtr++);
 	
-	channelData[0][channelIndex] = SCALE_INTEGER(cu[0].value);
-	channelData[1][channelIndex] = SCALE_INTEGER(cu[1].value);
-	channelData[2][channelIndex] = SCALE_INTEGER(cu[2].value);
-	channelData[3][channelIndex] = SCALE_INTEGER(cu[3].value);
-	channelData[4][channelIndex] = SCALE_INTEGER(cu[4].value);
-	channelData[5][channelIndex] = SCALE_INTEGER(cu[5].value);
-	channelData[6][channelIndex] = SCALE_INTEGER(cu[6].value);
-	channelData[7][channelIndex] = SCALE_INTEGER(cu[7].value);
-	channelData[8][channelIndex] = SCALE_INTEGER(cu[8].value);
+	channelData[8][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[7][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[6][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[5][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[4][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[3][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[2][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[1][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	channelData[0][channelIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+	
 }
