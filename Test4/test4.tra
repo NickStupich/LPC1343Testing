@@ -10,7 +10,7 @@
 ### ADS-LD Output File: 'test4.axf'
 ### ADS-LD Command File: 'test4.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'test4.lnp', Handle=0x00001C2C
+### Creating CmdFile 'test4.lnp', Handle=0x00001C5C
 ### Writing '.lnp' file
 ### ADS-LD Command file 'test4.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
