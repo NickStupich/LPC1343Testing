@@ -9,4 +9,10 @@
 
 #define 					CONTROL_BYTE					0xFF
 
+#define 					ADS_SPS_FFT						SPS_8k
+#define 					ADS_SPS_TIME					SPS_2k
+
+#define 					DATA_READY_WIRE_PORT	2
+#define						DATA_READY_WIRE_PIN		10
+
 #endif

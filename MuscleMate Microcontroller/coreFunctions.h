@@ -21,8 +21,16 @@ byte 3: 0x00 - check byte.  If not zero error will be returned
 */
 void ProcessUartCommand(unsigned int cmd);
 
-
+/*
+for each channel in use, grabs a copy of time domain data, computes fft, bins it, scales it
+and sends over uart.  Also sends the control byte at the end
+*/
 void ComputeAndSendTransforms(void);
 
 void sendFFTData(unsigned char transformBins[], unsigned char transformScalingValue);
+
+void processDataReadyTimeDomain(void);
+
+void processDataReadyFrequencyDomain(void);
+
 #endif

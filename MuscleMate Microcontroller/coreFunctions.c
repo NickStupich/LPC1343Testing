@@ -3,6 +3,9 @@
 #include "uart.h"
 #include "string.h"
 #include "fft.h"
+#include "ads_spi.h"
+#include "ads_gpio.h"
+#include "timers.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
 
@@ -52,6 +55,21 @@ void ProcessUartCommand(unsigned int cmd)
 			{
 				goto fail;
 			}	
+			
+			//ready the gpio pin for data ready interrupts
+			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+													DATA_READY_WIRE_PIN,
+													processDataReadyFrequencyDomain);
+			
+			//get the ads ready to start
+			initSpiWithAds(ADS_SPS_FFT);
+			
+			//start up the communication with the ads
+			startSpiWithAds();
+			
+			//set up FFTTimerInit to run in 1 second, and start doing FFTs
+			AsyncTimerFunctionCall(1000000, FFTTimerInit);
+			
 			break;
 		
 		case UART_CMD_START_TIME:
@@ -65,11 +83,20 @@ void ProcessUartCommand(unsigned int cmd)
 			
 			//channel is valid, need channel = log2(j)
 			timeEnabledChannel = 0;
-			while(j>0)
+			while(j>1)
 			{
 				j>>=1;
 				timeEnabledChannel++;
 			}
+			
+			
+			//ready the gpio pin for data ready interrupts
+			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+													DATA_READY_WIRE_PIN,
+													processDataReadyTimeDomain);
+			
+			//get the ads to start sampling
+			initSpiWithAds(ADS_SPS_TIME);
 			
 			break;
 		
@@ -82,6 +109,7 @@ void ProcessUartCommand(unsigned int cmd)
 	return;
 	
 	fail:
+	//we fucked up.  send back 0xFF FF FF FF to indicate this (no error codes...for now)
 	for(i=0;i<4;i++) uart_write(0xFF);
 }
 
@@ -94,9 +122,6 @@ void ComputeAndSendTransforms()
 	unsigned char transformBins[FFT_BIN_COUNT];
 	
 	int tempDataIndex;
-	
-	//send the control byte to indicate start of ffts
-	uart_write(CONTROL_BYTE);
 	
 	for(i=0;i<NUM_CHANNELS;i++)
 	{
@@ -117,7 +142,10 @@ void ComputeAndSendTransforms()
 			//send stuff out over bluetooth
 			sendFFTData(transformBins, transformScalingValue);
 		}
-	}	
+	}
+	
+	//send the control byte to indicate end of ffts
+	uart_write(CONTROL_BYTE);	
 }
 
 void sendFFTData(unsigned char transformBins[], unsigned char transformScalingValue)
@@ -128,4 +156,14 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	{
 		uart_write(transformBins[i]);
 	}
+}
+
+void processDataReadyTimeDomain()
+{
+	
+}
+
+void processDataReadyFrequencyDomain()
+{
+	
 }

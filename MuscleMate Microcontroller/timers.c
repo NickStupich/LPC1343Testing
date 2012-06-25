@@ -2,6 +2,7 @@
 #include "lpc1343Constants.h"
 #include "coreFunctions.h"
 #include "settings.h"
+#include "timers.h"
 
 void TIMER16_1_IRQHandler()
 {
@@ -53,4 +54,23 @@ void delay(unsigned short us)
 {
 		unsigned short lastTime = (unsigned short)LPC_TMR16B0->TC;
 		while((unsigned short)(LPC_TMR16B0->TC - lastTime) < us);
+}
+
+//TODO: fill the following
+/* 
+Sets up a timer to run once and call the provided function after the delay, specified in us
+Functions returns immediately, and **should** call the function after the appropriate delay.
+If theres already a function waiting, this will wait until that has been called and THEN set up the delay
+So don't overlap async function call setups
+*/
+void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
+{
+	
+	
+}
+
+//TODO: also fill in this
+void TIMER32_0_IRQHandler()
+{
+	
 }
