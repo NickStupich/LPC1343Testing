@@ -17,17 +17,22 @@ Does not consider which pin caused the interrupt, just clears everything and cal
 																				LPC_GPIO ##x ##->IC = 0xFF;	/*clear all interrupts*/	\
 																			}																											
 												
-//make the interrupt handlers for each gpio port																			
+//interrupt handlers for each gpio port																			
 GPIO_Interrupt_Handler(0)							
 GPIO_Interrupt_Handler(1)							
 GPIO_Interrupt_Handler(2)							
 GPIO_Interrupt_Handler(3)
 
+/* Sets up a gpio interrupt that calls the provided callbackFunction
+Only one interrupt / port is allowed to reduce latency checking for stuff, and since we don't
+need more (i think?).  
+Numbering example - GPIO2_3 would be gpioPort = 2, gpioPin = 3
+*/																			
 void initGpioInterrupt(int gpioPort, int gpioPin, void (*callbackFunc)())
 {
 	enum IRQn irqNum;
 	unsigned short interruptPriority;
-	LPC_GPIO_TypeDef* lpc_gpio = LPC_GPIO0;
+	LPC_GPIO_TypeDef* lpc_gpio;
 	
 	irqNum = (enum IRQn)(EINT0_IRQn - gpioPort);
 	__disable_irq();
@@ -57,12 +62,18 @@ void initGpioInterrupt(int gpioPort, int gpioPin, void (*callbackFunc)())
 			interruptCallback3 = callbackFunc;
 			interruptPriority = INTERRUPT_PRI_GPIO_3;
 			break;
+		default: //default to 0
+			lpc_gpio = LPC_GPIO0;
+			interruptCallback0 = callbackFunc;
+			interruptPriority = INTERRUPT_PRI_GPIO_0;
+			break;
 	}
 	
-	//enable the interrupt in the nested vector interrupt controller, and set highest priority
+	//enable the interrupt in the nested vector interrupt controller, and set priority
 	NVIC_EnableIRQ(irqNum);
 	NVIC_SetPriority(irqNum, interruptPriority);
 	
+	/* this should probably be generalized, but for now it doesn't need to be*/
 	lpc_gpio->DIR &= ~(1<<gpioPin);						//input
 	lpc_gpio->IS &= ~( 1<< gpioPin);					//edge sensitive
 	lpc_gpio->IBE &= ~(1<<gpioPin);						//single edge

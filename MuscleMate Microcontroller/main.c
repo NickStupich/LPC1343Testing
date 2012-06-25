@@ -5,6 +5,7 @@
 
 int main()
 {	
+	//everything is started over bluetooth, so just sit here in the loop forever
 	while(1);
 }
 

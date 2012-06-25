@@ -113,8 +113,9 @@ void ProcessUartCommand(unsigned int cmd)
 	for(i=0;i<4;i++) uart_write(0xFF);
 }
 
-
-
+/*
+makes a copy of the time domain data to deal with synchronicity type stuff, calculates fft, combines bins and sends them off 
+*/
 void ComputeAndSendTransforms()
 {
 	int i;
@@ -148,6 +149,9 @@ void ComputeAndSendTransforms()
 	uart_write(CONTROL_BYTE);	
 }
 
+/*
+Sends data away over uart
+*/
 void sendFFTData(unsigned char transformBins[], unsigned char transformScalingValue)
 {
 	int i;
@@ -158,11 +162,20 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
+/*
+The next two functions are called whenever the data ready pin goes low and the ADS has data to be read from SPI.
+They need to read that data, and make some sense of it.
+*/
+
+/* Used to process data in time domain.  It just reads from spi and sends one channel over uart */
 void processDataReadyTimeDomain()
 {
 	
 }
 
+/*
+Used to process data in frequency domain.  Reads from SPI and stores data in a buffer to be processed later 
+*/
 void processDataReadyFrequencyDomain()
 {
 	
