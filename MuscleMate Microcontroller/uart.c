@@ -88,6 +88,7 @@ void uart_write(unsigned char b)
 void uartInit(void)
 {
 		unsigned int temp;
+	
 		__disable_irq();
 	
 		LPC_SYSCON->SYSAHBCLKCTRL |=	SCB_SYSAHBCLKCTRL_UART;
@@ -140,10 +141,9 @@ void uartInit(void)
 		//enable interrupts on received data and transmit available
 		LPC_UART->IER = 		UART_IER_RBR_Interrupt_Enabled
 											| UART_IER_THRE_Interrupt_Enabled;
+			
+		NVIC_SetPriority(UART_IRQn, INTERRUPT_PRI_UART);	//high-ish priority
+		NVIC_EnableIRQ(UART_IRQn);					//enable interrupts on uart		
 		
 		__enable_irq();
-	
-		NVIC_SetPriority(UART_IRQn, 0x10);	//high-ish priority
-		NVIC_EnableIRQ(UART_IRQn);					//enable interrupts on uart
-		
 }

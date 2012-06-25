@@ -1,5 +1,6 @@
 #include "ads_gpio.h"
 #include "lpc13xx.h"
+#include "settings.h"
 
 /* Callback functions, restrict to 1 per port to reduce latency (and since we don't need them all)*/
 void (*interruptCallback0)();
@@ -25,6 +26,7 @@ GPIO_Interrupt_Handler(3)
 void initGpioInterrupt(int gpioPort, int gpioPin, void (*callbackFunc)())
 {
 	enum IRQn irqNum;
+	unsigned short interruptPriority;
 	LPC_GPIO_TypeDef* lpc_gpio = LPC_GPIO0;
 	
 	irqNum = (enum IRQn)(EINT0_IRQn - gpioPort);
@@ -35,27 +37,31 @@ void initGpioInterrupt(int gpioPort, int gpioPin, void (*callbackFunc)())
 		case 0:
 			lpc_gpio = LPC_GPIO0;
 			interruptCallback0 = callbackFunc;
+			interruptPriority = INTERRUPT_PRI_GPIO_0;
 			break;
 		
 		case 1:
 			lpc_gpio = LPC_GPIO1;
 			interruptCallback1 = callbackFunc;
+			interruptPriority = INTERRUPT_PRI_GPIO_1;
 			break;
 		
 		case 2:
 			lpc_gpio = LPC_GPIO2;
 			interruptCallback2 = callbackFunc;
+			interruptPriority = INTERRUPT_PRI_GPIO_2;
 			break;
 		
 		case 3:
 			lpc_gpio = LPC_GPIO3;
 			interruptCallback3 = callbackFunc;
+			interruptPriority = INTERRUPT_PRI_GPIO_3;
 			break;
 	}
 	
 	//enable the interrupt in the nested vector interrupt controller, and set highest priority
 	NVIC_EnableIRQ(irqNum);
-	NVIC_SetPriority(irqNum, 0x1F);
+	NVIC_SetPriority(irqNum, interruptPriority);
 	
 	lpc_gpio->DIR &= ~(1<<gpioPin);						//input
 	lpc_gpio->IS &= ~( 1<< gpioPin);					//edge sensitive
