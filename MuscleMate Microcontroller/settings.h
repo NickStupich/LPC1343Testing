@@ -11,10 +11,6 @@
 /* Data protocol stuff.  Should match values on the other end of bluetooth*/
 #define 					CONTROL_BYTE								0xFF
 
-/* Uart buffer lengths */
-#define						UART_SEND_BUF_LENGTH				((FFT_BIN_COUNT+1) * NUM_CHANNELS + 1)
-#define 					UART_RECEIVE_BUF_LENGTH			4
-
 /* ADS sampling rate stuff */
 #define 					ADS_SPS_FFT									SPS_8k
 #define 					ADS_SPS_TIME								SPS_2k
@@ -24,13 +20,21 @@
 #define						DATA_READY_WIRE_PIN					10
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
+/*
 #define 					INTERRUPT_PRI_GPIO_0				0x1F
 #define 					INTERRUPT_PRI_GPIO_1				0x1E
 #define 					INTERRUPT_PRI_GPIO_2				0x1D
 #define 					INTERRUPT_PRI_GPIO_3				0x1C
+*/
+#define						INTERRUPT_PRI_DRDY					0x1F
 #define 					INTERRUPT_PRI_UART					0x1A
 #define 					INTERRUPT_PRI_FFT_TIMER			0x18
 #define 					INTERRUPT_PRI_ASYNC_TIMER		0x0F
 
+/* Run modes */
+enum RunMode{
+	RUN_MODE_TIME_DOMAIN = 1,
+	RUN_MODE_FREQ_DOMAIN = 2,
+};
 
 #endif

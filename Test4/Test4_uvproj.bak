@@ -333,7 +333,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
@@ -412,16 +412,6 @@
               <FileName>SPI_Protocol.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\SPI_Protocol.c</FilePath>
-            </File>
-            <File>
-              <FileName>Delay_Timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Delay_Timer.c</FilePath>
-            </File>
-            <File>
-              <FileName>Delay_Timer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Delay_Timer.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,10 +1,8 @@
 #include "coreFunctions.h"
-#include "settings.h"
 #include "uart.h"
 #include "string.h"
 #include "fft.h"
 #include "ads_spi.h"
-#include "ads_gpio.h"
 #include "timers.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
@@ -34,6 +32,11 @@ unsigned int fftEnabledChannels;
 
 /* integer between 0 and 7(inclusive) with the channel that is enabled to time domain running */
 unsigned int timeEnabledChannel;
+
+
+/* mode that we're rcurrently running in.  Either time or fft for now*/
+enum RunMode _runMode;
+
 void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
@@ -47,6 +50,15 @@ void ProcessUartCommand(unsigned int cmd)
 	switch(cmd & UART_CMD_CMD_MASK)
 	{
 		case UART_CMD_STOP:	
+			//get the ads to stop sending updates
+			stopSpiWithAds();
+			
+			if(_runMode == RUN_MODE_FREQ_DOMAIN)
+			{
+				//stop performing (and sending) ffts
+				StopFFTTimer();
+			}
+			
 			break;
 		
 		case UART_CMD_START_FFT:
@@ -57,15 +69,13 @@ void ProcessUartCommand(unsigned int cmd)
 			}	
 			
 			//ready the gpio pin for data ready interrupts
-			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
 													DATA_READY_WIRE_PIN,
-													processDataReadyFrequencyDomain);
+													processDataReadyFrequencyDomain);*/
+			initDRDYInterrupt();
 			
 			//get the ads ready to start
-			initSpiWithAds(ADS_SPS_FFT);
-			
-			//start up the communication with the ads
-			startSpiWithAds();
+			initSpiWithAds(RUN_MODE_FREQ_DOMAIN);
 			
 			//set up FFTTimerInit to run in 1 second, and start doing FFTs
 			AsyncTimerFunctionCall(1000000, FFTTimerInit);
@@ -91,12 +101,13 @@ void ProcessUartCommand(unsigned int cmd)
 			
 			
 			//ready the gpio pin for data ready interrupts
-			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
 													DATA_READY_WIRE_PIN,
-													processDataReadyTimeDomain);
+													processDataReadyTimeDomain);*/
+			initDRDYInterrupt();
 			
 			//get the ads to start sampling
-			initSpiWithAds(ADS_SPS_TIME);
+			initSpiWithAds(RUN_MODE_TIME_DOMAIN);
 			
 			break;
 		
@@ -162,21 +173,3 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
-/*
-The next two functions are called whenever the data ready pin goes low and the ADS has data to be read from SPI.
-They need to read that data, and make some sense of it.
-*/
-
-/* Used to process data in time domain.  It just reads from spi and sends one channel over uart */
-void processDataReadyTimeDomain()
-{
-	
-}
-
-/*
-Used to process data in frequency domain.  Reads from SPI and stores data in a buffer to be processed later 
-*/
-void processDataReadyFrequencyDomain()
-{
-	
-}

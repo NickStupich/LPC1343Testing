@@ -1,17 +1,29 @@
 #include "lpc13xx.h"
 #include "lpc1343.h"	//my own definitions
-#include "SPI_Protocol.h"
+//#include "SPI_Protocol.h"
 
-
+void (*callbackFunc)(void);
+void dataBitFlipper(void);
+void _SystemInit(void);
+volatile int x;
 
 int main()
 {	
-	LPC_IOCON->PIO0_1 = 0xD8;
-	LPC_GPIO0->DIR |= 0x2;
-	InitSPI();
+	
+	LPC_IOCON->PIO2_6 = 0xD8;
+	LPC_GPIO2->DIR |= (1<<6);
+	
+	LPC_IOCON->PIO0_7 = 0xD8;
+	LPC_GPIO0->DIR |= (1<<7);
+	x = 1;
+	_SystemInit();
+	//callbackFunc = dataBitFlipper;
+	
+	//InitSPI();
 	while(1)
 	{
-		LPC_GPIO0->DATA ^= 0x2;
+		//callbackFunc();
+		LPC_GPIO0->DATA ^= (1<<7);
 	}
 }
 
@@ -87,29 +99,67 @@ void enableGPIO1_5Interrupt()
 	NVIC_EnableIRQ(EINT1_IRQn);
 	NVIC_SetPriority(EINT1_IRQn, 0x1F);
 	
+	
+	//NVIC_EnableIRQ(BusFault_IRQn);
+	//NVIC_EnableIRQ(MemoryManagement_IRQn);
+	
 	//IPR14 |= (0x1F << 3);//highest priority for P0_1
-	LPC_IOCON->PIO1_4 = 0x10;		//pull-up, no hysterisis, GPIO function	
+	//LPC_IOCON->PIO1_5 = 0x10;		//pull-up, no hysterisis, GPIO function	
+	LPC_GPIO1->IC = 0x0;	//clear interrupts
 	
 	__enable_irq();
 }
 
-void SystemInit()
+void dataBitFlipper(void)
 {
+	LPC_GPIO2->DATA ^= (1<<6);
+}
+
+void SystemInit(){}
+
+void _SystemInit()
+{	
+	//dataBitFlipper();
+	//callbackFunc = (void*)((int)dataBitFlipper -1);
+	callbackFunc = dataBitFlipper;
+	
 	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<6);	//enable GPIO clock
 	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<16);	//Enable IOCON clock
 	
 	pllSetup();
-	enableGPIO1_5Interrupt();
+	enableGPIO1_5Interrupt();	
 	
+	//callbackFunc = dataBitFlipper;
 }
 
 void PIOINT1_IRQHandler(void)
 {
+	
+	/*
+	if(x == 1)
+	{
+		//dataBitFlipper();
+		LPC_GPIO2->DATA ^= (1<<6);
+	}
+	else
+	{
+		__nop();
+	}
+	*/
+	//callbackFunc();
+	dataBitFlipper();
+	//LPC_GPIO2->DATA ^= (1<<6);
+	/*
 	unsigned bitPos = 5;
 	unsigned int bitIntStatus = LPC_GPIO1->MIS & (1 << bitPos);	//get status of <bitPos> interrupt
 	
 	if(bitIntStatus)
 		LPC_GPIO1->IC |= 1<<bitPos;	//clear the interrupt	
+	*/
+	//LPC_GPIO1->IC |= (1<<5);
+	LPC_GPIO1->IC = 0xFF;
+	//__nop();
+	//__nop();
 }
 
 /*
@@ -128,6 +178,4 @@ void GPIOPinSetup(unsigned char offset, char direction){
 }
 */
 
-
-	
 	

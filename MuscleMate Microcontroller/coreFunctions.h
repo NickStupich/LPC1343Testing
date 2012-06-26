@@ -1,6 +1,28 @@
 #ifndef _CORE_FUNCTIONS
 #define _CORE_FUNCTIONS
 
+#include "settings.h"
+
+/* data used for fft mode to store all the data */
+extern int dataBuffers[NUM_CHANNELS][BUFFER_LENGTH];
+
+/* temp buffer for data about to be fft-ed*/
+extern int timeBuffer[BUFFER_LENGTH];
+
+/* result of fft.  Stored as complex inside realFFT128() so it's gotta be long */
+extern int fftBuffer[BUFFER_LENGTH+2];
+
+/* buffer index that's being filled next*/
+extern int dataIndex;
+
+/* bitwise or of all enabled channels. Ex channels 0, 3 = (1<<0) | (1<<3) = 0x09 */
+extern unsigned int fftEnabledChannels;
+
+/* integer between 0 and 7(inclusive) with the channel that is enabled to time domain running */
+extern unsigned int timeEnabledChannel;
+
+/* mode that we're rcurrently running in.  Either time or fft for now*/
+extern enum RunMode _runMode;
 
 /*
 Processes a 4-byte command from bluetooth

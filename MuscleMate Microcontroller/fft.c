@@ -3,9 +3,7 @@
 void combineDataToBins(int *fft, unsigned char bins[], unsigned char* scalingValue)
 {
 	
-	
 }
-
 
 void realFFT128(int *in, int* out)
 {

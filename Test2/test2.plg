@@ -7,3 +7,870 @@ C:\Users\nstupich\Desktop\LPC1343Testing\Test2\test2.uvproj
 Project File Date:  06/20/2012
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(3): error:  #5: cannot open source input file "SPI_Protocol.h": No such file or directory
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(15): warning:  #223-D: function "InitSPI" declared implicitly
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+test2.axf: Error: L6218E: Undefined symbol InitSPI (referred from main.o).
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=716 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=712 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=720 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=720 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=720 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(102): error:  #20: identifier "dataBitFlipper" is undefined
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=772 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=772 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=772 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=772 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=776 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=776 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling startup_LPC13xx.s...
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=776 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=776 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=776 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(107): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(108): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(108): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(108): error:  #852: expression must be a pointer to a complete object type
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+main.c(108): warning:  #170-D: pointer points outside of underlying object
+main.c(108): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 3 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(35): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=848 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(10): error:  #20: identifier "dataBitFlipper" is undefined
+main.c(37): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(38): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(38): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(10): warning:  #223-D: function "_SystemInit" declared implicitly
+main.c(38): warning:  #174-D: expression has no effect
+main.c(111): error:  #159: declaration is incompatible with previous "_SystemInit" (declared at line 10)
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(7): warning:  #1295-D: Deprecated declaration _SystemInit - give arg types
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(34): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=844 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=872 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=828 RO-data=436 RW-data=0 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+main.c(115): warning:  #170-D: pointer points outside of underlying object
+main.c(115): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 3 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+main.c(116): warning:  #513-D: a value of type "void *" cannot be assigned to an entity of type "void (*)(void)"
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+main.c(129): error:  #42: operand types are incompatible ("void (**)(void)" and "int")
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+main.c(129): error:  #42: operand types are incompatible ("void *" and "int")
+Target not created
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=880 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+linking...
+Program Size: Code=880 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=884 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=828 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=832 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=824 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=824 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=820 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+assembling startup_LPC13xx.s...
+linking...
+Program Size: Code=820 RO-data=408 RW-data=4 ZI-data=2148  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling startup_LPC13xx.s...
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=820 RO-data=408 RW-data=4 ZI-data=2148  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+assembling startup_LPC13xx.s...
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=828 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=848 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=864 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=868 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=860 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(41): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=856 RO-data=408 RW-data=4 ZI-data=612  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=884 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=876 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=892 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=716 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=712 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=712 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=728 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=724 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=888 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=888 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=876 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=876 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=876 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Target 1'
+compiling main.c...
+main.c(42): warning:  #174-D: expression has no effect
+linking...
+Program Size: Code=876 RO-data=408 RW-data=8 ZI-data=608  
+"test2.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\Test2\\test2.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.

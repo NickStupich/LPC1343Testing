@@ -1,0 +1,9 @@
+delay_timer.o: Delay_Timer.c
+delay_timer.o: Delay_Timer.h
+delay_timer.o: C:\Keil\ARM\Inc\NXP\LPC13xx\lpc13xx.h
+delay_timer.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+delay_timer.o: C:\Keil\ARM\RV31\Inc\stdint.h
+delay_timer.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+delay_timer.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+delay_timer.o: C:\Keil\ARM\Inc\NXP\LPC13xx\system_LPC13xx.h
+delay_timer.o: lpc1343.h

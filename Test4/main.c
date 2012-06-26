@@ -1,80 +1,20 @@
 #include "lpc13xx.h"
-#include "../Test2/lpc1343.h"
+#include "lpc1343.h"	//my own definitions
+#include "SPI_Protocol.h"
+#include "Delay_Timer.h"
 
-#define FFT_FREQUENCY			30
-
-/* delay by us microseconds.  Precision is on order of 1us*/
-void delay(unsigned short us)
-{
-		unsigned short lastTime = (unsigned short)LPC_TMR16B0->TC;
-		while((unsigned short)(LPC_TMR16B0->TC - lastTime) < us);
-}
-
-unsigned int start, end, elapsed;
 int main()
 {
-	LPC_IOCON->PIO0_1 = 0xD8;
-	LPC_GPIO0->DIR |= 0x2;
-			
-	start	= LPC_TMR32B0->TC;
+
+	InitSPI();
+	Init_SPI_wADS();
 	
-	delay(1000);
-	
-	end = LPC_TMR32B0->TC;
-	elapsed = end - start;
 	
 	while(1)
 	{
-			delay(50000);
-			LPC_GPIO0->DATA ^= 0x2;
+
 	}
-}
-
-void DelayTimerInit()
-{
-	SCB_SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR16_0;	//timer 16_0 gets a clock
-	LPC_TMR16B0->PR = 72-1;	//divide 72Mhz by ((72-1)+1) -> 1Mhz -> 1us/tick
-	LPC_TMR16B0->TCR = 0x1;	//enable counting
-}
-
-void FFTTimerInit()
-{
-	__disable_irq();
 	
-	SCB_SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR16_1;	//timer 16_1 gets a clock
-	LPC_TMR16B1->PR = (72<<2)-1;	//divide 72Mhz by ((288-1)+1) -> 0.25Mhz -> 4us/tick
-	LPC_TMR16B1->TCR = 0x0;	//disable counting (until enabled in StartFFTTimer()
-	LPC_TMR16B1->MCR = 	(	
-												(1<<0) 	//enable interrupt on match 0
-											| (1<<1)	//reset on match 0
-											);
-	
-	LPC_TMR16B1->MR0 = 250000 / FFT_FREQUENCY;
-	
-	NVIC_EnableIRQ(TIMER_16_1_IRQn);					//enable tmr16_1 interrupts
-	NVIC_SetPriority(TIMER_16_1_IRQn, 0x0A);	//priority set to lowish
-	
-	__enable_irq();
-}
-
-void StartFFTTimer()
-{
-	LPC_TMR16B1->TCR = 0x1;	//enable timer counting
-}
-
-void StopFFTTimer()
-{
-	LPC_TMR16B1->TCR = 0x0;	//disable timer counting
-}
-
-void TIMER16_1_IRQHandler()
-{
-	//reset match 0 interrupt - other match/capture interrupts are disabled
-	LPC_TMR16B1->IR = 0x1;
-	
-	
-	//flip output for debugging
-	//LPC_GPIO0->DATA ^= 0x2;
 }
 
 void pllSetup()
@@ -128,14 +68,58 @@ void pllSetup()
 
 }
 
+
+
+/*Enables interrupts on GPIO pin P0_5 on the falling edge*/
+void enableGPIO0_5Interrupt()
+{
+	unsigned int bitPos = 5;
+	
+	__disable_irq();
+	//set up GPIO0 for external interrupts
+	
+	LPC_GPIO0->DIR &= ~(1<<bitPos);						//input
+	LPC_GPIO0->IS &= ~( 1<< bitPos);					//edge sensitive
+	LPC_GPIO0->IBE &= ~(1<<bitPos);						//single edge
+	LPC_GPIO0->IEV &= ~(1<<bitPos);						//falling edge sensitive
+	LPC_GPIO0->IE |= (1<<bitPos);							//un-mask interrupt
+	
+	//ISER1 |= 1<<24;	//enable interrupt for GPIO 0
+	NVIC_EnableIRQ(EINT0_IRQn);
+	NVIC_SetPriority(EINT0_IRQn, 0x1F);
+	
+	//IPR14 |= (0x1F << 3);//highest priority for P0_1
+	//LPC_IOCON->PIO1_4 = 0x10;		//pull-up, no hysterisis, GPIO function	
+	
+	__enable_irq();
+}
+
 void SystemInit()
 {
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<6);	//enable GPIO clock
+	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<16);	//Enable IOCON clock
+	
 	pllSetup();
+	enableGPIO0_5Interrupt();
 	DelayTimerInit();
-	FFTTimerInit();
 	
-	SCB_SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_0;
-	LPC_TMR32B0->TCR = 0x1;	//enable for counting
+}
+
+void PIOINT0_IRQHandler(void)
+{
+	int a;
+	int Data;
 	
-	StartFFTTimer();
+	
+	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
+	for(a=0; a<27; a++)
+	{
+				LPC_SSP0->DR = 0x00;
+				while((LPC_SSP0->SR & 0x00000010));
+				Data = LPC_SSP0->DR;
+	}
+	
+	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
+	
+	LPC_GPIO0->IC = 0xFF;	//clear the interrupt	
 }

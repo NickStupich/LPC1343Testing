@@ -12,7 +12,7 @@ union{
 	unsigned char raw[UART_RECEIVE_BUF_LENGTH];
 	unsigned int cmd;
 } uartReceiveBuffer;
-unsigned int uartReceiveBufferIndex;
+int uartReceiveBufferIndex;
 
 //circular buffer for sending
 unsigned char uartSendBuffer[UART_SEND_BUF_LENGTH];
@@ -50,10 +50,12 @@ void UART_IRQHandler()
 	
 		//reading from rbr clears the interrupt
 		uartReceiveBuffer.raw[uartReceiveBufferIndex--] = LPC_UART->RBR;	//store backwards since little endian
-		if(uartReceiveBufferIndex == 0)
+		if(uartReceiveBufferIndex < 0)
 		{
 			//process a complete 'command'
 			unsigned int command = uartReceiveBuffer.cmd;
+			
+			ProcessUartCommand(command);
 			
 			//reset the receive buffer index to receive another command
 			uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
@@ -114,7 +116,7 @@ void uartInit(void)
 		LPC_UART->DLL = 39;
 		
 		  /* Set DLAB back to 0 */
-		LPC_UART->LCR &= ~UART_LCR_Divisor_Latch_Access_Disabled;
+		LPC_UART->LCR &= ~UART_LCR_Divisor_Latch_Access_Enabled;
 /*		LPC_UART->LCR = (		UART_LCR_Word_Length_Select_8Chars |
 												UART_LCR_Stop_Bit_Select_1Bits |
 												UART_LCR_Parity_Disabled |

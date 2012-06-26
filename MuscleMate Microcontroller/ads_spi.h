@@ -1,3 +1,4 @@
+#include "settings.h"
 
 enum AdsSampleRates{
 	SPS_32k = 0x0,
@@ -16,14 +17,12 @@ sets up and starts communication with the ads chip over spi
 sample frequency on ads is set using <sampleRate> - defined above
 all channels run by default, maybe turn one off later?
 */
-void initSpiWithAds(enum AdsSampleRates sampleRate);
-
-/*
-Starts the ads sending stuff
-*/
-void startSpiWithAds(void);
+void initSpiWithAds(enum RunMode runMode);
 
 /* 
 stops the ads sending stuff
 */
 void stopSpiWithAds(void);
+
+/* sets up the external interrupt pin */
+void initDRDYInterrupt(void);
