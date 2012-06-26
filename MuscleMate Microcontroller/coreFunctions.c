@@ -1,10 +1,8 @@
 #include "coreFunctions.h"
-#include "settings.h"
 #include "uart.h"
 #include "string.h"
 #include "fft.h"
 #include "ads_spi.h"
-#include "ads_gpio.h"
 #include "timers.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
@@ -34,6 +32,7 @@ unsigned int fftEnabledChannels;
 
 /* integer between 0 and 7(inclusive) with the channel that is enabled to time domain running */
 unsigned int timeEnabledChannel;
+
 void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
@@ -57,12 +56,13 @@ void ProcessUartCommand(unsigned int cmd)
 			}	
 			
 			//ready the gpio pin for data ready interrupts
-			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
 													DATA_READY_WIRE_PIN,
-													processDataReadyFrequencyDomain);
+													processDataReadyFrequencyDomain);*/
+			initDRDYInterrupt();
 			
 			//get the ads ready to start
-			initSpiWithAds(ADS_SPS_FFT);
+			initSpiWithAds(RUN_MODE_FREQ_DOMAIN);
 			
 			//start up the communication with the ads
 			startSpiWithAds();
@@ -91,12 +91,13 @@ void ProcessUartCommand(unsigned int cmd)
 			
 			
 			//ready the gpio pin for data ready interrupts
-			initGpioInterrupt(	DATA_READY_WIRE_PORT,
+			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
 													DATA_READY_WIRE_PIN,
-													processDataReadyTimeDomain);
+													processDataReadyTimeDomain);*/
+			initDRDYInterrupt();
 			
 			//get the ads to start sampling
-			initSpiWithAds(ADS_SPS_TIME);
+			initSpiWithAds(RUN_MODE_TIME_DOMAIN);
 			
 			break;
 		
@@ -158,12 +159,4 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
-void processDataReadyTimeDomain()
-{
-	
-}
 
-void processDataReadyFrequencyDomain()
-{
-	
-}

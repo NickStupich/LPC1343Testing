@@ -5,20 +5,24 @@
 
 int main()
 {	
-	while(1);
-}
-
-void SystemInit()
-{
 	//set the system to use the PLL and crank the frequency up to 72Mhz (max for processor)
 	pllInit();
-	
-	//start up the uart - bluetooth connection
-	uartInit();
 	
 	//set up the timer used all over to wait for delays
 	DelayTimerInit();
 	
 	//set up the timer used to schedule ffts
 	FFTTimerInit();	
+	
+	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
+	uartInit();
+	
+	while(1);
+}
+
+/*
+Don't use this.  Was causing problems - setting address of function pointers to 0 for some unknown reason 
+*/
+void SystemInit()
+{
 }

@@ -478,16 +478,6 @@
               <FileType>5</FileType>
               <FilePath>.\ads_spi.h</FilePath>
             </File>
-            <File>
-              <FileName>ads_gpio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ads_gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>ads_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\ads_gpio.h</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

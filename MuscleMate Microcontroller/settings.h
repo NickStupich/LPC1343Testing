@@ -20,14 +20,21 @@
 #define						DATA_READY_WIRE_PIN					10
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
+/*
 #define 					INTERRUPT_PRI_GPIO_0				0x1F
 #define 					INTERRUPT_PRI_GPIO_1				0x1E
 #define 					INTERRUPT_PRI_GPIO_2				0x1D
 #define 					INTERRUPT_PRI_GPIO_3				0x1C
-
+*/
+#define						INTERRUPT_PRI_DRDY					0x1F
 #define 					INTERRUPT_PRI_UART					0x1A
 #define 					INTERRUPT_PRI_FFT_TIMER			0x18
 #define 					INTERRUPT_PRI_ASYNC_TIMER		0x0F
 
+/* Run modes */
+enum RunMode{
+	RUN_MODE_TIME_DOMAIN = 1,
+	RUN_MODE_FREQ_DOMAIN = 2,
+};
 
 #endif
