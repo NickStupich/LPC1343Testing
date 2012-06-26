@@ -11,6 +11,7 @@
 #if UART_RECEIVE_BUF_LENGTH != 4
 #error Uart receive buf length must be 4, or change the union below and this message
 #endif
+
 union{
 	unsigned char raw[UART_RECEIVE_BUF_LENGTH];
 	unsigned int cmd;

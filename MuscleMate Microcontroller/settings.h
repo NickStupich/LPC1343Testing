@@ -17,8 +17,8 @@
 #define 					ADS_SPS_TIME								SPS_2k
 
 /* ADS physical connection settings */
-#define 					DATA_READY_WIRE_PORT				2
-#define						DATA_READY_WIRE_PIN					10
+#define 					DATA_READY_WIRE_PORT				0
+#define						DATA_READY_WIRE_PIN					5
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
 /*
