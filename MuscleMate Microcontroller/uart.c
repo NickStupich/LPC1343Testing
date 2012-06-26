@@ -4,6 +4,9 @@
 #include "coreFunctions.h"
 #include "settings.h"
 
+#define UART_RECEIVE_BUF_LENGTH			UART_CMD_LENGTH
+#define UART_SEND_BUF_LENGTH				(1 + NUM_CHANNELS * (FFT_BIN_COUNT+1))
+
 //union for receiving, each incoming command is 4 bytes for now
 #if UART_RECEIVE_BUF_LENGTH != 4
 #error Uart receive buf length must be 4, or change the union below and this message

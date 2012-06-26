@@ -3,11 +3,6 @@
 #include "uart.h"
 #include "timers.h"
 
-void testFunc(void)
-{
-	__nop();
-}
-
 int main()
 {	
 	//set the system to use the PLL and crank the frequency up to 72Mhz (max for processor)

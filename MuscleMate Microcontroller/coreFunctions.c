@@ -68,10 +68,6 @@ void ProcessUartCommand(unsigned int cmd)
 				goto fail;
 			}	
 			
-			//ready the gpio pin for data ready interrupts
-			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
-													DATA_READY_WIRE_PIN,
-													processDataReadyFrequencyDomain);*/
 			initDRDYInterrupt();
 			
 			//get the ads ready to start
@@ -99,11 +95,6 @@ void ProcessUartCommand(unsigned int cmd)
 				timeEnabledChannel++;
 			}
 			
-			
-			//ready the gpio pin for data ready interrupts
-			/*initGpioInterrupt(	DATA_READY_WIRE_PORT,
-													DATA_READY_WIRE_PIN,
-													processDataReadyTimeDomain);*/
 			initDRDYInterrupt();
 			
 			//get the ads to start sampling

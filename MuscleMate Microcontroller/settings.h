@@ -10,6 +10,7 @@
 
 /* Data protocol stuff.  Should match values on the other end of bluetooth*/
 #define 					CONTROL_BYTE								0xFF
+#define						UART_CMD_LENGTH							0x4
 
 /* ADS sampling rate stuff */
 #define 					ADS_SPS_FFT									SPS_8k

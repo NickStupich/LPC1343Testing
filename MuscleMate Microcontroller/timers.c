@@ -87,7 +87,7 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 	__enable_irq();
 }
 
-//TODO: also fill in this
+
 void TIMER32_0_IRQHandler()
 {
 	//run the function
