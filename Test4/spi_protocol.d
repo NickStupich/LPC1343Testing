@@ -1,0 +1,9 @@
+spi_protocol.o: SPI_Protocol.c
+spi_protocol.o: C:\Keil\ARM\Inc\NXP\LPC13xx\lpc13xx.h
+spi_protocol.o: C:\Keil\ARM\CMSIS\Include\core_cm3.h
+spi_protocol.o: C:\Keil\ARM\RV31\Inc\stdint.h
+spi_protocol.o: C:\Keil\ARM\CMSIS\Include\core_cmInstr.h
+spi_protocol.o: C:\Keil\ARM\CMSIS\Include\core_cmFunc.h
+spi_protocol.o: C:\Keil\ARM\Inc\NXP\LPC13xx\system_LPC13xx.h
+spi_protocol.o: SPI_Protocol.h
+spi_protocol.o: Delay_Timer.h

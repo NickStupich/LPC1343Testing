@@ -1,18 +1,20 @@
-*** Creating Trace Output File 'test4.tra' Ok.
+*** Creating Trace Output File 'Test4.tra' Ok.
 ### Preparing for ADS-LD.
 ### Creating ADS-LD Command Line
 ### List of Objects: adding '"startup_lpc13xx.o"'
 ### List of Objects: adding '"main.o"'
+### List of Objects: adding '"spi_protocol.o"'
+### List of Objects: adding '"delay_timer.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup_lpc13xx.o" "main.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--cpu Cortex-M3 "startup_lpc13xx.o" "main.o" "spi_protocol.o" "delay_timer.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
- --list ".\test4.map" -o "test4.axf"### Preparing Environment (PrepEnvAds)
-### ADS-LD Output File: 'test4.axf'
-### ADS-LD Command File: 'test4.lnp'
+ --list ".\Test4.map" -o "Test4.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'Test4.axf'
+### ADS-LD Command File: 'Test4.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'test4.lnp', Handle=0x00001C5C
+### Creating CmdFile 'Test4.lnp', Handle=0x00001C5C
 ### Writing '.lnp' file
-### ADS-LD Command file 'test4.lnp' is ready.
+### ADS-LD Command file 'Test4.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.
 ### ADS-LD: executed with 0 errors
 ### Updating obj list
