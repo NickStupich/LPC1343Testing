@@ -33,6 +33,10 @@ unsigned int fftEnabledChannels;
 /* integer between 0 and 7(inclusive) with the channel that is enabled to time domain running */
 unsigned int timeEnabledChannel;
 
+
+/* mode that we're rcurrently running in.  Either time or fft for now*/
+enum RunMode _runMode;
+
 void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
@@ -46,6 +50,15 @@ void ProcessUartCommand(unsigned int cmd)
 	switch(cmd & UART_CMD_CMD_MASK)
 	{
 		case UART_CMD_STOP:	
+			//get the ads to stop sending updates
+			stopSpiWithAds();
+			
+			if(_runMode == RUN_MODE_FREQ_DOMAIN)
+			{
+				//stop performing (and sending) ffts
+				StopFFTTimer();
+			}
+			
 			break;
 		
 		case UART_CMD_START_FFT:
@@ -63,9 +76,6 @@ void ProcessUartCommand(unsigned int cmd)
 			
 			//get the ads ready to start
 			initSpiWithAds(RUN_MODE_FREQ_DOMAIN);
-			
-			//start up the communication with the ads
-			startSpiWithAds();
 			
 			//set up FFTTimerInit to run in 1 second, and start doing FFTs
 			AsyncTimerFunctionCall(1000000, FFTTimerInit);

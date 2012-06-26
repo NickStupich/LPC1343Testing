@@ -21,6 +21,9 @@ extern unsigned int fftEnabledChannels;
 /* integer between 0 and 7(inclusive) with the channel that is enabled to time domain running */
 extern unsigned int timeEnabledChannel;
 
+/* mode that we're rcurrently running in.  Either time or fft for now*/
+extern enum RunMode _runMode;
+
 /*
 Processes a 4-byte command from bluetooth
 breakdown:

@@ -18,8 +18,6 @@ typedef union{
 } channelUnion;
 #pragma pack()
 
-enum RunMode _runMode;
-
 void initSpiWithAds(enum RunMode runMode)
 {
 	enum AdsSampleRates sampleRate = ADS_SPS_FFT;
@@ -31,9 +29,6 @@ void initSpiWithAds(enum RunMode runMode)
 		sampleRate = ADS_SPS_FFT;
 }
 
-void startSpiWithAds(void)
-{
-}
 
 void stopSpiWithAds(void)
 {

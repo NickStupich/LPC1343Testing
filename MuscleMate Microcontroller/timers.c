@@ -68,17 +68,21 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 {
 	__disable_irq();
 	
+	timer32_0CallbackFunction	= callbackFunc;
+	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_0;	//timer 32_0 gets a clock
-	LPC_TMR16B1->PR = (72-1);	//divide 72Mhz by (71+1) to get a 1us clock tick
-	LPC_TMR16B1->MCR = 	(	
+	LPC_TMR32B0->PR = (72-1);	//divide 72Mhz by (71+1) to get a 1us clock tick
+	LPC_TMR32B0->MCR = 	(	
 												(1<<0) 	//enable interrupt on match 0
 											| (1<<2)	//stop on match 0
 											);
 	
-	LPC_TMR16B1->MR0 = delay;	
+	LPC_TMR32B0->MR0 = delay;	
 	
-	NVIC_EnableIRQ(TIMER_16_1_IRQn);					//enable tmr16_1 interrupts
-	NVIC_SetPriority(TIMER_16_1_IRQn, INTERRUPT_PRI_ASYNC_TIMER);	//priority set to lower-ish
+	NVIC_EnableIRQ(TIMER_32_0_IRQn);					//enable tmr16_1 interrupts
+	NVIC_SetPriority(TIMER_32_0_IRQn, INTERRUPT_PRI_ASYNC_TIMER);	//priority set to lower-ish
+	
+	LPC_TMR32B0->TCR = 0x1;	//start counting
 	
 	__enable_irq();
 }
