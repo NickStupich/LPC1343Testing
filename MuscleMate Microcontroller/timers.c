@@ -4,6 +4,7 @@
 #include "settings.h"
 #include "timers.h"
 
+//callback function used by the 32bit timer 0 for asynchronous delays */
 void (*timer32_0CallbackFunction)();
 
 void TIMER16_1_IRQHandler()
@@ -15,16 +16,19 @@ void TIMER16_1_IRQHandler()
 	LPC_TMR16B1->IR = 0x1;
 }
 
+/* starts up the fft timer */
 void StartFFTTimer()
 {
 	LPC_TMR16B1->TCR = 0x1;	//enable timer counting
 }
 
+/* stops the fft timer */
 void StopFFTTimer()
 {
 	LPC_TMR16B1->TCR = 0x0;	//disable timer counting
 }
 
+/* Initializes a timer to interrupt FFT_FREQUENCY times a second an run the fft algorithm stuff */
 void FFTTimerInit()
 {
 	__disable_irq();
@@ -45,6 +49,7 @@ void FFTTimerInit()
 	__enable_irq();
 }
 
+/* sets up a timer to run for delay() functions */
 void DelayTimerInit()
 {
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR16_0;	//timer 16_0 gets a clock
@@ -52,6 +57,7 @@ void DelayTimerInit()
 	LPC_TMR16B0->TCR = 0x1;	//enable counting
 }
 
+/* wait a predetermined amount of time */
 void delay(unsigned short us)
 {
 		unsigned short lastTime = (unsigned short)LPC_TMR16B0->TC;
@@ -87,7 +93,7 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 	__enable_irq();
 }
 
-
+/* Timer interrupt handler for the asynchronous delay timer */
 void TIMER32_0_IRQHandler()
 {
 	//run the function
