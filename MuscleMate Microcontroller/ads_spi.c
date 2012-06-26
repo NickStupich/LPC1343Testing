@@ -5,6 +5,8 @@
 #include "timers.h"
 #include "lpc1343Constants.h"
 
+unsigned char xi;
+
 // divide integers by two, so they don't overflow the integer based fft
 #define SCALE_INTEGER(x)			(x>>1)
 
@@ -30,6 +32,7 @@ void initSpiWithAds(enum RunMode runMode)
 	int a;
 	enum AdsSampleRates sampleRate;
 	unsigned char write_Array[28] = {0x40, 0x19, 0x7F, 0x86, 0x10, 0xDC, 0x03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0x02, 0, 0xFE, 0x06, 0, 0, 0, 0x02, 0x0A, 0xE3};
+
 	//unsigned char datain[26];			//register information
 	
 	InitSPI();
@@ -41,6 +44,9 @@ void initSpiWithAds(enum RunMode runMode)
 		sampleRate = ADS_SPS_TIME;
 	else if(runMode == RUN_MODE_TIME_DOMAIN)
 		sampleRate = ADS_SPS_FFT;
+
+	//set the sampling frequency
+	write_Array[3] = 0x80 | sampleRate;	
 	
 	//Configure ADS Start pin
 	LPC_IOCON->PIO0_3 |= (13<<4);						//Enable PIO0_3 as SPI_Start, Set high to begin conversions
@@ -174,6 +180,7 @@ void PIOINT0_IRQHandler(void)
 	int a, b;
 	channelUnion cu[9];
 	channelUnion* cuPtr;
+	unsigned char data;
 	/*Read data (216bits) from the ads through SPI*/
 	
 	//pointer incrementing is faster than just indexing the array
@@ -181,17 +188,24 @@ void PIOINT0_IRQHandler(void)
 	
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	
-	for(a=0; a<b; a++)
+	for(a=0; a<9; a++)
 	{
 		for(b=3;b>0;b--)
 		{
 			LPC_SSP0->DR = 0x00;
 			while((LPC_SSP0->SR & 0x00000010));
-			cuPtr->raw.bytes[b] =  LPC_SSP0->DR;
+			data = LPC_SSP0->DR;
+			cuPtr->raw.bytes[b] =  data;
+			if(a == timeEnabledChannel+1)
+			{
+				uart_write(data);
+				//	uart_write(xi);
+			}
 		}
 		cuPtr++;
 	}
 	
+	xi++;
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	
 	if(_runMode == RUN_MODE_TIME_DOMAIN)
@@ -199,10 +213,11 @@ void PIOINT0_IRQHandler(void)
 		//send away one set of bytes over bluetooth
 		//send "backwards" as msb first
 		//index is timeEnabledChannel+1 since first is status bits
-		cuPtr	= &cu[timeEnabledChannel+1];
-		uart_write(cuPtr->raw.bytes[3]);
-		uart_write(cuPtr->raw.bytes[2]);
-		uart_write(cuPtr->raw.bytes[1]);
+		//cuPtr	= &cu[timeEnabledChannel+1];
+		//uart_write(cuPtr->raw.bytes[3]);
+		//uart_write(cuPtr->raw.bytes[2]);
+		//uart_write(cuPtr->raw.bytes[1]);
+	
 	}
 	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
 	{
@@ -220,7 +235,7 @@ void PIOINT0_IRQHandler(void)
 			dataIndex %= BUFFER_LENGTH;
 	}
 	
-	LPC_GPIO2->IC = 0xFF;	/*clear all interrupts*/
+	LPC_GPIO0->IC = 0xFF;	/*clear all interrupts*/
 }
 
 //write to SPI0 

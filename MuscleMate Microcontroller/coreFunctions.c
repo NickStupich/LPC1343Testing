@@ -4,16 +4,9 @@
 #include "fft.h"
 #include "ads_spi.h"
 #include "timers.h"
+#include "settings.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
-
-#define UART_CMD_CMD_MASK				0xFF
-#define UART_CMD_CHANNELS_MASK	0xFF00
-#define UART_CMD_CHECK_MASK			0xFF000000
-
-#define UART_CMD_STOP						0x1
-#define UART_CMD_START_FFT			0x2
-#define UART_CMD_START_TIME			0x4
 
 /* data used for fft mode to store all the data */
 int dataBuffers[NUM_CHANNELS][BUFFER_LENGTH];
@@ -42,12 +35,12 @@ void ProcessUartCommand(unsigned int cmd)
 	int i;
 	unsigned int j;
 	
-	if(cmd & UART_CMD_CHECK_MASK)	//error, this byte should be zero
+	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
 	{
 		goto fail;
 	}
 	
-	switch(cmd & UART_CMD_CMD_MASK)
+	switch(UART_GET_CMD(cmd))
 	{
 		case UART_CMD_STOP:	
 			//get the ads to stop sending updates
@@ -62,7 +55,7 @@ void ProcessUartCommand(unsigned int cmd)
 			break;
 		
 		case UART_CMD_START_FFT:
-			fftEnabledChannels = cmd & UART_CMD_CHANNELS_MASK;
+			fftEnabledChannels = UART_GET_CHANNELS(cmd);
 			if(fftEnabledChannels == 0)
 			{
 				goto fail;
@@ -79,7 +72,7 @@ void ProcessUartCommand(unsigned int cmd)
 			break;
 		
 		case UART_CMD_START_TIME:
-			j = cmd & UART_CMD_CHANNELS_MASK;
+			j = UART_GET_CHANNELS(cmd);
 			//check is power of two (only 1 channel enabled) and > 0
 			if(	(j & (j-1)) 	//(x&(x-1)) == 0 for powers of two
 					|| !j)													//check if zero
@@ -107,12 +100,12 @@ void ProcessUartCommand(unsigned int cmd)
 	}
 	
 	//got here, that means great success
-	for(i=0;i<4;i++) uart_write(cmd & (0xFF<<(i*8)));
+	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write((cmd & (0xFF<<(i*8)))>>(i*8));
 	return;
 	
 	fail:
 	//we fucked up.  send back 0xFF FF FF FF to indicate this (no error codes...for now)
-	for(i=0;i<4;i++) uart_write(0xFF);
+	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write(0xFF);
 }
 
 /*

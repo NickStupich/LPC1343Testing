@@ -7,6 +7,16 @@
 #define UART_RECEIVE_BUF_LENGTH			UART_CMD_LENGTH
 #define UART_SEND_BUF_LENGTH				(1 + NUM_CHANNELS * (FFT_BIN_COUNT+1))
 
+#if UART_SEND_BUF_LENGTH < (UART_CMD_LENGTH+1)
+#error UART send buffer must be >= (uart cmd length +1) (details below)
+/*
+for current code architecture -  Otherwise uart interrupt cannot happen
+to empty the uart send buffer, since the reply ack from receiving a command is all within
+the uart interrupt.  Should probably make some message passing system, or just use the async timer callback
+with 0 delay to correct this 
+*/
+#endif
+
 //union for receiving, each incoming command is 4 bytes for now
 #if UART_RECEIVE_BUF_LENGTH != 4
 #error Uart receive buf length must be 4, or change the union below and this message

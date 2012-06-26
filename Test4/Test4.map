@@ -256,7 +256,7 @@ Image Symbol Table
     .ARM.__at_0x02FC                         0x000002fc   Section        4  startup_lpc13xx.o(.ARM.__at_0x02FC)
     .text                                    0x00000300   Section        0  main.o(.text)
     .text                                    0x00000434   Section        0  spi_protocol.o(.text)
-    x$fpl$fpinit                             0x0000060c   Section       14  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x000005fc   Section       14  fpinit.o(x$fpl$fpinit)
     .bss                                     0x10000000   Section       96  libspace.o(.bss)
     HEAP                                     0x10000060   Section        0  startup_lpc13xx.o(HEAP)
     STACK                                    0x10000060   Section      512  startup_lpc13xx.o(STACK)
@@ -398,11 +398,11 @@ Image Symbol Table
     InitSPI                                  0x00000435   Thumb Code   122  spi_protocol.o(.text)
     SPI0_Write                               0x000004af   Thumb Code    12  spi_protocol.o(.text)
     SPI0_Read                                0x000004bb   Thumb Code    18  spi_protocol.o(.text)
-    Init_SPI_wADS                            0x000004cd   Thumb Code   272  spi_protocol.o(.text)
-    _fp_init                                 0x0000060d   Thumb Code    14  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00000619   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x0000061c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000062c   Number         0  anon$$obj.o(Region$$Table)
+    Init_SPI_wADS                            0x000004cd   Thumb Code   256  spi_protocol.o(.text)
+    _fp_init                                 0x000005fd   Thumb Code    14  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x00000609   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x0000060c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000061c   Number         0  anon$$obj.o(Region$$Table)
     __libspace_start                         0x10000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x10000060   Data           0  libspace.o(.bss)
 
@@ -414,9 +414,9 @@ Memory Map of the image
 
   Image Entry point : 0x000001ad
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x0000062c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x0000061c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x0000062c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x0000061c, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -477,10 +477,10 @@ Memory Map of the image
     0x000002fa   0x00000002   PAD
     0x000002fc   0x00000004   Code   RO            4    .ARM.__at_0x02FC    startup_lpc13xx.o
     0x00000300   0x00000134   Code   RO           15    .text               main.o
-    0x00000434   0x000001d8   Code   RO           65    .text               spi_protocol.o
-    0x0000060c   0x0000000e   Code   RO          188    x$fpl$fpinit        fz_ws.l(fpinit.o)
-    0x0000061a   0x00000002   PAD
-    0x0000061c   0x00000010   Data   RO          269    Region$$Table       anon$$obj.o
+    0x00000434   0x000001c8   Code   RO           65    .text               spi_protocol.o
+    0x000005fc   0x0000000e   Code   RO          188    x$fpl$fpinit        fz_ws.l(fpinit.o)
+    0x0000060a   0x00000002   PAD
+    0x0000060c   0x00000010   Data   RO          269    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x10000000, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
@@ -506,11 +506,11 @@ Image component sizes
 
         52          8          0          0          0        551   delay_timer.o
        308         30          0          0          0      36308   main.o
-       472         48          0          0          0       1535   spi_protocol.o
+       456         48          0          0          0       1527   spi_protocol.o
         64         26        296          0        512        876   startup_lpc13xx.o
 
     ----------------------------------------------------------------------
-       896        112        312          0        512      39270   Object Totals
+       880        112        312          0        512      39262   Object Totals
          0          0         16          0          0          0   (incl. Generated)
          0          0          0          0          0          0   (incl. Padding)
 
@@ -562,15 +562,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      1268        132        312          0        608      39342   Grand Totals
-      1268        132        312          0        608      39342   ELF Image Totals
-      1268        132        312          0          0          0   ROM Totals
+      1252        132        312          0        608      39334   Grand Totals
+      1252        132        312          0        608      39334   ELF Image Totals
+      1252        132        312          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 1580 (   1.54kB)
+    Total RO  Size (Code + RO Data)                 1564 (   1.53kB)
     Total RW  Size (RW Data + ZI Data)               608 (   0.59kB)
-    Total ROM Size (Code + RO Data + RW Data)       1580 (   1.54kB)
+    Total ROM Size (Code + RO Data + RW Data)       1564 (   1.53kB)
 
 ==============================================================================
 

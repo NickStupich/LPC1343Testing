@@ -12,9 +12,21 @@
 #define 					CONTROL_BYTE								0xFF
 #define						UART_CMD_LENGTH							0x4
 
+#define 					UART_CMD_CMD_MASK						0xFF000000
+#define 					UART_CMD_CHANNELS_MASK			0xFF0000
+#define 					UART_CMD_CHECK_MASK					0xFF
+
+#define 					UART_CMD_STOP								0x1
+#define 					UART_CMD_START_FFT					0x2
+#define 					UART_CMD_START_TIME					0x4
+
+#define 					UART_GET_CMD(x)							((x & UART_CMD_CMD_MASK)>>24)
+#define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
+#define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
+
 /* ADS sampling rate stuff */
 #define 					ADS_SPS_FFT									SPS_8k
-#define 					ADS_SPS_TIME								SPS_2k
+#define 					ADS_SPS_TIME								SPS_500
 
 /* ADS physical connection settings */
 #define 					DATA_READY_WIRE_PORT				0

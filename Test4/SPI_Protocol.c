@@ -72,11 +72,11 @@ void Init_SPI_wADS(void)
 	LPC_IOCON->PIO0_7 |= (13<<4);						//Enable PIO0_7 as SPI_Reset
 	LPC_GPIO0->DIR |= (1<<7);								//PIO0_7 configured as output
 	
-	
+	/*
 	//Configure ADS DRDY pin
 	LPC_IOCON->PIO0_5 |= (13<<4);						//Enable PIO0_5 as SPI_DRDY
 	LPC_GPIO0->DIR &= ~(1<<5);							//PIO0_5 configured as input
-	
+	*/
 		
 	LPC_GPIO0->DATA &= ~(1<<3); 						//Set SPI_Start pin low, Do not begin conversions
 	
