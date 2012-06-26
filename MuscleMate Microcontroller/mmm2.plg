@@ -3,36 +3,11 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\nstupich\Desktop\LPC1343Testing\MuscleMate Microcontroller\mmm2.uvproj
+C:\EMG Code\LPC1343Testing\MuscleMate Microcontroller\mmm2.uvproj
 Project File Date:  06/26/2012
 
 <h2>Output:</h2>
 Build target 'Target 1'
-linking...
-Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
-"mmm2.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Target 1'
-linking...
-Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
-"mmm2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
-No Algorithm found for: 00000000H - 0000166FH
-Erase skipped!
-Build target 'Target 1'
-linking...
-Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
-"mmm2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
-No Algorithm found for: 00000000H - 0000166FH
-Erase skipped!
-Build target 'Target 1'
-linking...
-Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
-"mmm2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
-No Algorithm found for: 00000000H - 0000166FH
-Erase skipped!
-Rebuild target 'Target 1'
 assembling Ek_FFT128Real_32b.s...
 Ek_FFT128Real_32b.s(43): warning: A1479W: Requested alignment 8 is greater than area alignment 4, which has been increased
 assembling Ek_Magnitude.s...
@@ -58,21 +33,12 @@ ads_spi.c(31): warning:  #550-D: variable "sampleRate" was set but never used
 linking...
 Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
 "mmm2.axf" - 0 Error(s), 5 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
-No Algorithm found for: 00000000H - 0000166FH
-Erase skipped!
+Load "C:\\EMG Code\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
 Build target 'Target 1'
 linking...
 Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
 "mmm2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
-No Algorithm found for: 00000000H - 0000166FH
-Erase skipped!
-Build target 'Target 1'
-linking...
-Program Size: Code=5376 RO-data=328 RW-data=40 ZI-data=5832  
-"mmm2.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\Users\\nstupich\\Desktop\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
+Load "C:\\EMG Code\\LPC1343Testing\\MuscleMate Microcontroller\\mmm2.AXF" 
 Erase Done.
 Programming Done.
 Verify OK.
