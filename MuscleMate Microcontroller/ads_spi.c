@@ -11,9 +11,9 @@ unsigned char xi;
 #define SCALE_INTEGER(x)			(x>>1)
 
 // delays required by the ads between spi talkings
-#define RESET_DELAY_US		(400)
-#define SPI_WRITE_DELAY   (40)
-#define ADS_START_DELAY   (80)
+#define RESET_DELAY_US		(4000)
+#define SPI_WRITE_DELAY   (400)
+#define ADS_START_DELAY   (800)
 
 //struct and union to read data from the ads and convert to useful
 #pragma pack(1)
@@ -33,7 +33,7 @@ void initSpiWithAds(enum RunMode runMode)
 	enum AdsSampleRates sampleRate;
 	unsigned char write_Array[28] = {0x40, 0x19, 0x7F, 0x86, 0x10, 0xDC, 0x03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0x02, 0, 0xFE, 0x06, 0, 0, 0, 0x02, 0x0A, 0xE3};
 
-	//unsigned char datain[26];			//register information
+	unsigned char datain[26];			//register information
 	
 	InitSPI();
 		
@@ -107,23 +107,20 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	delay(SPI_WRITE_DELAY);
 	
-	/*
+	
 	//Read Registry Commands
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	SPI0_Write(0x20);
 	delay(SPI_WRITE_DELAY);
-	SPI0_Write(26);
+	SPI0_Write(0x19);
 	delay(SPI_WRITE_DELAY);
 	
 	for (a=0; a<26; a++){
-		LPC_SSP0->DR = 0x00;
-		while(!(LPC_SSP0->SR & 0x00000008));
-		datain[a] = (LPC_SSP0->DR & 0x000000ff);
-		delay(SPI_WRITE_DELAY);
+		datain[a] = SPI0_Read();
 	}
 	
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
-	*/
+	
 	
 	//Enable Read Data Continiously Mode
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
@@ -192,9 +189,7 @@ void PIOINT0_IRQHandler(void)
 	{
 		for(b=3;b>0;b--)
 		{
-			LPC_SSP0->DR = 0x00;
-			while((LPC_SSP0->SR & 0x00000010));
-			data = LPC_SSP0->DR;
+			data = SPI0_Read();
 			cuPtr->raw.bytes[b] =  data;
 			if(a == timeEnabledChannel+1)
 			{
@@ -238,22 +233,45 @@ void PIOINT0_IRQHandler(void)
 	LPC_GPIO0->IC = 0xFF;	/*clear all interrupts*/
 }
 
+
 //write to SPI0 
+#define			SSP_SSP0SR_BSY_BUSY					(1<<4)
+#define			SSP_SSP0SR_TNF_NOTFULL			(1<<1)
+#define 		SSP_SSP0SR_RNE_NOTEMPTY			(1<<2)
+
 void SPI0_Write(unsigned char Data)
 {
-	LPC_SSP0->DR = Data;
-	while((LPC_SSP0->SR & 0x00000010));
+	unsigned char Dummy;
+	
+	/* Move on only if NOT busy and TX FIFO not full. */
+  while ((LPC_SSP0->SR & (SSP_SSP0SR_TNF_NOTFULL | SSP_SSP0SR_BSY_BUSY)) != SSP_SSP0SR_TNF_NOTFULL);
+  LPC_SSP0->DR = Data;
+		
+	while ( (LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );
+  /* Whenever a byte is written, MISO FIFO counter increments, Clear FIFO 
+  on MISO. Otherwise, when SSP0Receive() is called, previous data byte
+  is left in the FIFO. */
+  Dummy = LPC_SSP0->DR;
+	
 	return;
 }
+
+
 
 //read from SPI0
 unsigned char SPI0_Read(void)
 {
 	unsigned char Data;
-	//for dummy data write 0x00 to SPI to activate clock while reading the incoming data from ADS
-	LPC_SSP0->DR = 0x00;
-	while(!(LPC_SSP0->SR & 0x00000008));
+	//for dummy data write 0xFF to SPI to activate clock while reading the incoming data from ADS
+	LPC_SSP0->DR = 0xFF;
+	while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );
 	Data = LPC_SSP0->DR;
+	
+	/*
+	LPC_SSP0->DR = 0xFF;
+	while((LPC_SSP0->SR & 0x00000010));
+	Data = LPC_SSP0->DR;
+	*/
 	return Data;
 }
 
@@ -267,18 +285,19 @@ void InitSPI()
 	
 	// Configure SPI PINs
 	LPC_IOCON->SCK_LOC |= (1<<0);					  //SCK0 pin location at PIO2_11
-	LPC_IOCON->PIO2_11 |= (1<<0);					  //Enable PIO2_11 as SCK0 pin
-	LPC_IOCON->PIO0_8 |= (1<<0);						//Enable PIO0_8 as MISO0 
-	LPC_IOCON->PIO0_9 |= (1<<0);						//Enable PIO0_9 as MOSI0
-	LPC_IOCON->PIO0_2 |= (13<<4);						//Enable PIO0_2 as GPIO CS
+	LPC_IOCON->PIO2_11 = (1<<0);					  //Enable PIO2_11 as SCK0 pin
+	LPC_IOCON->PIO0_8 = (1<<0);						//Enable PIO0_8 as MISO0 
+	LPC_IOCON->PIO0_9 = (1<<0);						//Enable PIO0_9 as MOSI0
+	LPC_IOCON->PIO0_2 = (13<<4);						//Enable PIO0_2 as GPIO CS
 	LPC_GPIO0->DIR |= (1<<2);								//PIO0_2 CS pin configured as Output
 	LPC_SYSCON->PRESETCTRL |= (7<<0);				//Pull SSP0 block out of reset mode
 	
 	//Configure SPI Control Register 0. CR1 is correct at default so no need to configure
 	
-	LPC_SSP0->CR0 |= (7<<0);   							//8-bit data tranfer per frame		
-	LPC_SSP0->CR0 |= (1<<7);								//CPHA is set to 0
+	LPC_SSP0->CR0 = (7<<0)   							//8-bit data tranfer per frame		
+									|(1<<7);								//CPHA is set to 0
+	
 	LPC_SSP0->CPSR |= 0x14;									//CPSDVSR = 2, clock prescaler
 	
-	LPC_SSP0->CR1 |= (1<<1);								//Enable SSP Controller
+	LPC_SSP0->CR1 = (1<<1);								//Enable SSP Controller
 }

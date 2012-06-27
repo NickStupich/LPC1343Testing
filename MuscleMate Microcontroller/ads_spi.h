@@ -26,7 +26,7 @@ void initDRDYInterrupt(void);
 /* read a byte over spi.  Also writes 0x00*/
 unsigned char SPI0_Read(void);
 
-/*write a byte over spi*/
+/*write a byte over spi. length is the number of bytes you would like to continiously send */
 void SPI0_Write(unsigned char Data);
 
 /* generally start up SPI*/
