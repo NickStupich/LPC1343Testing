@@ -50,4 +50,11 @@ enum RunMode{
 	RUN_MODE_FREQ_DOMAIN = 2,
 };
 
+/* Event processing stuff.  Event processing loop is in main */
+#define						EVENT_PROCESS_UART_CMD			0x0
+#define						EVENT_PROCESS_UART_MASK			EVENT_CMD_TO_MASK(EVENT_PROCESS_UART_CMD)
+
+#define						EVENT_CMD_TO_MASK(x)				(1<<x)
+#define						EVENT_PROCESS_NUM_CMDS			0x1
+
 #endif

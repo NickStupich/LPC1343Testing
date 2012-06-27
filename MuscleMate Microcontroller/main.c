@@ -2,7 +2,9 @@
 #include "systemClock.h"
 #include "uart.h"
 #include "timers.h"
-#include "ads_spi.h"
+#include "events.h"
+#include "coreFunctions.h"
+#include "settings.h"
 
 int main()
 {	
@@ -18,10 +20,10 @@ int main()
 	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
 	uartInit();
 	
-	//initDRDYInterrupt();
-	//initSpiWithAds(RUN_MODE_TIME_DOMAIN);
-	
-	while(1);
+	while(1)
+	{
+		ProcessEvents();
+	}
 }
 
 /*

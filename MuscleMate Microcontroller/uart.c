@@ -3,19 +3,10 @@
 #include "lpc1343Constants.h"
 #include "coreFunctions.h"
 #include "settings.h"
+#include "events.h"
 
 #define UART_RECEIVE_BUF_LENGTH			UART_CMD_LENGTH
 #define UART_SEND_BUF_LENGTH				(1 + NUM_CHANNELS * (FFT_BIN_COUNT+1))
-
-#if UART_SEND_BUF_LENGTH < (UART_CMD_LENGTH+1)
-#error UART send buffer must be >= (uart cmd length +1) (details below)
-/*
-for current code architecture -  Otherwise uart interrupt cannot happen
-to empty the uart send buffer, since the reply ack from receiving a command is all within
-the uart interrupt.  Should probably make some message passing system, or just use the async timer callback
-with 0 delay to correct this 
-*/
-#endif
 
 //union for receiving, each incoming command is 4 bytes for now
 #if UART_RECEIVE_BUF_LENGTH != 4
@@ -33,6 +24,7 @@ unsigned char uartSendBuffer[UART_SEND_BUF_LENGTH];
 unsigned int uartSendBufferIn;
 unsigned int uartSendBufferOut;
 unsigned int uartSendBufferEmpty = 1;
+
 
 void UART_IRQHandler()
 {
@@ -66,10 +58,8 @@ void UART_IRQHandler()
 		uartReceiveBuffer.raw[uartReceiveBufferIndex--] = LPC_UART->RBR;	//store backwards since little endian
 		if(uartReceiveBufferIndex < 0)
 		{
-			//process a complete 'command'
-			unsigned int command = uartReceiveBuffer.cmd;
-			
-			ProcessUartCommand(command);
+			//have a full command of data, process it (on another 'thread')
+			AddEvent(EVENT_PROCESS_UART_CMD, uartReceiveBuffer.cmd);
 			
 			//reset the receive buffer index to receive another command
 			uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
