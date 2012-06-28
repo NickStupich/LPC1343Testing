@@ -4,6 +4,7 @@
 #include "uart.h"
 #include "timers.h"
 #include "lpc1343Constants.h"
+#include "downSampling.h"
 
 unsigned char xi;
 
@@ -216,15 +217,16 @@ void PIOINT0_IRQHandler(void)
 	}
 	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
 	{
-			//store everything for later.  also need to do downsampling here
-			dataBuffers[8][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[7][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[6][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[5][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[4][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[3][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[2][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
-			dataBuffers[1][dataIndex] = SCALE_INTEGER((*(--cuPtr)).value);
+			int downSampledData[NUM_CHANNELS];
+		
+			//performDownSampling returns true if the value should be counted, false if it's between samples to be saved
+			if(performDownSampling(((int*)&cu)+1, downSampledData))
+			{
+				for(a=0;a<NUM_CHANNELS;a++)
+				{
+					dataBuffers[a][dataIndex] = SCALE_INTEGER(downSampledData[a]);
+				}
+			}
 			
 			dataIndex++;
 			dataIndex %= BUFFER_LENGTH;

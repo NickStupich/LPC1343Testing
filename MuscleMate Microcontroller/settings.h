@@ -25,8 +25,35 @@
 #define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
 
 /* ADS sampling rate stuff */
+
+enum AdsSampleRates{
+	SPS_32k = 0x0,
+	SPS_16k = 0x1,
+	SPS_8k = 0x2,
+	SPS_4k = 0x3,
+	SPS_2k = 0x4,
+	SPS_1k = 0x5,
+	SPS_500 = 0x6
+};
+
 #define 					ADS_SPS_FFT									SPS_8k
 #define 					ADS_SPS_TIME								SPS_500
+
+#if ADS_SPS_FFT == SPS_32k
+#define ADS_SPS_NUMERICAL			32000
+#elif ADS_SPS_FFT == SPS_16k
+#define ADS_SPS_NUMERICAL			16000
+#elif ADS_SPS_FFT == SPS_8k
+#define ADS_SPS_NUMERICAL			8000
+#elif ADS_SPS_FFT == SPS_4k
+#define ADS_SPS_NUMERICAL			4000
+#elif ADS_SPS_FFT == SPS_2k
+#define ADS_SPS_NUMERICAL			2000
+#elif ADS_SPS_FFT == SPS_1k
+#define ADS_SPS_NUMERICAL			1000
+#elif ADS_SPS_FFT == SPS_500
+#define ADS_SPS_NUMERICAL			500
+#endif
 
 /* ADS physical connection settings */
 #define 					DATA_READY_WIRE_PORT				0
