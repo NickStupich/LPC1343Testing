@@ -47,7 +47,7 @@
           <OutputName>mmm2</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
+          <CreateHexFile>1</CreateHexFile>
           <DebugInformation>1</DebugInformation>
           <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
@@ -482,6 +482,11 @@
               <FileName>events.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\events.c</FilePath>
+            </File>
+            <File>
+              <FileName>downSampling.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\downSampling.c</FilePath>
             </File>
           </Files>
         </Group>

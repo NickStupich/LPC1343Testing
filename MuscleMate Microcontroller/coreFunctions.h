@@ -55,4 +55,7 @@ void processDataReadyTimeDomain(void);
 
 void processDataReadyFrequencyDomain(void);
 
+void ResetIntoISP(void);
+void ResetIntoISP2(void);
+
 #endif

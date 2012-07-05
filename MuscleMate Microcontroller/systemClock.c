@@ -14,7 +14,7 @@ void pllInit(void)
 	//setup the crystal input
 	LPC_SYSCON->SYSOSCCTRL = (SCB_SYSOSCCTRL_BYPASS_DISABLED | SCB_SYSOSCCTRL_FREQRANGE_1TO20MHZ);
 	
-	for (i = 0; i < 200; i++)	 __nop;	//don't change this to delay(), since delay() depends on the clock set here
+	for (i = 0; i < 200; i++)	 __nop();	//don't change this to delay(), since delay() depends on the clock set here
 
   // Configure PLL
   LPC_SYSCON->SYSPLLCLKSEL = SCB_CLKSEL_SOURCE_MAINOSC;  // Select external crystal as PLL clock source

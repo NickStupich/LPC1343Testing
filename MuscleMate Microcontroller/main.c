@@ -20,9 +20,15 @@ int main()
 	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
 	uartInit();
 	
+	LPC_IOCON->PIO0_7 = 0xD8;
+	LPC_GPIO0->DIR |= (1<<7);
+	
 	while(1)
 	{
 		ProcessEvents();
+		//uart_write('d');
+		delay(50000);
+		LPC_GPIO0->DIR ^= (1<<7);
 	}
 }
 

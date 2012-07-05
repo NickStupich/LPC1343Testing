@@ -5,6 +5,8 @@
 #include "ads_spi.h"
 #include "timers.h"
 #include "settings.h"
+#include "lpc13xx.h"
+#include "lpc1343Constants.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
 
@@ -33,6 +35,13 @@ void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
 	unsigned int j;
+	
+	unsigned int bootLdrStart = 'a' | ('a' << 8) | ('a' << 16) | ('a'<<24);
+	
+	if(cmd == bootLdrStart)
+	{
+		ResetIntoISP2();
+	}
 	
 	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
 	{
@@ -156,3 +165,62 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
+void ResetIntoISP()
+{
+	
+	LPC_IOCON->PIO0_1 = 0xD8;
+	LPC_GPIO0->DIR |= 0x2;
+	
+	LPC_GPIO0->DATA &= ~0x2;
+	delay(100);//to give time to charge cap
+	
+	NVIC_SystemReset();
+}
+
+typedef void (*IAP)(unsigned int[], unsigned int[]);
+void ResetIntoISP2()
+{
+	 IAP iap_entry = (IAP) 0x1fff1ff1;
+  uint32_t command[5], result[4];
+	
+	 uint32_t temp;
+  /* Disable UART interrupts */
+  LPC_UART->IER = 0;
+  /* Disable UART interrupts in NVIC */
+  NVIC_DisableIRQ(UART_IRQn);
+
+  /* Ensure a clean start, no data in either TX or RX FIFO. */
+  while (( LPC_UART->LSR & (UART_LSR_THRE|UART_LSR_TEMT)) != (UART_LSR_THRE|UART_LSR_TEMT) );
+  while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
+  {
+temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
+  }
+
+  /* Read to clear the line status. */
+  temp = LPC_UART->LSR;
+
+  /* make sure 32-bit Timer 1 is turned on before calling ISP */
+  LPC_SYSCON->SYSAHBCLKCTRL |= 0x00400;
+  /* make sure GPIO clock is turned on before calling ISP */
+  LPC_SYSCON->SYSAHBCLKCTRL |= 0x00040;
+  /* make sure IO configuration clock is turned on before calling ISP */
+  LPC_SYSCON->SYSAHBCLKCTRL |= 0x10000;
+  /* make sure AHB clock divider is 1:1 */
+  LPC_SYSCON->SYSAHBCLKDIV = 1;
+
+  /* Send Reinvoke ISP command to ISP entry point*/
+  command[0] = 57;
+
+  /* Set stack pointer to ROM value (reset default).
+     This must be the last piece of code executed before calling ISP,
+     because most C expressions and function returns will fail after
+     the stack pointer is changed.
+   */
+  __set_MSP(*((uint32_t *) 0x1FFF0000)); /* inline asm */
+
+  /* Invoke ISP. We call "iap_entry" to invoke ISP because the ISP entry
+     is done through the same command interface as IAP. */
+  iap_entry(command, result);
+
+  // Code will never return!
+}
