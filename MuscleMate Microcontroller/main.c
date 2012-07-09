@@ -8,6 +8,7 @@
 
 int main()
 {	
+	int i;
 	//set the system to use the PLL and crank the frequency up to 72Mhz (max for processor)
 	pllInit();
 	
@@ -20,15 +21,14 @@ int main()
 	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
 	uartInit();
 	
-	LPC_IOCON->PIO0_7 = 0xD8;
-	LPC_GPIO0->DIR |= (1<<7);
+	LPC_IOCON->PIO3_0 = 0xD8;
+	LPC_GPIO3->DIR |= (1<<0);
 	
 	while(1)
 	{
 		ProcessEvents();
-		//uart_write('d');
 		delay(50000);
-		LPC_GPIO0->DIR ^= (1<<7);
+		LPC_GPIO3->DATA ^= (1<<0);
 	}
 }
 

@@ -40,10 +40,10 @@ void ProcessUartCommand(unsigned int cmd)
 	
 	if(cmd == bootLdrStart)
 	{
-		ResetIntoISP2();
-	}
-	
-	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
+		ResetIntoISP();
+	}	
+		
+	if(UART_GET_CHECK(cmd) || 1)	//error, this byte should be zero
 	{
 		goto fail;
 	}
@@ -165,39 +165,31 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
+typedef void (*IAP)(unsigned int[], unsigned int[]);
+#define IAP_LOCATION 0x1fff1ff1
 void ResetIntoISP()
 {
-	
-	LPC_IOCON->PIO0_1 = 0xD8;
-	LPC_GPIO0->DIR |= 0x2;
-	
-	LPC_GPIO0->DATA &= ~0x2;
-	delay(100);//to give time to charge cap
-	
-	NVIC_SystemReset();
-}
-
-typedef void (*IAP)(unsigned int[], unsigned int[]);
-void ResetIntoISP2()
-{
-	 IAP iap_entry = (IAP) 0x1fff1ff1;
+	 IAP iap_entry = (IAP) IAP_LOCATION;
   uint32_t command[5], result[4];
-	
+		
+	//stop UART
 	 uint32_t temp;
   /* Disable UART interrupts */
   LPC_UART->IER = 0;
-  /* Disable UART interrupts in NVIC */
-  NVIC_DisableIRQ(UART_IRQn);
+  /* Disableinterrupts in NVIC */
+	NVIC->ICER[0] = 0xFFFFFFFF;
 
   /* Ensure a clean start, no data in either TX or RX FIFO. */
   while (( LPC_UART->LSR & (UART_LSR_THRE|UART_LSR_TEMT)) != (UART_LSR_THRE|UART_LSR_TEMT) );
   while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
   {
-temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
+		temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
   }
 
   /* Read to clear the line status. */
   temp = LPC_UART->LSR;
+	
+	//done stopping uart
 
   /* make sure 32-bit Timer 1 is turned on before calling ISP */
   LPC_SYSCON->SYSAHBCLKCTRL |= 0x00400;
@@ -211,16 +203,14 @@ temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
   /* Send Reinvoke ISP command to ISP entry point*/
   command[0] = 57;
 
-  /* Set stack pointer to ROM value (reset default).
+  /* Don't? Set stack pointer to ROM value (reset default).
      This must be the last piece of code executed before calling ISP,
      because most C expressions and function returns will fail after
      the stack pointer is changed.
    */
-  __set_MSP(*((uint32_t *) 0x1FFF0000)); /* inline asm */
+  //__set_MSP(*((uint32_t *) 0x1FFF0000)); /* inline asm */
 
   /* Invoke ISP. We call "iap_entry" to invoke ISP because the ISP entry
      is done through the same command interface as IAP. */
   iap_entry(command, result);
-
-  // Code will never return!
 }

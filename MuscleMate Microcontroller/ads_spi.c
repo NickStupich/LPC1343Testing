@@ -50,8 +50,8 @@ void initSpiWithAds(enum RunMode runMode)
 	write_Array[3] = 0x80 | sampleRate;	
 	
 	//Configure ADS Start pin
-	LPC_IOCON->PIO0_3 |= (13<<4);						//Enable PIO0_3 as SPI_Start, Set high to begin conversions
-	LPC_GPIO0->DIR |= (1<<3);								//PIO0_3 SPI_Start configured as output
+	LPC_IOCON->PIO2_5 |= (13<<4);						//Enable PIO2_5 as SPI_Start, Set high to begin conversions
+	LPC_GPIO2->DIR |= (1<<5);								//PIO2_5 SPI_Start configured as output
 	
 	//Configure ADS Reset pin
 	LPC_IOCON->PIO0_7 |= (13<<4);						//Enable PIO0_7 as SPI_Reset
@@ -63,7 +63,7 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DIR &= ~(1<<5);							//PIO0_5 configured as input
 	*/
 	
-	LPC_GPIO0->DATA &= ~(1<<3); 						//Set SPI_Start pin low, Do not begin conversions
+	LPC_GPIO2->DATA &= ~(1<<5); 						//Set SPI_Start pin low, Do not begin conversions
 	
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin to high		
 
@@ -73,7 +73,7 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA &= ~(1<<7);							//Set SPI_Reset pin low
 	delay(RESET_DELAY_US);
 	LPC_GPIO0->DATA |= (1<<7);								//Set SPI_Reset pin high
-	
+	/*
 	//Stop read data continuously mode
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	delay(SPI_WRITE_DELAY);
@@ -81,7 +81,7 @@ void initSpiWithAds(enum RunMode runMode)
 	delay(SPI_WRITE_DELAY);
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high	
 	delay(SPI_WRITE_DELAY);
-	
+	*/
 	/*
 	//Write Registry Commands
 	//Values for opcode 1 and opcode 2 as well as Registers 0-25 of ADS stored in this array
@@ -96,7 +96,7 @@ void initSpiWithAds(enum RunMode runMode)
 	...
 	25. WCT2 = 0x00
 	*/	
-	
+	/*
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	
 	for (a=0; a<28; a++){
@@ -131,8 +131,8 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	delay(SPI_WRITE_DELAY);
 	
-	
-	LPC_GPIO0->DATA |= (1<<3);							//SPI_Start Pin set high to begin conversion
+	*/
+	LPC_GPIO2->DATA |= (1<<5);							//SPI_Start Pin set high to begin conversion
 	delay(ADS_START_DELAY);
 	
 	return;
