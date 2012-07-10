@@ -89,11 +89,13 @@ void ProcessUartCommand(unsigned int cmd)
 				j>>=1;
 				timeEnabledChannel++;
 			}
-			
-			initDRDYInterrupt();
-			
+						
 			//get the ads to start sampling
 			initSpiWithAds(RUN_MODE_TIME_DOMAIN);
+			
+			//enable interrupts on the data ready pin
+			//initDRDYInterrupt();
+			AsyncTimerFunctionCall(100000, initDRDYInterrupt);
 			
 			break;
 			

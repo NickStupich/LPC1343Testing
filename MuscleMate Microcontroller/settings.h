@@ -38,7 +38,7 @@ enum AdsSampleRates{
 };
 
 #define 					ADS_SPS_FFT									SPS_8k
-#define 					ADS_SPS_TIME								SPS_500
+#define 					ADS_SPS_TIME								SPS_2k
 
 #if ADS_SPS_FFT == SPS_32k
 #define ADS_SPS_NUMERICAL			32000

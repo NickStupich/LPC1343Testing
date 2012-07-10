@@ -36,7 +36,6 @@ void initSpiWithAds(enum RunMode runMode)
 	enum AdsSampleRates sampleRate;
 	unsigned char write_Array[28] = {0x40, 0x19, 0x7F, 0x86, 0x10, 0xDC, 0x03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0x02, 0, 0xFE, 0x06, 0, 0, 0, 0x02, 0x0A, 0xE3};
 
-	
 	InitSPI();
 		
 	sampleRate = ADS_SPS_FFT;
@@ -44,7 +43,7 @@ void initSpiWithAds(enum RunMode runMode)
 	
 	if(runMode == RUN_MODE_TIME_DOMAIN)
 		sampleRate = ADS_SPS_TIME;
-	else if(runMode == RUN_MODE_TIME_DOMAIN)
+	else if(runMode == RUN_MODE_FREQ_DOMAIN)
 		sampleRate = ADS_SPS_FFT;
 
 	//set the sampling frequency
@@ -74,7 +73,7 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA &= ~(1<<7);							//Set SPI_Reset pin low
 	delay(RESET_DELAY_US);
 	LPC_GPIO0->DATA |= (1<<7);								//Set SPI_Reset pin high
-	/*
+	
 	//Stop read data continuously mode
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	delay(SPI_WRITE_DELAY);
@@ -82,7 +81,7 @@ void initSpiWithAds(enum RunMode runMode)
 	delay(SPI_WRITE_DELAY);
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high	
 	delay(SPI_WRITE_DELAY);
-	*/
+	
 	/*
 	//Write Registry Commands
 	//Values for opcode 1 and opcode 2 as well as Registers 0-25 of ADS stored in this array
@@ -97,7 +96,7 @@ void initSpiWithAds(enum RunMode runMode)
 	...
 	25. WCT2 = 0x00
 	*/	
-	/*
+	
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	
 	for (a=0; a<28; a++){
@@ -132,7 +131,7 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	delay(SPI_WRITE_DELAY);
 	
-	*/
+	
 	LPC_GPIO2->DATA |= (1<<5);							//SPI_Start Pin set high to begin conversion
 	delay(ADS_START_DELAY);
 	
