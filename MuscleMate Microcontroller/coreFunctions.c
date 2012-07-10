@@ -35,15 +35,8 @@ void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
 	unsigned int j;
-	
-	unsigned int bootLdrStart = 'a' | ('a' << 8) | ('a' << 16) | ('a'<<24);
-	
-	if(cmd == bootLdrStart)
-	{
-		ResetIntoISP();
-	}	
 		
-	if(UART_GET_CHECK(cmd) || 1)	//error, this byte should be zero
+	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
 	{
 		goto fail;
 	}
@@ -67,7 +60,7 @@ void ProcessUartCommand(unsigned int cmd)
 			if(fftEnabledChannels == 0)
 			{
 				goto fail;
-			}	
+			}
 			
 			initDRDYInterrupt();
 			
@@ -80,6 +73,7 @@ void ProcessUartCommand(unsigned int cmd)
 			break;
 		
 		case UART_CMD_START_TIME:
+			
 			j = UART_GET_CHANNELS(cmd);
 			//check is power of two (only 1 channel enabled) and > 0
 			if(	(j & (j-1)) 	//(x&(x-1)) == 0 for powers of two
@@ -102,16 +96,22 @@ void ProcessUartCommand(unsigned int cmd)
 			initSpiWithAds(RUN_MODE_TIME_DOMAIN);
 			
 			break;
+			
+		case UART_CMD_ENTER_ISP:
+			ResetIntoISP();
+			break;
 		
 		default:
 			goto fail;
 	}
+	
 	
 	//got here, that means great success
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write((cmd & (0xFF<<(i*8)))>>(i*8));
 	return;
 	
 	fail:
+	
 	//we fucked up.  send back 0xFF FF FF FF to indicate this (no error codes...for now)
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write(0xFF);
 }
@@ -173,7 +173,7 @@ void ResetIntoISP()
   uint32_t command[5], result[4];
 		
 	//stop UART
-	 uint32_t temp;
+	 //uint32_t temp;
   /* Disable UART interrupts */
   LPC_UART->IER = 0;
   /* Disableinterrupts in NVIC */
@@ -183,11 +183,13 @@ void ResetIntoISP()
   while (( LPC_UART->LSR & (UART_LSR_THRE|UART_LSR_TEMT)) != (UART_LSR_THRE|UART_LSR_TEMT) );
   while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
   {
-		temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
+		//temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
+		LPC_UART->RBR;
   }
 
   /* Read to clear the line status. */
-  temp = LPC_UART->LSR;
+  //temp = LPC_UART->LSR;
+	LPC_UART->LSR;
 	
 	//done stopping uart
 

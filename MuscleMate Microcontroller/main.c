@@ -8,7 +8,6 @@
 
 int main()
 {	
-	int i;
 	//set the system to use the PLL and crank the frequency up to 72Mhz (max for processor)
 	pllInit();
 	
@@ -24,11 +23,13 @@ int main()
 	LPC_IOCON->PIO3_0 = 0xD8;
 	LPC_GPIO3->DIR |= (1<<0);
 	
+	LPC_GPIO3->DATA &= ~(1<<0);
+	
 	while(1)
 	{
 		ProcessEvents();
 		delay(50000);
-		LPC_GPIO3->DATA ^= (1<<0);
+		//LPC_GPIO3->DATA ^= (1<<0);
 	}
 }
 

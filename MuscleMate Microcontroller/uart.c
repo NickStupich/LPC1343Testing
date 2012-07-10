@@ -90,7 +90,7 @@ void uart_write(unsigned char b)
 /* sets up for a baud rate of 115200*/
 void uartInit(void)
 {
-		unsigned int temp;
+		//unsigned int temp;
 	
 		__disable_irq();
 	
@@ -132,13 +132,15 @@ void uartInit(void)
 												UART_FCR_Rx_FIFO_Reset | 
 												UART_FCR_Tx_FIFO_Reset); 
 												
-		temp = LPC_UART->LSR;	//read to clear the line status
+		//temp = LPC_UART->LSR;	//read to clear the line status
+		LPC_UART->LSR;
 		
 		/* Ensure a clean start, no data in either TX or RX FIFO. */
 		while (( LPC_UART->LSR & (UART_LSR_THRE|UART_LSR_TEMT)) != (UART_LSR_THRE|UART_LSR_TEMT) );
 		while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
 		{
-			temp = LPC_UART->RBR;	//read data out of RX buffer
+			LPC_UART->RBR;//read data out of RX buffer
+			//temp = LPC_UART->RBR;	//read data out of RX buffer
 		}
 		
 		//enable interrupts on received data and transmit available

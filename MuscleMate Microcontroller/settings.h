@@ -19,6 +19,7 @@
 #define 					UART_CMD_STOP								0x1
 #define 					UART_CMD_START_FFT					0x2
 #define 					UART_CMD_START_TIME					0x4
+#define						UART_CMD_ENTER_ISP					0x8
 
 #define 					UART_GET_CMD(x)							((x & UART_CMD_CMD_MASK)>>24)
 #define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)

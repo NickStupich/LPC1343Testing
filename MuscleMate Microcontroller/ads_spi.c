@@ -31,10 +31,11 @@ typedef union{
 void initSpiWithAds(enum RunMode runMode)
 {
 	int a;
+	unsigned char datain[26];			//register information
+	
 	enum AdsSampleRates sampleRate;
 	unsigned char write_Array[28] = {0x40, 0x19, 0x7F, 0x86, 0x10, 0xDC, 0x03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0x02, 0, 0xFE, 0x06, 0, 0, 0, 0x02, 0x0A, 0xE3};
 
-	unsigned char datain[26];			//register information
 	
 	InitSPI();
 		
@@ -149,6 +150,7 @@ void initDRDYInterrupt(void)
 	unsigned short interruptPriority;
 	LPC_GPIO_TypeDef* lpc_gpio;
 	
+	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_GPIO;	//enable GPIO clock
 	
 	__disable_irq();
@@ -163,14 +165,21 @@ void initDRDYInterrupt(void)
 	NVIC_EnableIRQ(irqNum);
 	NVIC_SetPriority(irqNum, interruptPriority);
 	
+	
 	lpc_gpio->DIR &= ~(1<<DATA_READY_WIRE_PIN);						//input
 	lpc_gpio->IS &= ~( 1<< DATA_READY_WIRE_PIN);					//edge sensitive
 	lpc_gpio->IBE &= ~(1<<DATA_READY_WIRE_PIN);						//single edge
 	lpc_gpio->IEV &= ~(1<<DATA_READY_WIRE_PIN);						//falling edge sensitive
 	
+	
 	lpc_gpio->IE = (1<<DATA_READY_WIRE_PIN);							//un-mask interrupt
 	
+	LPC_GPIO3->DATA |= (1<<0);
+	delay(60000);
+	
 	__enable_irq();
+	LPC_GPIO3->DATA &= ~(1<<0);
+	
 }
 
 void PIOINT0_IRQHandler(void)									
