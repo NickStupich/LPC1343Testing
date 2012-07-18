@@ -45,6 +45,7 @@ channelUnion* cuPtr;
 																					SPI_READ_TO_PTR(ptr, 2)	\
 																					SPI_READ_TO_PTR((ptr++), 1);
 
+#define GPIO_OUTPUT(port, pin, value)			((LPC_GPIO_TypeDef   *) (LPC_AHB_BASE + port * 0x10000))->DATA value(pin)
 
 #define NUM_REGISTERS_TO_RW								0x19
 #define RW_REGISTERS_START_ADDR						0x0
@@ -179,7 +180,7 @@ void initSpiWithAds(enum RunMode runMode)
 
 void stopSpiWithAds(void)
 {
-	LPC_GPIO2->DATA &= ~(1<<5);
+	GPIO_OUTPUT(START_PORT, START_PIN, LOW);
 }
 
 void initDRDYInterrupt(void)

@@ -79,4 +79,11 @@ enum RunMode{
 #define						EVENT_CMD_TO_MASK(x)				(1<<x)
 #define						EVENT_PROCESS_NUM_CMDS			0x1
 
+/*SPI wire locations*/
+#define						START_PORT									2
+#define						START_PIN										5
+
+#define 					LOW(pin)					&= ~(1<<pin)																			
+#define						HIGH(pin)					|= (1<<pin)
+
 #endif
