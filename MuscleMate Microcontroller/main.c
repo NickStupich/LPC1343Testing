@@ -25,6 +25,7 @@ int main()
 	
 	LPC_GPIO3->DATA &= ~(1<<0);
 	
+	LPC_GPIO3->DATA |= (1<<0);
 	while(1)
 	{
 		ProcessEvents();

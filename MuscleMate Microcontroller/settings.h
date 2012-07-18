@@ -25,8 +25,12 @@
 #define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
 #define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
 
-/* ADS sampling rate stuff */
+/* SPI definitions */
+#define			SSP_SSP0SR_BSY_BUSY					(1<<4)
+#define			SSP_SSP0SR_TNF_NOTFULL			(1<<1)
+#define 		SSP_SSP0SR_RNE_NOTEMPTY			(1<<2)
 
+/* ADS sampling rate stuff */
 enum AdsSampleRates{
 	SPS_32k = 0x0,
 	SPS_16k = 0x1,
@@ -67,8 +71,8 @@ enum AdsSampleRates{
 #define 					INTERRUPT_PRI_GPIO_2				0x1D
 #define 					INTERRUPT_PRI_GPIO_3				0x1C
 */
-#define						INTERRUPT_PRI_DRDY					0x1F
-#define 					INTERRUPT_PRI_UART					0x1A
+#define						INTERRUPT_PRI_DRDY					0x1A
+#define 					INTERRUPT_PRI_UART					0x1F
 #define 					INTERRUPT_PRI_FFT_TIMER			0x18
 #define 					INTERRUPT_PRI_ASYNC_TIMER		0x0F
 

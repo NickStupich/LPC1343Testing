@@ -11,7 +11,7 @@ def get_available_drives():
     return list(itertools.compress(string.ascii_uppercase,
                map(lambda x:ord(x) - ord('0'), bin(drive_bitmask)[:1:-1])))
 
-port = 'COM11'
+port = 'COM8'
 filename = 'mmm2'
 drive = 'E'
 

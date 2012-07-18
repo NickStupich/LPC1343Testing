@@ -6,8 +6,6 @@
 #include "lpc1343Constants.h"
 #include "downSampling.h"
 
-unsigned char xi;
-
 // divide integers by two, so they don't overflow the integer based fft
 #define SCALE_INTEGER(x)			(x>>1)
 
@@ -28,14 +26,52 @@ typedef union{
 } channelUnion;
 #pragma pack()
 
+//used in the DRDY Pin interrupt
+channelUnion cu[9];
+channelUnion* cuPtr;
+
 void initSpiWithAds(enum RunMode runMode)
 {
 	int a;
 	unsigned char datain[26];			//register information
-	
-	enum AdsSampleRates sampleRate;
-	unsigned char write_Array[28] = {0x40, 0x19, 0x7F, 0x86, 0x10, 0xDC, 0x03, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xFF, 0x02, 0, 0xFE, 0x06, 0, 0, 0, 0x02, 0x0A, 0xE3};
 
+	enum AdsSampleRates sampleRate;
+	unsigned char write_Array[28] = {	0x40,		//write opcode
+																		0x19, 	//write 0x19 registers (26)
+																		0x7F, 	//id (can be anything)
+																		0x86, 	//config1
+																		0x10, 	//config2
+																		0xDC, 	//config3
+																		0x03, 	//loff
+																		0x10, 	//ch1set
+																		0x10, 	//ch2set...
+																		0x10, 
+																		0x10,
+																		0x10, 
+																		0x10, 
+																		0x10, 
+																		0x10, 
+																		0, 			//rld_sensp
+																		0, 			//rld_sensn
+																		0xFF, 	//loff_sensp	
+																		0x02, 	//loff_sensn
+																		0, 			//loff_flip
+																		0xFE, 	//loff_statp
+																		0x06,		//loff_statn
+																		0, 			//gpio
+																		0,			//pace
+																		0, 			//resp
+																		0x02, 	//config4
+																		0x0A, 	//wct1
+																		0xE3		//wct2
+		};
+
+	//set the channelUnion values to 0 for 3rd byte of int
+	for(a=0;a<9;a++)
+	{
+		cu[a].raw.bytes[0] = 0;
+	}
+	
 	InitSPI();
 		
 	sampleRate = ADS_SPS_FFT;
@@ -57,11 +93,11 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_IOCON->PIO0_7 |= (13<<4);						//Enable PIO0_7 as SPI_Reset
 	LPC_GPIO0->DIR |= (1<<7);								//PIO0_7 configured as output
 	
-	/*
+	
 	//Configure ADS DRDY pin
-	LPC_IOCON->PIO0_5 |= (13<<4);						//Enable PIO0_5 as SPI_DRDY
-	LPC_GPIO0->DIR &= ~(1<<5);							//PIO0_5 configured as input
-	*/
+	//LPC_IOCON->PIO0_5 |= (13<<4);						//Enable PIO0_5 as SPI_DRDY
+	//LPC_GPIO0->DIR &= ~(1<<5);							//PIO0_5 configured as input
+	
 	
 	LPC_GPIO2->DATA &= ~(1<<5); 						//Set SPI_Start pin low, Do not begin conversions
 	
@@ -82,20 +118,7 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high	
 	delay(SPI_WRITE_DELAY);
 	
-	/*
-	//Write Registry Commands
-	//Values for opcode 1 and opcode 2 as well as Registers 0-25 of ADS stored in this array
-	0. ID = 0x92
-	1. Config 1 = 0x06 (for low-power mode  and 250kSPS)
-	2. Config 2 = 0x10 (default configuration for test signal)
-	3. Config 3 = 0xDC (VREFP = 2.4V) or 0xDC
-	4. LOFF = 0x03
-	5. 
-	...
-	20. GPIO = 0x0f
-	...
-	25. WCT2 = 0x00
-	*/	
+	
 	
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	
@@ -118,7 +141,9 @@ void initSpiWithAds(enum RunMode runMode)
 	
 	for (a=0; a<26; a++){
 		datain[a] = SPI0_Read();
+		uart_write(datain[a]);
 	}
+	uart_write(0);	//to make it send 27 bytes - a multiple of 3 so it can keep working after
 	
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	
@@ -146,7 +171,6 @@ void stopSpiWithAds(void)
 void initDRDYInterrupt(void)
 {
 	enum IRQn irqNum;
-	unsigned short interruptPriority;
 	LPC_GPIO_TypeDef* lpc_gpio;
 	
 	
@@ -162,7 +186,7 @@ void initDRDYInterrupt(void)
 	#endif
 	
 	NVIC_EnableIRQ(irqNum);
-	NVIC_SetPriority(irqNum, interruptPriority);
+	NVIC_SetPriority(irqNum, INTERRUPT_PRI_DRDY);
 	
 	
 	lpc_gpio->DIR &= ~(1<<DATA_READY_WIRE_PIN);						//input
@@ -173,20 +197,29 @@ void initDRDYInterrupt(void)
 	
 	lpc_gpio->IE = (1<<DATA_READY_WIRE_PIN);							//un-mask interrupt
 	
-	LPC_GPIO3->DATA |= (1<<0);
-	delay(60000);
-	
 	__enable_irq();
-	LPC_GPIO3->DATA &= ~(1<<0);
 	
 }
 
+
+#define SPI_READ_TO_PTR(ptr, index)			LPC_SSP0->DR = 0xFF;		\
+																					while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );	\
+																					ptr->raw.bytes[index] = LPC_SSP0->DR;
+
+/*int j;
+#define SPI_READ_TO_PTR(ptr, index)				LPC_SSP0->DR = 0xFF;		\
+																					for(j=0;j<18;j++){__nop();}	\
+																					ptr->raw.bytes[index] = LPC_SSP0->DR;
+*/
+#define SPI_READ3_PTR_INCREMENT(ptr)			SPI_READ_TO_PTR(ptr, 3)	\
+																					SPI_READ_TO_PTR(ptr, 2)	\
+																					SPI_READ_TO_PTR((ptr++), 1);
+
+
 void PIOINT0_IRQHandler(void)									
 {								
-	int a, b;
-	channelUnion cu[9];
-	channelUnion* cuPtr;
-	unsigned char data;
+	int a;// ,b, data;
+
 	/*Read data (216bits) from the ads through SPI*/
 	
 	//pointer incrementing is faster than just indexing the array
@@ -196,20 +229,9 @@ void PIOINT0_IRQHandler(void)
 	
 	for(a=0; a<9; a++)
 	{
-		for(b=3;b>0;b--)
-		{
-			data = SPI0_Read();
-			cuPtr->raw.bytes[b] =  data;
-			if(a == timeEnabledChannel+1)
-			{
-				uart_write(data);
-				//	uart_write(xi);
-			}
-		}
-		cuPtr++;
+		SPI_READ3_PTR_INCREMENT(cuPtr);		
 	}
 	
-	xi++;
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	
 	if(_runMode == RUN_MODE_TIME_DOMAIN)
@@ -217,11 +239,10 @@ void PIOINT0_IRQHandler(void)
 		//send away one set of bytes over bluetooth
 		//send "backwards" as msb first
 		//index is timeEnabledChannel+1 since first is status bits
-		//cuPtr	= &cu[timeEnabledChannel+1];
-		//uart_write(cuPtr->raw.bytes[3]);
-		//uart_write(cuPtr->raw.bytes[2]);
-		//uart_write(cuPtr->raw.bytes[1]);
-	
+		cuPtr	= &cu[timeEnabledChannel+1];
+		uart_write(cuPtr->raw.bytes[3]);
+		uart_write(cuPtr->raw.bytes[2]);
+		uart_write(cuPtr->raw.bytes[1]);	
 	}
 	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
 	{
@@ -242,12 +263,6 @@ void PIOINT0_IRQHandler(void)
 	
 	LPC_GPIO0->IC = 0xFF;	/*clear all interrupts*/
 }
-
-
-//write to SPI0 
-#define			SSP_SSP0SR_BSY_BUSY					(1<<4)
-#define			SSP_SSP0SR_TNF_NOTFULL			(1<<1)
-#define 		SSP_SSP0SR_RNE_NOTEMPTY			(1<<2)
 
 void SPI0_Write(unsigned char Data)
 {
@@ -277,11 +292,6 @@ unsigned char SPI0_Read(void)
 	while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );
 	Data = LPC_SSP0->DR;
 	
-	/*
-	LPC_SSP0->DR = 0xFF;
-	while((LPC_SSP0->SR & 0x00000010));
-	Data = LPC_SSP0->DR;
-	*/
 	return Data;
 }
 
@@ -291,7 +301,7 @@ void InitSPI()
 	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<11);	//Enable SSP0 clock
 		
 	//Set Peripheral Clock Frequency to 72MHz
-	LPC_SYSCON->SSP0CLKDIV |= (1<<0);     //Divide by 2
+	LPC_SYSCON->SSP0CLKDIV = 1;     //Divide by 2
 	
 	// Configure SPI PINs
 	LPC_IOCON->SCK_LOC |= (1<<0);					  //SCK0 pin location at PIO2_11
