@@ -206,6 +206,7 @@ void initDRDYInterrupt(void)
 																					while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );	\
 																					ptr->raw.bytes[index] = LPC_SSP0->DR;
 
+//marginally (1.5 us on a ~80us operation, but doesn't seem worth it due to the volatility it introduces. Maybe later...
 /*int j;
 #define SPI_READ_TO_PTR(ptr, index)				LPC_SSP0->DR = 0xFF;		\
 																					for(j=0;j<18;j++){__nop();}	\
@@ -266,8 +267,6 @@ void PIOINT0_IRQHandler(void)
 
 void SPI0_Write(unsigned char Data)
 {
-	unsigned char Dummy;
-	
 	/* Move on only if NOT busy and TX FIFO not full. */
   while ((LPC_SSP0->SR & (SSP_SSP0SR_TNF_NOTFULL | SSP_SSP0SR_BSY_BUSY)) != SSP_SSP0SR_TNF_NOTFULL);
   LPC_SSP0->DR = Data;
@@ -276,8 +275,7 @@ void SPI0_Write(unsigned char Data)
   /* Whenever a byte is written, MISO FIFO counter increments, Clear FIFO 
   on MISO. Otherwise, when SSP0Receive() is called, previous data byte
   is left in the FIFO. */
-  Dummy = LPC_SSP0->DR;
-	
+  LPC_SSP0->DR;
 	return;
 }
 
