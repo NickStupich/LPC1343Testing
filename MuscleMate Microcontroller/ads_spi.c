@@ -166,13 +166,13 @@ void initSpiWithAds(enum RunMode runMode)
 
 void stopSpiWithAds(void)
 {
+	LPC_GPIO2->DATA &= ~(1<<5);
 }
 
 void initDRDYInterrupt(void)
 {
 	enum IRQn irqNum;
 	LPC_GPIO_TypeDef* lpc_gpio;
-	
 	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_GPIO;	//enable GPIO clock
 	
@@ -206,7 +206,7 @@ void initDRDYInterrupt(void)
 																					while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );	\
 																					ptr->raw.bytes[index] = LPC_SSP0->DR;
 
-//marginally (1.5 us on a ~80us operation, but doesn't seem worth it due to the volatility it introduces. Maybe later...
+//marginally faster (1.5 us on a ~80us operation, but doesn't seem worth it due to the volatility it introduces. Maybe later...
 /*int j;
 #define SPI_READ_TO_PTR(ptr, index)				LPC_SSP0->DR = 0xFF;		\
 																					for(j=0;j<18;j++){__nop();}	\

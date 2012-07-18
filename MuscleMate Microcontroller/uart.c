@@ -94,9 +94,10 @@ void uartInit(void)
 	
 		__disable_irq();
 	
+		//enable clock to the uart peripheral
 		LPC_SYSCON->SYSAHBCLKCTRL |=	SCB_SYSAHBCLKCTRL_UART;
 	
-		//set buffer indeces to 0
+		//set buffer indeces
 		uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
 		uartSendBufferIn = 0;
 		uartSendBufferOut = 0;
@@ -105,7 +106,7 @@ void uartInit(void)
 		LPC_IOCON->PIO1_6 = 0x1;	//RX
 		LPC_IOCON->PIO1_7 = 0x1;	//TX
 	
-		LPC_SYSCON->UARTCLKDIV = 1;	//uart clock divider
+		LPC_SYSCON->UARTCLKDIV = 1;	//uart clock divider to fastest uart clock
 	
 		LPC_UART->LCR = (		UART_LCR_Word_Length_Select_8Chars |
 												UART_LCR_Stop_Bit_Select_1Bits |
@@ -115,24 +116,18 @@ void uartInit(void)
 												UART_LCR_Divisor_Latch_Access_Enabled);
 	
 		//baud rate divider section
-		LPC_UART->FDR = 1<<4;	//DIVADDVAL = 0 - no fractional baud rate effect
+		LPC_UART->FDR = 1<<4;
 		LPC_UART->DLM = 0;
 		LPC_UART->DLL = 39;
 		
 		  /* Set DLAB back to 0 */
 		LPC_UART->LCR &= ~UART_LCR_Divisor_Latch_Access_Enabled;
-/*		LPC_UART->LCR = (		UART_LCR_Word_Length_Select_8Chars |
-												UART_LCR_Stop_Bit_Select_1Bits |
-												UART_LCR_Parity_Disabled |
-												UART_LCR_Parity_Select_OddParity |
-												UART_LCR_Break_Control_Disabled |
-												UART_LCR_Divisor_Latch_Access_Disabled);*/
 		
 		LPC_UART->FCR = (		UART_FCR_FIFO_Enabled | 
 												UART_FCR_Rx_FIFO_Reset | 
 												UART_FCR_Tx_FIFO_Reset); 
 												
-		//temp = LPC_UART->LSR;	//read to clear the line status
+		//read to clear the line status
 		LPC_UART->LSR;
 		
 		/* Ensure a clean start, no data in either TX or RX FIFO. */
@@ -140,7 +135,6 @@ void uartInit(void)
 		while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
 		{
 			LPC_UART->RBR;//read data out of RX buffer
-			//temp = LPC_UART->RBR;	//read data out of RX buffer
 		}
 		
 		//enable interrupts on received data and transmit available

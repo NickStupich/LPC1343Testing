@@ -44,9 +44,9 @@ void ProcessUartCommand(unsigned int cmd)
 	switch(UART_GET_CMD(cmd))
 	{
 		case UART_CMD_STOP:	
+		
 			//get the ads to stop sending updates
 			stopSpiWithAds();
-			
 			if(_runMode == RUN_MODE_FREQ_DOMAIN)
 			{
 				//stop performing (and sending) ffts
