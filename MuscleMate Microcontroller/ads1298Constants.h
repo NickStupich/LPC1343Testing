@@ -1,0 +1,10 @@
+#define		ADS_CMD_WAKEUP			0x2
+#define 	ADS_CMD_STANDBY			0x4
+#define 	ADS_CMD_RESET				0x6
+#define		ADS_CMD_START				0x8
+#define		ADS_CMD_STOP				0xA
+#define		ADS_CMD_RDATAC			0x10
+#define 	ADS_CMD_SDATAC			0x11
+#define		ADS_CMD_RDATA				0x12
+#define 	ADS_CMD_RREG				0x20
+#define		ADS_CMD_WREG				0x40

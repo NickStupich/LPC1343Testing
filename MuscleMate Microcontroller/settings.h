@@ -25,10 +25,6 @@
 #define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
 #define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
 
-/* SPI definitions */
-#define			SSP_SSP0SR_BSY_BUSY					(1<<4)
-#define			SSP_SSP0SR_TNF_NOTFULL			(1<<1)
-#define 		SSP_SSP0SR_RNE_NOTEMPTY			(1<<2)
 
 /* ADS sampling rate stuff */
 enum AdsSampleRates{

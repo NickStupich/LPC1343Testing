@@ -5,6 +5,7 @@
 #include "timers.h"
 #include "lpc1343Constants.h"
 #include "downSampling.h"
+#include "ads1298Constants.h"
 
 // divide integers by two, so they don't overflow the integer based fft
 #define SCALE_INTEGER(x)			(x>>1)
@@ -30,14 +31,31 @@ typedef union{
 channelUnion cu[9];
 channelUnion* cuPtr;
 
+#define SPI_READ_TO_PTR(ptr, index)			LPC_SSP0->DR = 0xFF;		\
+																					while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );	\
+																					ptr->raw.bytes[index] = LPC_SSP0->DR;
+
+//marginally faster (1.5 us on a ~80us operation, but doesn't seem worth it due to the volatility it introduces. Maybe later...
+/*int j;
+#define SPI_READ_TO_PTR(ptr, index)				LPC_SSP0->DR = 0xFF;		\
+																					for(j=0;j<18;j++){__nop();}	\
+																					ptr->raw.bytes[index] = LPC_SSP0->DR;
+*/
+#define SPI_READ3_PTR_INCREMENT(ptr)			SPI_READ_TO_PTR(ptr, 3)	\
+																					SPI_READ_TO_PTR(ptr, 2)	\
+																					SPI_READ_TO_PTR((ptr++), 1);
+
+
+#define NUM_REGISTERS_TO_RW								0x19
+#define RW_REGISTERS_START_ADDR						0x0
 void initSpiWithAds(enum RunMode runMode)
 {
 	int a;
 	unsigned char datain[26];			//register information
-
+	
 	enum AdsSampleRates sampleRate;
-	unsigned char write_Array[28] = {	0x40,		//write opcode
-																		0x19, 	//write 0x19 registers (26)
+	unsigned char write_Array[28] = {	ADS_CMD_WREG | RW_REGISTERS_START_ADDR,		//write opcode
+																		NUM_REGISTERS_TO_RW, 	//write 0x19 registers (26)
 																		0x7F, 	//id (can be anything)
 																		0x86, 	//config1
 																		0x10, 	//config2
@@ -94,11 +112,6 @@ void initSpiWithAds(enum RunMode runMode)
 	LPC_GPIO0->DIR |= (1<<7);								//PIO0_7 configured as output
 	
 	
-	//Configure ADS DRDY pin
-	//LPC_IOCON->PIO0_5 |= (13<<4);						//Enable PIO0_5 as SPI_DRDY
-	//LPC_GPIO0->DIR &= ~(1<<5);							//PIO0_5 configured as input
-	
-	
 	LPC_GPIO2->DATA &= ~(1<<5); 						//Set SPI_Start pin low, Do not begin conversions
 	
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin to high		
@@ -113,7 +126,7 @@ void initSpiWithAds(enum RunMode runMode)
 	//Stop read data continuously mode
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	delay(SPI_WRITE_DELAY);
-	SPI0_Write(0x11);
+	SPI0_Write(ADS_CMD_SDATAC);
 	delay(SPI_WRITE_DELAY);
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high	
 	delay(SPI_WRITE_DELAY);
@@ -134,9 +147,9 @@ void initSpiWithAds(enum RunMode runMode)
 	
 	//Read Registry Commands
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
-	SPI0_Write(0x20);
+	SPI0_Write(ADS_CMD_RREG | RW_REGISTERS_START_ADDR);
 	delay(SPI_WRITE_DELAY);
-	SPI0_Write(0x19);
+	SPI0_Write(NUM_REGISTERS_TO_RW);
 	delay(SPI_WRITE_DELAY);
 	
 	for (a=0; a<26; a++){
@@ -151,7 +164,7 @@ void initSpiWithAds(enum RunMode runMode)
 	//Enable Read Data Continiously Mode
 	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
 	delay(SPI_WRITE_DELAY);
-	SPI0_Write(0x10);
+	SPI0_Write(ADS_CMD_RDATAC);
 	delay(SPI_WRITE_DELAY);
 	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
 	delay(SPI_WRITE_DELAY);
@@ -201,20 +214,6 @@ void initDRDYInterrupt(void)
 	
 }
 
-
-#define SPI_READ_TO_PTR(ptr, index)			LPC_SSP0->DR = 0xFF;		\
-																					while((LPC_SSP0->SR & (SSP_SSP0SR_BSY_BUSY|SSP_SSP0SR_RNE_NOTEMPTY)) != SSP_SSP0SR_RNE_NOTEMPTY );	\
-																					ptr->raw.bytes[index] = LPC_SSP0->DR;
-
-//marginally faster (1.5 us on a ~80us operation, but doesn't seem worth it due to the volatility it introduces. Maybe later...
-/*int j;
-#define SPI_READ_TO_PTR(ptr, index)				LPC_SSP0->DR = 0xFF;		\
-																					for(j=0;j<18;j++){__nop();}	\
-																					ptr->raw.bytes[index] = LPC_SSP0->DR;
-*/
-#define SPI_READ3_PTR_INCREMENT(ptr)			SPI_READ_TO_PTR(ptr, 3)	\
-																					SPI_READ_TO_PTR(ptr, 2)	\
-																					SPI_READ_TO_PTR((ptr++), 1);
 
 
 void PIOINT0_IRQHandler(void)									
@@ -295,8 +294,9 @@ unsigned char SPI0_Read(void)
 
 void InitSPI()
 {
+	
 		//Enable power to SSP0	
-	LPC_SYSCON->SYSAHBCLKCTRL |= (1<<11);	//Enable SSP0 clock
+	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_SPI0;
 		
 	//Set Peripheral Clock Frequency to 72MHz
 	LPC_SYSCON->SSP0CLKDIV = 1;     //Divide by 2
@@ -310,12 +310,14 @@ void InitSPI()
 	LPC_GPIO0->DIR |= (1<<2);								//PIO0_2 CS pin configured as Output
 	LPC_SYSCON->PRESETCTRL |= (7<<0);				//Pull SSP0 block out of reset mode
 	
-	//Configure SPI Control Register 0. CR1 is correct at default so no need to configure
-	
-	LPC_SSP0->CR0 = (7<<0)   							//8-bit data tranfer per frame		
-									|(1<<7);								//CPHA is set to 0
-	
+	LPC_SSP0->CR0 = (	SSP_CR0_DSS_8BIT
+									| SSP_CR0_FRF_SPI
+									| SSP_CR0_CPOL_LOW
+									| SSP_CR0_CPHA_BACK
+									);
+									
 	LPC_SSP0->CPSR |= 0x14;									//CPSDVSR = 2, clock prescaler
 	
-	LPC_SSP0->CR1 = (1<<1);								//Enable SSP Controller
+	LPC_SSP0->CR1 = SSP_CR1_ENABLED;								//Enable SSP Controller
+	
 }
