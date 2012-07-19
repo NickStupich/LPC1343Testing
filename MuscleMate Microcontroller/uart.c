@@ -103,9 +103,10 @@ void uartInit(void)
 		uartSendBufferOut = 0;
 		uartSendBufferEmpty = 1;
 	
-		LPC_IOCON->PIO1_6 = 0x1;	//RX
-		LPC_IOCON->PIO1_7 = 0x1;	//TX
-	
+		//set rx and tx pins as being used for uart
+		LPC_IOCON_PIO(RX_PORT, RX_PIN) = IOCON_FUNC_1;
+		LPC_IOCON_PIO(TX_PORT, TX_PIN) = IOCON_FUNC_1;
+		
 		LPC_SYSCON->UARTCLKDIV = 1;	//uart clock divider to fastest uart clock
 	
 		LPC_UART->LCR = (		UART_LCR_Word_Length_Select_8Chars |
@@ -123,6 +124,7 @@ void uartInit(void)
 		  /* Set DLAB back to 0 */
 		LPC_UART->LCR &= ~UART_LCR_Divisor_Latch_Access_Enabled;
 		
+		/* enable and reset the fifo*/
 		LPC_UART->FCR = (		UART_FCR_FIFO_Enabled | 
 												UART_FCR_Rx_FIFO_Reset | 
 												UART_FCR_Tx_FIFO_Reset); 

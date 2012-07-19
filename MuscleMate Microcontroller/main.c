@@ -24,7 +24,7 @@ int main()
 	//ads boots up with 250sps data ready pin, stop this
 	stopAdsConversions();
 	
-	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
+	//start up the uart - bluetooth connection. Do this last in case we get something right away
 	uartInit();
 	
 	LPC_IOCON->PIO3_0 = 0xD8;
@@ -34,13 +34,10 @@ int main()
 	
 	while(1)
 	{
+		// event processing loop to deal with deadlocks if everything were to run straight from interrupts
 		ProcessEvents();
 	}
 }
 
-/*
-Don't use this.  Was causing problems - setting address of function pointers to 0 for some unknown reason 
-*/
-void SystemInit()
-{
-}
+/* Don't use this.  Was causing problems - setting address of function pointers to 0 for some unknown reason */
+void SystemInit(){}

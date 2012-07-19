@@ -77,7 +77,7 @@ enum RunMode{
 #define						EVENT_PROCESS_NUM_CMDS			0x1
 
 
-/* ADS physical connection settings */
+/* Physical connection settings */
 #define 					DRDY_PORT										0
 #define						DRDY_PIN										5
 
@@ -98,6 +98,12 @@ enum RunMode{
 
 #define						SCLK_PORT										2
 #define						SCLK_PIN										11
+
+#define						RX_PORT											1
+#define						RX_PIN											6
+
+#define						TX_PORT											1
+#define						TX_PIN											7
 
 
 /* Debug settings */
