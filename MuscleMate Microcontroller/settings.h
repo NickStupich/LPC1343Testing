@@ -103,4 +103,11 @@ enum RunMode{
 /* Debug settings */
 #define						SEND_REGISTERS_OVER_UART		0
 
+/* Delay times */
+#define 					ISP_RESET_ADS_STOP_DELAY		1000
+// delays required by the ads between spi talkings
+#define RESET_DELAY_US		(4000)
+#define SPI_WRITE_DELAY   (400)
+#define ADS_START_DELAY   (800)
+
 #endif

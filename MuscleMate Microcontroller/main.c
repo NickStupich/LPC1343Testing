@@ -5,6 +5,7 @@
 #include "events.h"
 #include "coreFunctions.h"
 #include "settings.h"
+#include "ads_spi.h"
 
 int main()
 {	
@@ -16,6 +17,12 @@ int main()
 	
 	//set up the timer used to schedule ffts
 	FFTTimerInit();	
+	
+	//set up pins for ads communication
+	InitPinsForAdsCommunication();
+	
+	//ads boots up with 250sps data ready pin, stop this
+	stopAdsConversions();
 	
 	//start up the uart - bluetooth connection. Do this last in case we get somethign right away
 	uartInit();

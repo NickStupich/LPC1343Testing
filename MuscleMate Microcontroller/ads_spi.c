@@ -10,11 +10,6 @@
 // divide integers by two, so they don't overflow the integer based fft
 #define SCALE_INTEGER(x)			(x>>1)
 
-// delays required by the ads between spi talkings
-#define RESET_DELAY_US		(4000)
-#define SPI_WRITE_DELAY   (400)
-#define ADS_START_DELAY   (800)
-
 //struct and union to read data from the ads and convert to useful
 #pragma pack(1)
 typedef struct{
@@ -103,14 +98,6 @@ void initSpiWithAds(enum RunMode runMode)
 
 	//set the sampling frequency
 	write_Array[3] = 0x80 | sampleRate;	
-	
-	//Configure ADS Start pin
-	LPC_IOCON_PIO(START_PORT, START_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
-	SET_GPIO_AS_OUTPUT(START_PORT, START_PIN);
-	
-	//Configure ADS Reset pin
-	LPC_IOCON_PIO(RESET_PORT, RESET_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
-	SET_GPIO_AS_OUTPUT(RESET_PORT, RESET_PIN);
 		
 	//Start low, Do not begin conversions
 	GPIO_OUTPUT(START_PORT, START_PIN, LOW);
@@ -179,7 +166,7 @@ void initSpiWithAds(enum RunMode runMode)
 }
 
 
-void stopSpiWithAds(void)
+void stopAdsConversions(void)
 {
 	GPIO_OUTPUT(START_PORT, START_PIN, LOW);
 }
@@ -282,23 +269,14 @@ unsigned char SPI0_Read(void)
 	return Data;
 }
 
-void InitSPI()
+void InitSPI(void)
 {
-	
 		//Enable power to SSP0	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_SPI0;
 		
 	//Set Peripheral Clock Frequency to 72MHz
 	LPC_SYSCON->SSP0CLKDIV = 1;     //Divide by 2
 	
-	// Configure SPI PINs
-	LPC_IOCON->SCK_LOC = (1<<0);					  //SCK0 pin location at PIO2_11
-	
-	LPC_IOCON_PIO(SCLK_PORT, SCLK_PIN) = IOCON_FUNC_1;		//pin mode SCLK
-	LPC_IOCON_PIO(MISO_PORT, MISO_PIN) = IOCON_FUNC_1;		//pin mode MISO
-	LPC_IOCON_PIO(MOSI_PORT, MOSI_PIN) = IOCON_FUNC_1;		//pin mode MOSI
-	LPC_IOCON_PIO(CS_PORT, CS_PIN) = 	IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;	//gpio with pull up
-	SET_GPIO_AS_OUTPUT(CS_PORT, CS_PIN);
 	
 	LPC_SYSCON->PRESETCTRL |= (7<<0);				//Pull SSP0 block out of reset mode
 	
@@ -310,6 +288,25 @@ void InitSPI()
 									
 	LPC_SSP0->CPSR |= 0x14;									//CPSDVSR = 2, clock prescaler
 	
-	LPC_SSP0->CR1 = SSP_CR1_ENABLED;				//Enable SSP Controller
+	LPC_SSP0->CR1 = SSP_CR1_ENABLED;				//Enable SSP Controller	
+}
+
+void InitPinsForAdsCommunication(void)
+{
+	// Configure SPI PINs
+	LPC_IOCON->SCK_LOC = (1<<0);					  //SCK0 pin location at PIO2_11
 	
+	LPC_IOCON_PIO(SCLK_PORT, SCLK_PIN) = IOCON_FUNC_1;		//pin mode SCLK
+	LPC_IOCON_PIO(MISO_PORT, MISO_PIN) = IOCON_FUNC_1;		//pin mode MISO
+	LPC_IOCON_PIO(MOSI_PORT, MOSI_PIN) = IOCON_FUNC_1;		//pin mode MOSI
+	LPC_IOCON_PIO(CS_PORT, CS_PIN) = 	IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;	//gpio with pull up
+	SET_GPIO_AS_OUTPUT(CS_PORT, CS_PIN);
+	
+	//Configure ADS Start pin
+	LPC_IOCON_PIO(START_PORT, START_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
+	SET_GPIO_AS_OUTPUT(START_PORT, START_PIN);
+	
+	//Configure ADS Reset pin
+	LPC_IOCON_PIO(RESET_PORT, RESET_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
+	SET_GPIO_AS_OUTPUT(RESET_PORT, RESET_PIN);
 }

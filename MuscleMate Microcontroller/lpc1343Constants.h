@@ -1,6 +1,10 @@
 #ifndef _LPC1343
 #define LPC1343
 
+/* Used to reset the microcontroller into isp mode from software */
+typedef void (*IAP)(unsigned int[], unsigned int[]);
+#define IAP_LOCATION 0x1fff1ff1
+
 /* Clocking enabled control */
 #define SCB_SYSAHBCLKCTRL_GPIO									(1<<6)
 #define SCB_SYSAHBCLKCTRL_IOCON									(1<<16)

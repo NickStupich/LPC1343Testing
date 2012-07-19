@@ -44,14 +44,13 @@ if __name__ == "__main__":
 			print get_available_drives()
 			print 'failed to mount usb drive'
 			ser.close()
+			if retry == num_retries-1:
+				print 'failed too many times, quitting'
+				exit(1)
 		
 		else:
 			break
 			
-	if retry == num_retries:
-		print 'failed too many times, quitting'
-		exit(1)
-		
 	paramsDict = {	'fn' : filename, 
 					'drive' : drive
 					}

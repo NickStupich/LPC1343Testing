@@ -46,7 +46,7 @@ void ProcessUartCommand(unsigned int cmd)
 		case UART_CMD_STOP:	
 		
 			//get the ads to stop sending updates
-			stopSpiWithAds();
+			stopAdsConversions();
 			if(_runMode == RUN_MODE_FREQ_DOMAIN)
 			{
 				//stop performing (and sending) ffts
@@ -100,6 +100,7 @@ void ProcessUartCommand(unsigned int cmd)
 			break;
 			
 		case UART_CMD_ENTER_ISP:
+			
 			ResetIntoISP();
 			break;
 		
@@ -167,12 +168,15 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 	}
 }
 
-typedef void (*IAP)(unsigned int[], unsigned int[]);
-#define IAP_LOCATION 0x1fff1ff1
+
 void ResetIntoISP()
 {
 	 IAP iap_entry = (IAP) IAP_LOCATION;
   uint32_t command[5], result[4];
+	
+	//stop the ads doing stuff and interrupting things
+	stopAdsConversions();
+	delay(ISP_RESET_ADS_STOP_DELAY);
 		
 	//stop UART
 	 //uint32_t temp;
@@ -214,7 +218,7 @@ void ResetIntoISP()
    */
   //__set_MSP(*((uint32_t *) 0x1FFF0000)); /* inline asm */
 
-  /* Invoke ISP. We call "iap_entry" to invoke ISP because the ISP entry
+	/* Invoke ISP. We call "iap_entry" to invoke ISP because the ISP entry
      is done through the same command interface as IAP. */
   iap_entry(command, result);
 }

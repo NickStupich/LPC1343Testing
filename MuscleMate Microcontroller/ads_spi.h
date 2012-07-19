@@ -8,7 +8,7 @@ all channels run by default, maybe turn one off later?
 void initSpiWithAds(enum RunMode runMode);
 
 /* stops the ads sending stuff */
-void stopSpiWithAds(void);
+void stopAdsConversions(void);
 
 /* sets up the external interrupt pin */
 void initDRDYInterrupt(void);
@@ -21,3 +21,6 @@ void SPI0_Write(unsigned char Data);
 
 /* generally start up SPI*/
 void InitSPI(void);
+
+/* set up pins, right at startup.  This allows us to do stuff like powering down the ads right away */
+void InitPinsForAdsCommunication(void);
