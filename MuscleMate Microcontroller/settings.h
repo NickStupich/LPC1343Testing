@@ -56,9 +56,6 @@ enum AdsSampleRates{
 #define ADS_SPS_NUMERICAL			500
 #endif
 
-/* ADS physical connection settings */
-#define 					DATA_READY_WIRE_PORT				0
-#define						DATA_READY_WIRE_PIN					5
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
 #define						INTERRUPT_PRI_DRDY					0x1A
@@ -79,11 +76,31 @@ enum RunMode{
 #define						EVENT_CMD_TO_MASK(x)				(1<<x)
 #define						EVENT_PROCESS_NUM_CMDS			0x1
 
-/*SPI wire locations*/
+
+/* ADS physical connection settings */
+#define 					DRDY_PORT										0
+#define						DRDY_PIN										5
+
 #define						START_PORT									2
 #define						START_PIN										5
 
-#define 					LOW(pin)					&= ~(1<<pin)																			
-#define						HIGH(pin)					|= (1<<pin)
+#define						CS_PORT											0
+#define						CS_PIN											2
+
+#define						MISO_PORT										0
+#define						MISO_PIN										8
+
+#define 					MOSI_PORT										0
+#define						MOSI_PIN										9
+
+#define						RESET_PORT									0
+#define						RESET_PIN										7
+
+#define						SCLK_PORT										2
+#define						SCLK_PIN										11
+
+
+/* Debug settings */
+#define						SEND_REGISTERS_OVER_UART		0
 
 #endif

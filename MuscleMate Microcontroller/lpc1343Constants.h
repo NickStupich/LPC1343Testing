@@ -60,15 +60,38 @@
 
 
 /* SPI definitions */
-#define			SSP_SSP0SR_BSY_BUSY					(1<<4)
-#define			SSP_SSP0SR_TNF_NOTFULL			(1<<1)
-#define 		SSP_SSP0SR_RNE_NOTEMPTY			(1<<2)
+#define			SSP_SSP0SR_BSY_BUSY									(1<<4)
+#define			SSP_SSP0SR_TNF_NOTFULL							(1<<1)
+#define 		SSP_SSP0SR_RNE_NOTEMPTY							(1<<2)
 
-#define 		SSP_CR0_DSS_8BIT						0x7
-#define			SSP_CR0_FRF_SPI							0x0
-#define			SSP_CR0_CPOL_LOW						0x0
-#define			SSP_CR0_CPHA_BACK						(1<<7)
+#define 		SSP_CR0_DSS_8BIT										0x7
+#define			SSP_CR0_FRF_SPI											0x0
+#define			SSP_CR0_CPOL_LOW										0x0
+#define			SSP_CR0_CPHA_BACK										(1<<7)
 
-#define			SSP_CR1_ENABLED							0x2
+#define			SSP_CR1_ENABLED											0x2
+
+/* IOCON set up */
+#define			IOCON_FUNC_GPIO							0
+#define			IOCON_FUNC_1								1
+#define			IOCON_FUNC_2								2
+#define			IOCON_FUNC_3								3
+
+#define 		IOCON_MODE_INACTIVE					(0<<3)
+#define			IOCON_MODE_PULL_DOWN				(1<<3)
+#define			IOCON_MODE_PULL_UP					(2<<3)
+#define			IOCON_MODE_REPEATER					(3<<3)
+
+/* GPIO macros */
+#define 		LOW(pin)														&= ~(1<<pin)																			
+#define			HIGH(pin)														|= (1<<pin)
+#define			LPC_GPIO(port)											((LPC_GPIO_TypeDef   *) (LPC_AHB_BASE + port * 0x10000))
+#define 		GPIO_OUTPUT(port, pin, value)				LPC_GPIO(port)->DATA value(pin)
+#define			GPIO_IRQNUM(port)										(IRQn_Type)(EINT0_IRQn - port)
+#define			SET_GPIO_AS_OUTPUT(port, pin)				LPC_GPIO(port)->DIR |= (1<<pin)
+
+//need to do the internal one so that the macros "port" and "pin" are expanded before being concatenated
+#define 		LPC_IOCON_PIO_INTERNAL(port, pin)				LPC_IOCON->PIO## port ##_## pin 
+#define			LPC_IOCON_PIO(port, pin)							LPC_IOCON_PIO_INTERNAL(port, pin)
 
 #endif

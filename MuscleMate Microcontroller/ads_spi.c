@@ -45,14 +45,14 @@ channelUnion* cuPtr;
 																					SPI_READ_TO_PTR(ptr, 2)	\
 																					SPI_READ_TO_PTR((ptr++), 1);
 
-#define GPIO_OUTPUT(port, pin, value)			((LPC_GPIO_TypeDef   *) (LPC_AHB_BASE + port * 0x10000))->DATA value(pin)
-
 #define NUM_REGISTERS_TO_RW								0x19
 #define RW_REGISTERS_START_ADDR						0x0
 void initSpiWithAds(enum RunMode runMode)
 {
 	int a;
-	unsigned char datain[26];			//register information
+	#if SEND_REGISTERS_OVER_UART == 1
+		unsigned char datain[26];			//register information
+	#endif
 	
 	enum AdsSampleRates sampleRate;
 	unsigned char write_Array[28] = {	ADS_CMD_WREG | RW_REGISTERS_START_ADDR,		//write opcode
@@ -105,73 +105,74 @@ void initSpiWithAds(enum RunMode runMode)
 	write_Array[3] = 0x80 | sampleRate;	
 	
 	//Configure ADS Start pin
-	LPC_IOCON->PIO2_5 |= (13<<4);						//Enable PIO2_5 as SPI_Start, Set high to begin conversions
-	LPC_GPIO2->DIR |= (1<<5);								//PIO2_5 SPI_Start configured as output
+	LPC_IOCON_PIO(START_PORT, START_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
+	SET_GPIO_AS_OUTPUT(START_PORT, START_PIN);
 	
 	//Configure ADS Reset pin
-	LPC_IOCON->PIO0_7 |= (13<<4);						//Enable PIO0_7 as SPI_Reset
-	LPC_GPIO0->DIR |= (1<<7);								//PIO0_7 configured as output
+	LPC_IOCON_PIO(RESET_PORT, RESET_PIN) = IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;
+	SET_GPIO_AS_OUTPUT(RESET_PORT, RESET_PIN);
+		
+	//Start low, Do not begin conversions
+	GPIO_OUTPUT(START_PORT, START_PIN, LOW);
 	
-	
-	LPC_GPIO2->DATA &= ~(1<<5); 						//Set SPI_Start pin low, Do not begin conversions
-	
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin to high		
+	//chip select high
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 
 	//Reset ADS 1298
-	LPC_GPIO0->DATA |= (1<<7)	;							//Set SPI_Reset pin high
+	GPIO_OUTPUT(RESET_PORT, RESET_PIN, HIGH);
 	delay(RESET_DELAY_US);
-	LPC_GPIO0->DATA &= ~(1<<7);							//Set SPI_Reset pin low
+	GPIO_OUTPUT(RESET_PORT, RESET_PIN, LOW);
 	delay(RESET_DELAY_US);
-	LPC_GPIO0->DATA |= (1<<7);								//Set SPI_Reset pin high
+	GPIO_OUTPUT(RESET_PORT, RESET_PIN, HIGH);
 	
 	//Stop read data continuously mode
-	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
+	GPIO_OUTPUT(CS_PORT, CS_PIN, LOW);
 	delay(SPI_WRITE_DELAY);
 	SPI0_Write(ADS_CMD_SDATAC);
 	delay(SPI_WRITE_DELAY);
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high	
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 	delay(SPI_WRITE_DELAY);
 	
-	
-	
-	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
+	//chip select low
+	GPIO_OUTPUT(CS_PORT, CS_PIN, LOW);
 	
 	for (a=0; a<28; a++){
 		SPI0_Write(write_Array[a]);
 		delay(SPI_WRITE_DELAY);
 	}
 
-	delay(SPI_WRITE_DELAY);
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
-	delay(SPI_WRITE_DELAY);
-	
-	
-	//Read Registry Commands
-	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
-	SPI0_Write(ADS_CMD_RREG | RW_REGISTERS_START_ADDR);
-	delay(SPI_WRITE_DELAY);
-	SPI0_Write(NUM_REGISTERS_TO_RW);
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 	delay(SPI_WRITE_DELAY);
 	
-	for (a=0; a<26; a++){
-		datain[a] = SPI0_Read();
-		uart_write(datain[a]);
-	}
-	uart_write(0);	//to make it send 27 bytes - a multiple of 3 so it can keep working after
+	#if SEND_REGISTERS_OVER_UART == 1
 	
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
+		//Read Registry Commands
+		GPIO_OUTPUT(CS_PORT, CS_PIN, LOW);
+		SPI0_Write(ADS_CMD_RREG | RW_REGISTERS_START_ADDR);
+		delay(SPI_WRITE_DELAY);
+		SPI0_Write(NUM_REGISTERS_TO_RW);
+		delay(SPI_WRITE_DELAY);
+		
+		for (a=0; a<26; a++){
+			datain[a] = SPI0_Read();
+			uart_write(datain[a]);
+		}
+		
+		uart_write(0);	//to make it send 27 bytes - a multiple of 3 so it can keep working after
+	#endif
 	
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 	
-	//Enable Read Data Continiously Mode
-	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
+	//Enable Read Data Continuously Mode
+	GPIO_OUTPUT(CS_PORT, CS_PIN, LOW);
 	delay(SPI_WRITE_DELAY);
 	SPI0_Write(ADS_CMD_RDATAC);
 	delay(SPI_WRITE_DELAY);
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 	delay(SPI_WRITE_DELAY);
 	
-	
-	LPC_GPIO2->DATA |= (1<<5);							//SPI_Start Pin set high to begin conversion
+	//start high to begin conversions
+	GPIO_OUTPUT(START_PORT, START_PIN, HIGH);
 	delay(ADS_START_DELAY);
 	
 	return;
@@ -185,34 +186,22 @@ void stopSpiWithAds(void)
 
 void initDRDYInterrupt(void)
 {
-	enum IRQn irqNum;
-	LPC_GPIO_TypeDef* lpc_gpio;
-	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_GPIO;	//enable GPIO clock
 	
 	__disable_irq();
 	
-	#if DATA_READY_WIRE_PORT == 0 && DATA_READY_WIRE_PIN == 5
-	lpc_gpio = LPC_GPIO0;	
-	irqNum = EINT0_IRQn;
-	#else
-	#error data ready pin interrupt stuff not set up for the provided pin/port combo
-	#endif
+	NVIC_EnableIRQ(GPIO_IRQNUM(DRDY_PORT));
+	NVIC_SetPriority(GPIO_IRQNUM(DRDY_PORT), INTERRUPT_PRI_DRDY);
 	
-	NVIC_EnableIRQ(irqNum);
-	NVIC_SetPriority(irqNum, INTERRUPT_PRI_DRDY);
+	LPC_GPIO(DRDY_PORT)->DIR &= ~(1<<DRDY_PIN);						//input
+	LPC_GPIO(DRDY_PORT)->IS  &= ~(1<<DRDY_PIN);						//edge sensitive
+	LPC_GPIO(DRDY_PORT)->IBE &= ~(1<<DRDY_PIN);						//single edge
+	LPC_GPIO(DRDY_PORT)->IEV &= ~(1<<DRDY_PIN);						//falling edge sensitive
 	
+	//un-mask interrupt.  Assumes only 1 pin on this port will have an interrupt enabled
+	LPC_GPIO(DRDY_PORT)->IE = (1<<DRDY_PIN);							
 	
-	lpc_gpio->DIR &= ~(1<<DATA_READY_WIRE_PIN);						//input
-	lpc_gpio->IS &= ~( 1<< DATA_READY_WIRE_PIN);					//edge sensitive
-	lpc_gpio->IBE &= ~(1<<DATA_READY_WIRE_PIN);						//single edge
-	lpc_gpio->IEV &= ~(1<<DATA_READY_WIRE_PIN);						//falling edge sensitive
-	
-	
-	lpc_gpio->IE = (1<<DATA_READY_WIRE_PIN);							//un-mask interrupt
-	
-	__enable_irq();
-	
+	__enable_irq();	
 }
 
 
@@ -226,14 +215,14 @@ void PIOINT0_IRQHandler(void)
 	//pointer incrementing is faster than just indexing the array
 	cuPtr	= &cu[0];
 	
-	LPC_GPIO0->DATA &= ~(1<<2); 							//Set CS pin low
+	GPIO_OUTPUT(CS_PORT, CS_PIN, LOW);
 	
 	for(a=0; a<9; a++)
 	{
 		SPI_READ3_PTR_INCREMENT(cuPtr);		
 	}
 	
-	LPC_GPIO0->DATA |= (1<<2); 							//Set CS pin high
+	GPIO_OUTPUT(CS_PORT, CS_PIN, HIGH);
 	
 	if(_runMode == RUN_MODE_TIME_DOMAIN)
 	{
@@ -262,7 +251,7 @@ void PIOINT0_IRQHandler(void)
 			dataIndex %= BUFFER_LENGTH;
 	}
 	
-	LPC_GPIO0->IC = 0xFF;	/*clear all interrupts*/
+	LPC_GPIO(DRDY_PORT)->IC = 0xFF;	/*clear all interrupts on the port*/
 }
 
 void SPI0_Write(unsigned char Data)
@@ -303,22 +292,24 @@ void InitSPI()
 	LPC_SYSCON->SSP0CLKDIV = 1;     //Divide by 2
 	
 	// Configure SPI PINs
-	LPC_IOCON->SCK_LOC |= (1<<0);					  //SCK0 pin location at PIO2_11
-	LPC_IOCON->PIO2_11 = (1<<0);					  //Enable PIO2_11 as SCK0 pin
-	LPC_IOCON->PIO0_8 = (1<<0);						//Enable PIO0_8 as MISO0 
-	LPC_IOCON->PIO0_9 = (1<<0);						//Enable PIO0_9 as MOSI0
-	LPC_IOCON->PIO0_2 = (13<<4);						//Enable PIO0_2 as GPIO CS
-	LPC_GPIO0->DIR |= (1<<2);								//PIO0_2 CS pin configured as Output
+	LPC_IOCON->SCK_LOC = (1<<0);					  //SCK0 pin location at PIO2_11
+	
+	LPC_IOCON_PIO(SCLK_PORT, SCLK_PIN) = IOCON_FUNC_1;		//pin mode SCLK
+	LPC_IOCON_PIO(MISO_PORT, MISO_PIN) = IOCON_FUNC_1;		//pin mode MISO
+	LPC_IOCON_PIO(MOSI_PORT, MOSI_PIN) = IOCON_FUNC_1;		//pin mode MOSI
+	LPC_IOCON_PIO(CS_PORT, CS_PIN) = 	IOCON_FUNC_GPIO | IOCON_MODE_PULL_UP;	//gpio with pull up
+	SET_GPIO_AS_OUTPUT(CS_PORT, CS_PIN);
+	
 	LPC_SYSCON->PRESETCTRL |= (7<<0);				//Pull SSP0 block out of reset mode
 	
-	LPC_SSP0->CR0 = (	SSP_CR0_DSS_8BIT
-									| SSP_CR0_FRF_SPI
-									| SSP_CR0_CPOL_LOW
-									| SSP_CR0_CPHA_BACK
+	LPC_SSP0->CR0 = (	SSP_CR0_DSS_8BIT			//8 bits transfer	
+									| SSP_CR0_FRF_SPI				//spi setup
+									| SSP_CR0_CPOL_LOW			//clock polarity low
+									| SSP_CR0_CPHA_BACK			//clock out phase transition back
 									);
 									
 	LPC_SSP0->CPSR |= 0x14;									//CPSDVSR = 2, clock prescaler
 	
-	LPC_SSP0->CR1 = SSP_CR1_ENABLED;								//Enable SSP Controller
+	LPC_SSP0->CR1 = SSP_CR1_ENABLED;				//Enable SSP Controller
 	
 }
