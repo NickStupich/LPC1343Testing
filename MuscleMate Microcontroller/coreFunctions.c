@@ -179,7 +179,6 @@ void ResetIntoISP()
 	delay(ISP_RESET_ADS_STOP_DELAY);
 		
 	//stop UART
-	 //uint32_t temp;
   /* Disable UART interrupts */
   LPC_UART->IER = 0;
   /* Disableinterrupts in NVIC */
@@ -189,22 +188,18 @@ void ResetIntoISP()
   while (( LPC_UART->LSR & (UART_LSR_THRE|UART_LSR_TEMT)) != (UART_LSR_THRE|UART_LSR_TEMT) );
   while ( LPC_UART->LSR & UART_LSR_RDR_DATA )
   {
-		//temp = LPC_UART->RBR;	/* Dump data from RX FIFO */
-		LPC_UART->RBR;
+		LPC_UART->RBR;/* Dump data from RX FIFO */
   }
 
   /* Read to clear the line status. */
-  //temp = LPC_UART->LSR;
 	LPC_UART->LSR;
-	
-	//done stopping uart
 
   /* make sure 32-bit Timer 1 is turned on before calling ISP */
-  LPC_SYSCON->SYSAHBCLKCTRL |= 0x00400;
+  LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_1;
   /* make sure GPIO clock is turned on before calling ISP */
-  LPC_SYSCON->SYSAHBCLKCTRL |= 0x00040;
+  LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_GPIO;
   /* make sure IO configuration clock is turned on before calling ISP */
-  LPC_SYSCON->SYSAHBCLKCTRL |= 0x10000;
+  LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_IOCON;
   /* make sure AHB clock divider is 1:1 */
   LPC_SYSCON->SYSAHBCLKDIV = 1;
 

@@ -76,7 +76,6 @@ enum RunMode{
 #define						EVENT_CMD_TO_MASK(x)				(1<<x)
 #define						EVENT_PROCESS_NUM_CMDS			0x1
 
-
 /* Physical connection settings */
 #define 					DRDY_PORT										0
 #define						DRDY_PIN										5
@@ -104,6 +103,12 @@ enum RunMode{
 
 #define						TX_PORT											1
 #define						TX_PIN											7
+
+#define 					PWDN_PORT										3
+#define						PWDN_PIN										0
+
+#define						BLUETOOTH_RESET_PORT				3
+#define						BLUETOOTH_RESET_PIN					1
 
 
 /* Debug settings */

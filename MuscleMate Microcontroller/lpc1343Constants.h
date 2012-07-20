@@ -10,6 +10,7 @@ typedef void (*IAP)(unsigned int[], unsigned int[]);
 #define SCB_SYSAHBCLKCTRL_IOCON									(1<<16)
 #define SCB_SYSAHBCLKCTRL_UART									(1<<12)
 #define SCB_SYSAHBCLKCTRL_TMR32_0								(1<<9)
+#define	SCB_SYSAHBCLKCTRL_TMR32_1								(1<<10)
 #define SCB_SYSAHBCLKCTRL_TMR16_0								(1<<7)
 #define SCB_SYSAHBCLKCTRL_TMR16_1								(1<<8)
 #define SCB_SYSAHBCLKCTRL_SPI0									(1<<11)
