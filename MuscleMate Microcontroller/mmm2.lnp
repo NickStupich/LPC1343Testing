@@ -1,3 +1,3 @@
 --cpu Cortex-M3 "ek_fft128real_32b.o" "ek_magnitude.o" "startup_lpc13xx.o" "corefunctions.o" "fft.o" "main.o" "systemclock.o" "timers.o" "uart.o" "ads_spi.o" "events.o" "downsampling.o" "settings.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x10000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
- --list ".\mmm2.map" -o "mmm2.axf"
+ --list ".\mmm2.map" -o mmm2.axf

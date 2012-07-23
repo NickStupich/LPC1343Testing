@@ -11,13 +11,12 @@ def get_available_drives():
     return list(itertools.compress(string.ascii_uppercase,
                map(lambda x:ord(x) - ord('0'), bin(drive_bitmask)[:1:-1])))
 
-port = 'COM8'
+port = 'COM3'
 filename = 'mmm2'
 drive = 'E'
 
 commands = ['hex2bin.exe -l 8000 %(fn)s.hex',
 			'lpcrc.exe %(fn)s.bin',
-			'rm E:/firmware.bin',
 			'move %(fn)s.bin E:/%(fn)s.bin',
 			]
 			
@@ -55,8 +54,15 @@ if __name__ == "__main__":
 					'drive' : drive
 					}
 					
-	os.system('rm %s.bin' % filename)
-		
+	try:
+		os.remove('%s.bin' % filename)
+	except Exception, e:
+		print 'old .bin file not there to be deleted'
+	try:		
+		os.remove('E:/firmware.bin')	
+	except Exception, e:
+		print 'firmware.bin not found on the drive'
+
 	for command in commands:
 		cmd = command % paramsDict
 		x = os.system(cmd)
