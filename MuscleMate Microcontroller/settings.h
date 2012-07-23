@@ -7,9 +7,14 @@
 #define 					NUM_CHANNELS								8
 #define 					FFT_FREQUENCY								30
 #define 					FFT_BIN_COUNT								10
+#define						NUM_BINS_COMBINED						2
+
+
+extern const unsigned char binIndeces[FFT_BIN_COUNT][NUM_BINS_COMBINED];
 
 /* Data protocol stuff.  Should match values on the other end of bluetooth*/
 #define 					CONTROL_BYTE								0xFF
+#define						MAX_PROTOCOL_VALUE					254
 #define						UART_CMD_LENGTH							0x4
 
 #define 					UART_CMD_CMD_MASK						0xFF000000

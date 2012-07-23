@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C:\Users\nstupich\Desktop\LPC1343Testing\MuscleMate Microcontroller\mmm2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\nstupich\Desktop\LPC1343Testing\MuscleMate Microcontroller\mmm2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 894]: Last Updated: Thu Jul 19 10:25:03 2012
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 894]: Last Updated: Mon Jul 23 09:56:45 2012
 <BR><P>
 <H3>Maximum Stack Usage =        104 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -194,7 +194,7 @@ Global Symbols
 
 <P><STRONG><a name="[83]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
 
-<P><STRONG><a name="[57]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
+<P><STRONG><a name="[3f]"></a>__rt_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtexit.o(.ARM.Collect$$rtexit$$00000000))
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
@@ -326,18 +326,20 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[49]"></a>combineDataToBins</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, fft.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<P><STRONG><a name="[4a]"></a>combineDataToBins</STRONG> (Thumb, 108 bytes, Stack size 28 bytes, fft.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = combineDataToBins
+</UL>
+<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
 </UL>
 
-<P><STRONG><a name="[36]"></a>realFFT128</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, fft.o(.text))
+<P><STRONG><a name="[36]"></a>realFFT128</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, fft.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = realFFT128
 </UL>
 <BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;magnitude32_32bIn
 <LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFT128Real_32b
 </UL>
-<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
 </UL>
 
 <P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, main.o(.text))
@@ -357,81 +359,93 @@ Global Symbols
 <P><STRONG><a name="[1f]"></a>SystemInit</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, main.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(.text)
 </UL>
-<P><STRONG><a name="[39]"></a>pllInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, systemclock.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[85]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[86]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[87]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+
+<P><STRONG><a name="[31]"></a>exit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, exit.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[85]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[88]"></a>__I$use$semihosting</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[86]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
+<P><STRONG><a name="[89]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[87]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, usenofp.o(x$fpl$usenofp), UNUSED)
+<P><STRONG><a name="[8a]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, usenofp.o(x$fpl$usenofp), UNUSED)
 
-<P><STRONG><a name="[88]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
+<P><STRONG><a name="[8b]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3f]"></a>ResetIntoISP</STRONG> (Thumb, 100 bytes, Stack size 48 bytes, corefunctions.o(.text))
+<P><STRONG><a name="[40]"></a>ResetIntoISP</STRONG> (Thumb, 100 bytes, Stack size 48 bytes, corefunctions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ResetIntoISP
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stopAdsConversions
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 
-<P><STRONG><a name="[41]"></a>ProcessUartCommand</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, corefunctions.o(.text))
+<P><STRONG><a name="[42]"></a>ProcessUartCommand</STRONG> (Thumb, 156 bytes, Stack size 16 bytes, corefunctions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = ProcessUartCommand &rArr; initSpiWithAds &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stopAdsConversions
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
 <LI><a href="#[22]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initDRDYInterrupt
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopFFTTimer
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopFFTTimer
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessEvents
 </UL>
 
-<P><STRONG><a name="[46]"></a>sendFFTData</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, corefunctions.o(.text))
+<P><STRONG><a name="[47]"></a>sendFFTData</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, corefunctions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = sendFFTData &rArr; uart_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
+<BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
 </UL>
 
-<P><STRONG><a name="[47]"></a>ComputeAndSendTransforms</STRONG> (Thumb, 112 bytes, Stack size 48 bytes, corefunctions.o(.text))
+<P><STRONG><a name="[48]"></a>ComputeAndSendTransforms</STRONG> (Thumb, 112 bytes, Stack size 48 bytes, corefunctions.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80 + Unknown Stack Size
 <LI>Call Chain = ComputeAndSendTransforms &rArr; sendFFTData &rArr; uart_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realFFT128
-<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;combineDataToBins
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendFFTData
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;combineDataToBins
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendFFTData
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER16_1_IRQHandler
+</UL>
+
+<P><STRONG><a name="[39]"></a>pllInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, systemclock.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[f]"></a>TIMER16_1_IRQHandler</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88 + Unknown Stack Size
 <LI>Call Chain = TIMER16_1_IRQHandler &rArr; ComputeAndSendTransforms &rArr; sendFFTData &rArr; uart_write
 </UL>
-<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(RESET)
 </UL>
-<P><STRONG><a name="[89]"></a>StartFFTTimer</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timers.o(.text), UNUSED)
+<P><STRONG><a name="[8c]"></a>StartFFTTimer</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timers.o(.text), UNUSED)
 
-<P><STRONG><a name="[42]"></a>StopFFTTimer</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<P><STRONG><a name="[43]"></a>StopFFTTimer</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timers.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 
 <P><STRONG><a name="[21]"></a>FFTTimerInit</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = FFTTimerInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -441,18 +455,18 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[40]"></a>delay</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
+<P><STRONG><a name="[41]"></a>delay</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timers.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
 </UL>
 
-<P><STRONG><a name="[44]"></a>AsyncTimerFunctionCall</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, timers.o(.text))
+<P><STRONG><a name="[45]"></a>AsyncTimerFunctionCall</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = AsyncTimerFunctionCall
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EnableIRQ
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 
 <P><STRONG><a name="[10]"></a>TIMER32_0_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, timers.o(.text))
@@ -463,17 +477,17 @@ Global Symbols
 <P><STRONG><a name="[13]"></a>UART_IRQHandler</STRONG> (Thumb, 86 bytes, Stack size 8 bytes, uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = UART_IRQHandler &rArr; AddEvent
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AddEvent
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AddEvent
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(RESET)
 </UL>
-<P><STRONG><a name="[45]"></a>uart_write</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, uart.o(.text))
+<P><STRONG><a name="[46]"></a>uart_write</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, uart.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = uart_write
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIOINT0_IRQHandler
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendFFTData
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendFFTData
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 
 <P><STRONG><a name="[3d]"></a>uartInit</STRONG> (Thumb, 122 bytes, Stack size 8 bytes, uart.o(.text))
@@ -482,45 +496,45 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4e]"></a>SPI0_Write</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, ads_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
+<P><STRONG><a name="[4f]"></a>SPI0_Write</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, ads_spi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
 </UL>
 
-<P><STRONG><a name="[4d]"></a>InitSPI</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ads_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
+<P><STRONG><a name="[4e]"></a>InitSPI</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ads_spi.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
 </UL>
 
-<P><STRONG><a name="[43]"></a>initSpiWithAds</STRONG> (Thumb, 282 bytes, Stack size 56 bytes, ads_spi.o(.text))
+<P><STRONG><a name="[44]"></a>initSpiWithAds</STRONG> (Thumb, 282 bytes, Stack size 56 bytes, ads_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = initSpiWithAds &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitSPI
-<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI0_Write
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitSPI
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI0_Write
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 
 <P><STRONG><a name="[3c]"></a>stopAdsConversions</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, ads_spi.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
-<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
+<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetIntoISP
 </UL>
 
 <P><STRONG><a name="[22]"></a>initDRDYInterrupt</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, ads_spi.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> corefunctions.o(.text)
 </UL>
 <P><STRONG><a name="[1d]"></a>PIOINT0_IRQHandler</STRONG> (Thumb, 212 bytes, Stack size 56 bytes, ads_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = PIOINT0_IRQHandler &rArr; performDownSampling &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_write
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(RESET)
 </UL>
-<P><STRONG><a name="[8a]"></a>SPI0_Read</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, ads_spi.o(.text), UNUSED)
+<P><STRONG><a name="[8d]"></a>SPI0_Read</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, ads_spi.o(.text), UNUSED)
 
 <P><STRONG><a name="[3b]"></a>InitPinsForAdsCommunication</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, ads_spi.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = InitPinsForAdsCommunication
@@ -531,70 +545,58 @@ Global Symbols
 <P><STRONG><a name="[3e]"></a>ProcessEvents</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, events.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = ProcessEvents &rArr; ProcessUartCommand &rArr; initSpiWithAds &rArr; __aeabi_memcpy4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ProcessUartCommand
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[4c]"></a>AddEvent</STRONG> (Thumb, 32 bytes, Stack size 12 bytes, events.o(.text))
+<P><STRONG><a name="[4d]"></a>AddEvent</STRONG> (Thumb, 32 bytes, Stack size 12 bytes, events.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = AddEvent
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_IRQHandler
 </UL>
 
-<P><STRONG><a name="[4f]"></a>performDownSampling</STRONG> (Thumb, 134 bytes, Stack size 32 bytes, downsampling.o(.text))
+<P><STRONG><a name="[50]"></a>performDownSampling</STRONG> (Thumb, 134 bytes, Stack size 32 bytes, downsampling.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = performDownSampling &rArr; __aeabi_fmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIOINT0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[48]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
+<P><STRONG><a name="[49]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
-<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
-<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initSpiWithAds
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComputeAndSendTransforms
 </UL>
 
-<P><STRONG><a name="[8b]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[8e]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[8c]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
+<P><STRONG><a name="[8f]"></a>__rt_memcpy_w</STRONG> (Thumb, 100 bytes, Stack size 8 bytes, rt_memcpy_w.o(.text), UNUSED)
 
-<P><STRONG><a name="[8d]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
-
-<P><STRONG><a name="[8e]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
-
-<P><STRONG><a name="[8f]"></a>__rt_heap_escrow$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
-
-<P><STRONG><a name="[90]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
+<P><STRONG><a name="[90]"></a>_memcpy_lastbytes_aligned</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rt_memcpy_w.o(.text), UNUSED)
 
 <P><STRONG><a name="[2d]"></a>__user_setup_stackheap</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, sys_stackheap_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
+<BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
 
-<P><STRONG><a name="[31]"></a>exit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, exit.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
-</UL>
-<BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
-</UL>
-
 <P><STRONG><a name="[91]"></a>__user_libspace</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, libspace.o(.text), UNUSED)
 
-<P><STRONG><a name="[56]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
+<P><STRONG><a name="[57]"></a>__user_perproc_libspace</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, libspace.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
@@ -616,10 +618,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;realFFT128
 </UL>
 
-<P><STRONG><a name="[50]"></a>__aeabi_fadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fadd))
+<P><STRONG><a name="[51]"></a>__aeabi_fadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[58]"></a>_fadd</STRONG> (Thumb, 196 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fadd), UNUSED)
@@ -632,18 +634,18 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fcmple
 </UL>
 
-<P><STRONG><a name="[55]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, ffix.o(x$fpl$ffix))
+<P><STRONG><a name="[56]"></a>__aeabi_f2iz</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, ffix.o(x$fpl$ffix))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2iz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[5c]"></a>_ffix</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, ffix.o(x$fpl$ffix), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fnaninf
 </UL>
 
-<P><STRONG><a name="[53]"></a>__aeabi_i2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt))
-<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<P><STRONG><a name="[54]"></a>__aeabi_i2f</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt))
+<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[93]"></a>_fflt</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, fflt_clz.o(x$fpl$fflt), UNUSED)
@@ -659,10 +661,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_frcmple
 </UL>
 
-<P><STRONG><a name="[54]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
+<P><STRONG><a name="[55]"></a>__aeabi_fmul</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[5f]"></a>_fmul</STRONG> (Thumb, 258 bytes, Stack size 16 bytes, fmul.o(x$fpl$fmul), UNUSED)
@@ -693,18 +695,18 @@ Global Symbols
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fadd
 </UL>
 
-<P><STRONG><a name="[51]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, frleqf.o(x$fpl$frleqf))
-<BR><BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<P><STRONG><a name="[52]"></a>__aeabi_cfrcmple</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, frleqf.o(x$fpl$frleqf))
+<BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[61]"></a>_frcmple</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, frleqf.o(x$fpl$frleqf), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmple_InfNaN
 </UL>
 
-<P><STRONG><a name="[52]"></a>__aeabi_fsub</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fsub))
+<P><STRONG><a name="[53]"></a>__aeabi_fsub</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fsub))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fsub
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
+<BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;performDownSampling
 </UL>
 
 <P><STRONG><a name="[63]"></a>_fsub</STRONG> (Thumb, 234 bytes, Stack size 16 bytes, faddsub_clz.o(x$fpl$fsub), UNUSED)
@@ -715,14 +717,14 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[4a]"></a>NVIC_EnableIRQ</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, timers.o(.text))
+<P><STRONG><a name="[4b]"></a>NVIC_EnableIRQ</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, timers.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFTTimerInit
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
 </UL>
 
-<P><STRONG><a name="[4b]"></a>NVIC_SetPriority</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, timers.o(.text))
+<P><STRONG><a name="[4c]"></a>NVIC_SetPriority</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, timers.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FFTTimerInit
-<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
+<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AsyncTimerFunctionCall
 </UL>
 
 <P><STRONG><a name="[64]"></a>_fadd1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, faddsub_clz.o(x$fpl$fadd), UNUSED)
