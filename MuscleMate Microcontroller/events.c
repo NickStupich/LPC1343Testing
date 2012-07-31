@@ -1,6 +1,7 @@
 #include "events.h"
 #include "settings.h"
 #include "coreFunctions.h"
+#include "timers.h"
 
 unsigned int eventToProcess = 0;
 unsigned int eventDatas[EVENT_PROCESS_NUM_CMDS];
@@ -21,7 +22,10 @@ void ProcessEvents(void)
 void AddEvent(unsigned int eventNum, unsigned int data)
 {
 	//make sure there isn't another command waiting to be processed, or wait for it
-	while(eventToProcess & EVENT_CMD_TO_MASK(eventNum));
+	while(eventToProcess & EVENT_CMD_TO_MASK(eventNum))
+	{
+		delay(100);
+	}
 	
 	//store data about the event
 	eventDatas[eventNum] = data;

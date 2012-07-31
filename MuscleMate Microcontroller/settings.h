@@ -70,11 +70,12 @@ enum AdsSampleRates{
 
 /* Run modes */
 enum RunMode{
+	RUN_MODE_STOPPED		 = 0,
 	RUN_MODE_TIME_DOMAIN = 1,
 	RUN_MODE_FREQ_DOMAIN = 2,
 };
 
-/* Event processing stuff.  Event processing loop is in main */
+/* Event processing stuff.  Event processing loop is in main.c */
 #define						EVENT_PROCESS_UART_CMD			0x0
 #define						EVENT_PROCESS_UART_MASK			EVENT_CMD_TO_MASK(EVENT_PROCESS_UART_CMD)
 
@@ -115,6 +116,8 @@ enum RunMode{
 #define						BLUETOOTH_RESET_PORT				3
 #define						BLUETOOTH_RESET_PIN					1
 
+#define						OSCILLATOR_ENABLE_PORT			2
+#define						OSCILLATOR_ENABLE_PIN				7
 
 /* Debug settings */
 #define						SEND_REGISTERS_OVER_UART		0

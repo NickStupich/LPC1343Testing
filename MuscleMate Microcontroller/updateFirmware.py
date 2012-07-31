@@ -11,13 +11,13 @@ def get_available_drives():
     return list(itertools.compress(string.ascii_uppercase,
                map(lambda x:ord(x) - ord('0'), bin(drive_bitmask)[:1:-1])))
 
-port = 'COM3'
+port = 'COM14'
 filename = 'mmm2'
-drive = 'E'
+drive = 'G'
 
 commands = ['hex2bin.exe -l 8000 %(fn)s.hex',
 			'lpcrc.exe %(fn)s.bin',
-			'move %(fn)s.bin E:/%(fn)s.bin',
+			'move "%(fn)s.bin" "%(drive)s:/%(fn)s.bin"',
 			]
 			
 num_retries = 3
@@ -39,10 +39,13 @@ if __name__ == "__main__":
 			time.sleep(0.5)
 			count+=1
 		
+		print get_available_drives()
+		
 		if count >= countLimit:
 			print get_available_drives()
 			print 'failed to mount usb drive'
 			ser.close()
+			
 			if retry == num_retries-1:
 				print 'failed too many times, quitting'
 				exit(1)
@@ -59,15 +62,17 @@ if __name__ == "__main__":
 	except Exception, e:
 		print 'old .bin file not there to be deleted'
 	try:		
-		os.remove('E:/firmware.bin')	
+		x = os.remove('%s:/firmware.bin' % drive)	
+		print 'old firmware deleted: %d' % x
 	except Exception, e:
 		print 'firmware.bin not found on the drive'
 
 	for command in commands:
 		cmd = command % paramsDict
 		x = os.system(cmd)
+		time.sleep(1)
 		if x:
-			print 'failed on last command'
+			print 'failed on last command: %s' % cmd
 			exit(x)
 			
 	
@@ -89,5 +94,6 @@ if __name__ == "__main__":
 			print 'great success'
 			break
 	
+		time.sleep(1.0)
 		ser = serial.Serial(port, baudrate = 115200, timeout = 1)
 	

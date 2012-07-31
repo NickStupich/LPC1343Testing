@@ -19,7 +19,8 @@ void TIMER16_1_IRQHandler()
 /* starts up the fft timer */
 void StartFFTTimer()
 {
-	LPC_TMR16B1->TCR = 0x1;	//enable timer counting
+	LPC_TMR16B1->TCR = 1<<1;	//disable and reset timer
+	LPC_TMR16B1->TCR = 0x1;	//enable timer counting, turn off reset
 }
 
 /* stops the fft timer */
@@ -45,6 +46,7 @@ void FFTTimerInit()
 	
 	NVIC_EnableIRQ(TIMER_16_1_IRQn);					//enable tmr16_1 interrupts
 	NVIC_SetPriority(TIMER_16_1_IRQn, INTERRUPT_PRI_FFT_TIMER);	//priority set to lowish
+	
 	
 	__enable_irq();
 }
@@ -77,6 +79,9 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 	timer32_0CallbackFunction	= callbackFunc;
 	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_0;	//timer 32_0 gets a clock
+	
+	LPC_TMR32B0->TCR = 1<<1;	//not enabled, reset high
+	
 	LPC_TMR32B0->PR = (72-1);	//divide 72Mhz by (71+1) to get a 1us clock tick
 	LPC_TMR32B0->MCR = 	(	
 												(1<<0) 	//enable interrupt on match 0
@@ -88,7 +93,7 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 	NVIC_EnableIRQ(TIMER_32_0_IRQn);					//enable tmr16_1 interrupts
 	NVIC_SetPriority(TIMER_32_0_IRQn, INTERRUPT_PRI_ASYNC_TIMER);	//priority set to lower-ish
 	
-	LPC_TMR32B0->TCR = 0x1;	//start counting
+	LPC_TMR32B0->TCR = 0x1;	//start counting, turn off resetting
 	
 	__enable_irq();
 }

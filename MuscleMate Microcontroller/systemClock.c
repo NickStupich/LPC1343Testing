@@ -30,7 +30,7 @@ void pllInit(void)
 	
 	  // Enable system PLL
   LPC_SYSCON->PDRUNCFG &= ~(SCB_PDRUNCFG_SYSPLL_MASK);
-
+	
   // Wait for PLL to lock
   while (!(LPC_SYSCON->SYSPLLSTAT & SCB_PLLSTAT_LOCK));
 

@@ -6,5 +6,5 @@ extern unsigned int uartCommand;
 
 void uart_write(unsigned char b);
 void uartInit(void);
-
+void uart_clearBuffer(void);
 #endif

@@ -92,6 +92,7 @@ typedef void (*IAP)(unsigned int[], unsigned int[]);
 #define			HIGH(pin)														|= (1<<pin)
 #define			LPC_GPIO(port)											((LPC_GPIO_TypeDef   *) (LPC_AHB_BASE + port * 0x10000))
 #define 		GPIO_OUTPUT(port, pin, value)				LPC_GPIO(port)->DATA value(pin)
+#define			GPIO_PIN_STATE(port, pin)						((LPC_GPIO(port)->DATA & (1<<pin))>>pin)
 #define			GPIO_IRQNUM(port)										(IRQn_Type)(EINT0_IRQn - port)
 #define			SET_GPIO_AS_OUTPUT(port, pin)				LPC_GPIO(port)->DIR |= (1<<pin)
 

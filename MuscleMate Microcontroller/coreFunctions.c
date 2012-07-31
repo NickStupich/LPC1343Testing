@@ -44,35 +44,56 @@ void ProcessUartCommand(unsigned int cmd)
 	switch(UART_GET_CMD(cmd))
 	{
 		case UART_CMD_STOP:	
-		
-			//get the ads to stop sending updates
-			stopAdsConversions();
-			if(_runMode == RUN_MODE_FREQ_DOMAIN)
+			if(	_runMode == RUN_MODE_TIME_DOMAIN
+				|| _runMode == RUN_MODE_FREQ_DOMAIN)
 			{
-				//stop performing (and sending) ffts
-				StopFFTTimer();
+				//get the ads to stop sending updates
+				stopAdsConversions();
+				if(_runMode == RUN_MODE_FREQ_DOMAIN)
+				{
+					//stop performing (and sending) ffts
+					StopFFTTimer();
+				}
+				
+				uart_clearBuffer();
+			}
+			else
+			{
+				goto fail;
 			}
 			
+			_runMode = RUN_MODE_STOPPED;
 			break;
 		
 		case UART_CMD_START_FFT:
+			if(_runMode != RUN_MODE_STOPPED)
+			{
+				goto fail;
+			}
+		
 			fftEnabledChannels = UART_GET_CHANNELS(cmd);
 			if(fftEnabledChannels == 0)
 			{
 				goto fail;
 			}
 			
-			initDRDYInterrupt();
-			
 			//get the ads ready to start
 			initSpiWithAds(RUN_MODE_FREQ_DOMAIN);
 			
-			//set up FFTTimerInit to run in 1 second, and start doing FFTs
-			AsyncTimerFunctionCall(1000000, FFTTimerInit);
+			//start receiving spi updates
+			initDRDYInterrupt();
 			
+			//set up FFTTimerInit to run in 1 second, and start doing FFTs
+			AsyncTimerFunctionCall(1000000, StartFFTTimer);
+			
+			_runMode = RUN_MODE_FREQ_DOMAIN;
 			break;
 		
 		case UART_CMD_START_TIME:
+			if(_runMode != RUN_MODE_STOPPED)
+			{
+				goto fail;
+			}
 			
 			j = UART_GET_CHANNELS(cmd);
 			//check is power of two (only 1 channel enabled) and > 0
@@ -94,8 +115,9 @@ void ProcessUartCommand(unsigned int cmd)
 			initSpiWithAds(RUN_MODE_TIME_DOMAIN);
 			
 			//enable interrupts on the data ready pin
-			//initDRDYInterrupt();
 			AsyncTimerFunctionCall(100000, initDRDYInterrupt);
+			
+			_runMode = RUN_MODE_TIME_DOMAIN;
 			
 			break;
 			

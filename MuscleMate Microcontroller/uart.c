@@ -87,6 +87,13 @@ void uart_write(unsigned char b)
 	}
 }
 
+void uart_clearBuffer()
+{
+	uartSendBufferIn = 0;
+	uartSendBufferOut = 0;
+	uartSendBufferEmpty = 1;	//needed? dunno
+}
+
 /* sets up for a baud rate of 115200*/
 void uartInit(void)
 {
