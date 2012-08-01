@@ -13,4 +13,8 @@ void delay(unsigned short us);
 /* Timer used to set up a function to run at a later time.  Only deals with 1 async function at a time (for now)*/
 void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)());
 
+void pwdnTimerInit(void);
+void startPwdnTimer(void);
+void stopPwdnTimer(void);
+
 #endif

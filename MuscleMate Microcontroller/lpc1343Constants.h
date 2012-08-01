@@ -90,6 +90,7 @@ typedef void (*IAP)(unsigned int[], unsigned int[]);
 /* GPIO macros */
 #define 		LOW(pin)														&= ~(1<<pin)																			
 #define			HIGH(pin)														|= (1<<pin)
+#define			TOGGLE(pin)													^= (1<<pin)
 #define			LPC_GPIO(port)											((LPC_GPIO_TypeDef   *) (LPC_AHB_BASE + port * 0x10000))
 #define 		GPIO_OUTPUT(port, pin, value)				LPC_GPIO(port)->DATA value(pin)
 #define			GPIO_PIN_STATE(port, pin)						((LPC_GPIO(port)->DATA & (1<<pin))>>pin)

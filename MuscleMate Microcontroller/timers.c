@@ -90,7 +90,7 @@ void AsyncTimerFunctionCall(unsigned int delay, void (*callbackFunc)())
 	
 	LPC_TMR32B0->MR0 = delay;	
 	
-	NVIC_EnableIRQ(TIMER_32_0_IRQn);					//enable tmr16_1 interrupts
+	NVIC_EnableIRQ(TIMER_32_0_IRQn);					//enable tmr32_0 interrupts
 	NVIC_SetPriority(TIMER_32_0_IRQn, INTERRUPT_PRI_ASYNC_TIMER);	//priority set to lower-ish
 	
 	LPC_TMR32B0->TCR = 0x1;	//start counting, turn off resetting
@@ -109,4 +109,41 @@ void TIMER32_0_IRQHandler()
 	
 	//timer is set up to automatically stop
 	// we may want to disable the clocking to timer32_0 in the future to save power.
+}
+
+void TIMER32_1_IRQHandler()
+{
+	GPIO_OUTPUT(3,2,TOGGLE);
+	LPC_TMR32B1->IR = 0x1; //reset match 0 interrupt
+	pwdn();
+}
+
+void pwdnTimerInit()
+{
+	__disable_irq();
+	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_1;	//timer 32_1 gets a clock
+	
+	LPC_TMR32B1->TC = 0x0; //clear timer
+	LPC_TMR32B1->PR = (72000000-1); //1s clock tick from 72MHz
+	LPC_TMR32B1->MCR = 	(	
+												(1<<0) 	//enable interrupt on match 0
+											| (1<<2)	//stop on match 0
+											);
+	LPC_TMR32B1->MR0 = 300; //delay time in seconds
+	
+	NVIC_EnableIRQ(TIMER_32_1_IRQn); //enable tmr32_1 interrupts
+	NVIC_SetPriority(TIMER_32_1_IRQn, INTERRUPT_PRI_PWDN_TIMER); //priority set to low
+	__enable_irq();
+	SET_GPIO_AS_OUTPUT(3,2);
+	GPIO_OUTPUT(3,2, LOW);
+}
+
+void startPwdnTimer()
+{
+	LPC_TMR32B1->TCR = 0x1; //start timer
+}
+
+void stopPwdnTimer()
+{
+	LPC_TMR32B1->TCR = 1<<1; //stop & reset timer
 }

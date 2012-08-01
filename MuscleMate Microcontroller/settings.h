@@ -63,10 +63,11 @@ enum AdsSampleRates{
 
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
-#define						INTERRUPT_PRI_DRDY					0x1A
-#define 					INTERRUPT_PRI_UART					0x1F
-#define 					INTERRUPT_PRI_FFT_TIMER			0x18
-#define 					INTERRUPT_PRI_ASYNC_TIMER		0x0F
+#define						INTERRUPT_PRI_DRDY					0x06
+#define 					INTERRUPT_PRI_UART					0x01
+#define 					INTERRUPT_PRI_FFT_TIMER			0x08
+#define 					INTERRUPT_PRI_ASYNC_TIMER		0x10
+#define						INTERRUPT_PRI_PWDN_TIMER		0x1F
 
 /* Run modes */
 enum RunMode{
@@ -110,8 +111,8 @@ enum RunMode{
 #define						TX_PORT											1
 #define						TX_PIN											7
 
-#define 					PWDN_PORT										3
-#define						PWDN_PIN										0
+#define 					ADS_PWDN_PORT								3
+#define						ADS_PWDN_PIN								0
 
 #define						BLUETOOTH_RESET_PORT				3
 #define						BLUETOOTH_RESET_PIN					1

@@ -57,4 +57,8 @@ void processDataReadyFrequencyDomain(void);
 
 void ResetIntoISP(void);
 
+void pwup(void);
+
+void pwdn(void);
+
 #endif

@@ -11,9 +11,9 @@ def get_available_drives():
     return list(itertools.compress(string.ascii_uppercase,
                map(lambda x:ord(x) - ord('0'), bin(drive_bitmask)[:1:-1])))
 
-port = 'COM14'
+port = 'COM3'
 filename = 'mmm2'
-drive = 'G'
+drive = 'E'
 
 commands = ['hex2bin.exe -l 8000 %(fn)s.hex',
 			'lpcrc.exe %(fn)s.bin',

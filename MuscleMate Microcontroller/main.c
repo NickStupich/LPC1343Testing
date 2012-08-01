@@ -29,19 +29,22 @@ int main()
 	
 	//start up the uart - bluetooth connection. Do this last in case we get something right away
 	uartInit();
-	
+	/*
 	LPC_IOCON->PIO3_0 = 0xD8;
 	LPC_GPIO3->DIR |= (1<<0);
 	LPC_GPIO3->DATA &= ~(1<<0);
+	*/
+	pwup();
+	pwdnTimerInit();
+	startPwdnTimer();
 
 	while(1)
 	{
-		LPC_GPIO3->DATA ^= 1;
+		//LPC_GPIO3->DATA ^= 1;
 		
 		// event processing loop to deal with deadlocks if everything were to run straight from interrupts
 		ProcessEvents();
-		
-		delay(60000);
+		//delay(60000);
 	}
 }
 

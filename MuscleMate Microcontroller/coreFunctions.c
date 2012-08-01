@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "lpc13xx.h"
 #include "lpc1343Constants.h"
+#include "core_cm3.h"
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
 
@@ -35,6 +36,8 @@ void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
 	unsigned int j;
+	
+	stopPwdnTimer();
 		
 	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
 	{
@@ -130,13 +133,13 @@ void ProcessUartCommand(unsigned int cmd)
 			goto fail;
 	}
 	
-	
+	startPwdnTimer();
 	//got here, that means great success
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write((cmd & (0xFF<<(i*8)))>>(i*8));
 	return;
 	
 	fail:
-	
+	startPwdnTimer();
 	//we fucked up.  send back 0xFF FF FF FF to indicate this (no error codes...for now)
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write(0xFF);
 }
@@ -215,7 +218,10 @@ void ResetIntoISP()
 
   /* Read to clear the line status. */
 	LPC_UART->LSR;
-
+	
+	/* make sure 32-bit Timer 1 is turned off before calling ISP */
+	NVIC_DisableIRQ(TIMER_32_1_IRQn); //this line does not seem necessary
+	LPC_TMR32B1->MCR = 0x0; //prevents screw ups with bluetooth communication
   /* make sure 32-bit Timer 1 is turned on before calling ISP */
   LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR32_1;
   /* make sure GPIO clock is turned on before calling ISP */
@@ -238,4 +244,30 @@ void ResetIntoISP()
 	/* Invoke ISP. We call "iap_entry" to invoke ISP because the ISP entry
      is done through the same command interface as IAP. */
   iap_entry(command, result);
+}
+
+void pwup()
+{
+	SET_GPIO_AS_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN);
+	SET_GPIO_AS_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN);
+	GPIO_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN, HIGH);
+	GPIO_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN, HIGH);
+}
+
+void pwdn()
+{
+	//SET_GPIO_AS_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN); //unnecessary if pwUp used first
+	//SET GPIO_AS_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN); //same as above
+	GPIO_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN, LOW);
+	GPIO_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN, LOW);
+	LPC_PMU->PCON |=	(
+										(1<<1) //deep power-down enable
+									//|	(1<<8) //sleep flag
+									);
+	SCB->SCR |= 1<<2; //deep power-down
+	LPC_SYSCON->PDRUNCFG &= ~(
+														(1<<0) //IRC output on at wakeup
+													|	(1<<1) //IRC on at wakeup
+													);
+	__WFI();
 }
