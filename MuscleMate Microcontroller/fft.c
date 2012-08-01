@@ -20,9 +20,11 @@ void combineDataToBins(int *fft, unsigned char bins[], unsigned char* scalingVal
 	//scale back
 	max /= MAX_PROTOCOL_VALUE;
 	
-	//avoid overflowing
+	//avoid overflowing or underflowing
 	if(max > MAX_PROTOCOL_VALUE)
 		max = MAX_PROTOCOL_VALUE;
+	else if(max == 0)
+		max = 1;
 	
 	for(i=0;i<FFT_BIN_COUNT;i++)
 	{

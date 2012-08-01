@@ -37,10 +37,12 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 	}
 	
 	//if we need to interpolate next time around
-	//if(interpolationCounter - downSampleRate < 1)	// - remove this optimization for now
+	if(interpolationCounter - downSampleRate < 1)	// - remove this optimization for now
+	{
 	//memcpy(&lastSamples[0], &input[0], NUM_CHANNELS * sizeof(int));
 	for(i=0;i<NUM_CHANNELS;i++)
 		lastSamples[i] = input[i];
+	}
 	
 	return 0;
 }
