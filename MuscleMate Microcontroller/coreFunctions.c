@@ -196,7 +196,7 @@ void sendFFTData(unsigned char transformBins[], unsigned char transformScalingVa
 
 void ResetIntoISP()
 {
-	 IAP iap_entry = (IAP) IAP_LOCATION;
+	IAP iap_entry = (IAP) IAP_LOCATION;
   uint32_t command[5], result[4];
 	
 	//stop the ads doing stuff and interrupting things
@@ -254,20 +254,35 @@ void pwup()
 	GPIO_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN, HIGH);
 }
 
-void pwdn()
+void pwdn(unsigned char mode)
 {
 	//SET_GPIO_AS_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN); //unnecessary if pwUp used first
 	//SET GPIO_AS_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN); //same as above
 	GPIO_OUTPUT(ADS_PWDN_PORT, ADS_PWDN_PIN, LOW);
 	GPIO_OUTPUT(BLUETOOTH_RESET_PORT, BLUETOOTH_RESET_PIN, LOW);
-	LPC_PMU->PCON |=	(
-										(1<<1) //deep power-down enable
-									//|	(1<<8) //sleep flag
-									);
-	SCB->SCR |= 1<<2; //deep power-down
-	LPC_SYSCON->PDRUNCFG &= ~(
+	
+	if(mode == SLEEP)
+	{
+		LPC_PMU->PCON &= ~(1<<1); //sleep enable
+		SCB->SCR &= ~(1<<2); //light sleep
+	}
+	else
+	{
+		if(mode == PWDN)
+		{
+			LPC_PMU->PCON |= 1<<1; //power down enable
+		}
+		else //DEEPSLEEP
+		{
+			LPC_PMU->PCON &= ~(1<<1); //sleep enable
+			LPC_SYSCON->PDSLEEPCFG |= 0xFFF; //turn off BOD & WDT
+			//more wakeup stuff
+		}
+		SCB->SCR |= 1<<2; //deep (sleep or power down)
+		LPC_SYSCON->PDRUNCFG &= ~(
 														(1<<0) //IRC output on at wakeup
 													|	(1<<1) //IRC on at wakeup
 													);
+	}
 	__WFI();
 }

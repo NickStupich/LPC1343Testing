@@ -113,9 +113,8 @@ void TIMER32_0_IRQHandler()
 
 void TIMER32_1_IRQHandler()
 {
-	GPIO_OUTPUT(3,2,TOGGLE);
 	LPC_TMR32B1->IR = 0x1; //reset match 0 interrupt
-	pwdn();
+	pwdn(DEEPSLEEP);
 }
 
 void pwdnTimerInit()
@@ -129,13 +128,11 @@ void pwdnTimerInit()
 												(1<<0) 	//enable interrupt on match 0
 											| (1<<2)	//stop on match 0
 											);
-	LPC_TMR32B1->MR0 = 300; //delay time in seconds
+	LPC_TMR32B1->MR0 = 8; //delay time in seconds
 	
 	NVIC_EnableIRQ(TIMER_32_1_IRQn); //enable tmr32_1 interrupts
 	NVIC_SetPriority(TIMER_32_1_IRQn, INTERRUPT_PRI_PWDN_TIMER); //priority set to low
 	__enable_irq();
-	SET_GPIO_AS_OUTPUT(3,2);
-	GPIO_OUTPUT(3,2, LOW);
 }
 
 void startPwdnTimer()
