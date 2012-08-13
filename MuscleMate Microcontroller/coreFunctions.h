@@ -59,6 +59,6 @@ void ResetIntoISP(void);
 
 void pwup(void);
 
-void pwdn(void);
+void pwdn(unsigned char mode);
 
 #endif

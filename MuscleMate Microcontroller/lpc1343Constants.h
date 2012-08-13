@@ -101,4 +101,9 @@ typedef void (*IAP)(unsigned int[], unsigned int[]);
 #define 		LPC_IOCON_PIO_INTERNAL(port, pin)				LPC_IOCON->PIO## port ##_## pin 
 #define			LPC_IOCON_PIO(port, pin)							LPC_IOCON_PIO_INTERNAL(port, pin)
 
+/* Power */
+#define			SLEEP							0
+#define			DEEPSLEEP					1
+#define			PWDN							2
+
 #endif

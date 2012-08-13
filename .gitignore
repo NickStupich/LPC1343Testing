@@ -168,3 +168,5 @@ pip-log.txt
 *.crf
 *.map
 *.lst
+*.__i
+*._ip

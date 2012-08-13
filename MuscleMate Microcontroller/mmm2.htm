@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C:\Users\nstupich\Desktop\LPC1343Testing\MuscleMate Microcontroller\mmm2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\nstupich\Desktop\LPC1343Testing\MuscleMate Microcontroller\mmm2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 894]: Last Updated: Mon Aug 13 14:06:23 2012
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 4.1 [Build 894]: Last Updated: Mon Aug 13 14:10:15 2012
 <BR><P>
 <H3>Maximum Stack Usage =        112 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -436,7 +436,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[54]"></a>pwdn</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, corefunctions.o(.text))
+<P><STRONG><a name="[54]"></a>pwdn</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, corefunctions.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER32_1_IRQHandler
 </UL>
 
@@ -512,12 +512,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(RESET)
 </UL>
-<P><STRONG><a name="[11]"></a>TIMER32_1_IRQHandler</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, timers.o(.text))
+<P><STRONG><a name="[11]"></a>TIMER32_1_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, timers.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pwdn
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc13xx.o(RESET)
 </UL>
-<P><STRONG><a name="[50]"></a>pwdnTimerInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, timers.o(.text))
+<P><STRONG><a name="[50]"></a>pwdnTimerInit</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = pwdnTimerInit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetPriority
