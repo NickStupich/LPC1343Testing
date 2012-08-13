@@ -12,21 +12,13 @@ void combineDataToBins(int *fft, unsigned char bins[], unsigned char* scalingVal
 		fft[i] = 0;
 		for(j=0;j<NUM_BINS_COMBINED;j++)
 		{
-			//uart_write(((fft[binIndeces[i][j]]/2)>>20) & 0xFF);
 			fft[i] += fft[binIndeces[i][j]]/(1<<14);//2;	//avoid int overflow
 		}
-		//uart_write((fft[i]>>20) & 0xFF);
-		//uart_write(CONTROL_BYTE);
 		
 		if(max < fft[i])
 			max = fft[i];
 		
 	}
-	
-	/*for(i=0;i<FFT_BIN_COUNT;i++)
-	{
-		uart_write(fft[i]);
-	}*/
 	
 	//scale back if needed
 	max /= MAX_PROTOCOL_VALUE;
@@ -44,16 +36,6 @@ void combineDataToBins(int *fft, unsigned char bins[], unsigned char* scalingVal
 			fft[i] = MAX_PROTOCOL_VALUE;
 		
 		bins[i] = (unsigned char) fft[i];
-		/*
-		bins[i] = fft[i] / max;
-		//uart_write(fft[i]);
-		//uart_write(max);
-		//uart_write(bins[i]);
-		//uart_write(CONTROL_BYTE);
-		
-		//avoid overflow
-		if(bins[i] > MAX_PROTOCOL_VALUE)
-			bins[i] = MAX_PROTOCOL_VALUE;*/
 	}
 	
 	//'return' the scaling value

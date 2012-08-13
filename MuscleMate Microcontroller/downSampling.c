@@ -6,10 +6,6 @@ float interpolationCounter = 0.0f;
 float downSampleRate = ((float)ADS_SPS_NUMERICAL) / ((float)SAMPLES_PER_SECOND);
 int lastSamples[NUM_CHANNELS];
 
-//#if downSampleRate < 2
-//#error	Down sample rate cannot be less than two - algorithm won't work no more
-//#endif
-
 int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 {
 	int i;
@@ -17,8 +13,6 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 	interpolationCounter+= 1.0;
 	if(interpolationCounter > downSampleRate)
 	{
-		
-		LPC_GPIO3->DATA ^= (1<<2);
 		//it's time to take a sample.  Do this by interpolating between the current and previous sample values
 		
 		//next line assumes that downSampleRate > 1, which should always be the case(compiler will error otherwise)
@@ -32,12 +26,8 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 		for(i=0;i<NUM_CHANNELS;i++)
 		{
 			output[i] = interpolationCounter * lastSamples[i] + otherWeight * input[i];
-			
-			//output[i] = input[i];
 		}
 		
-		//copy the current samples for next time.  We could probably avoid doing this as long as downSampleRate > 2
-		//memcpy((void*) lastSamples, (void*) input, NUM_CHANNELS * sizeof(int));
 		return 1;
 	}
 	

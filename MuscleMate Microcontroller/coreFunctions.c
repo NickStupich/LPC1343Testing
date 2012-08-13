@@ -66,6 +66,9 @@ void ProcessUartCommand(unsigned int cmd)
 			}
 			
 			_runMode = RUN_MODE_STOPPED;
+	
+			startPwdnTimer();
+			
 			break;
 		
 		case UART_CMD_START_FFT:
@@ -134,9 +137,7 @@ void ProcessUartCommand(unsigned int cmd)
 			goto fail;
 	}
 	
-	startPwdnTimer();
 	//got here, that means great success
-	
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write((cmd & (0xFF<<(i*8)))>>(i*8));
 	return;
 	
@@ -151,7 +152,7 @@ makes a copy of the time domain data to deal with synchronicity type stuff, calc
 */
 void ComputeAndSendTransforms()
 {
-	int i, j;
+	int i;
 	unsigned char transformScalingValue;
 	unsigned char transformBins[FFT_BIN_COUNT];
 	
@@ -167,58 +168,18 @@ void ComputeAndSendTransforms()
 			memcpy(timeBuffer, &dataBuffers[i][tempDataIndex], (BUFFER_LENGTH-tempDataIndex)*sizeof(int));
 			memcpy(&timeBuffer[BUFFER_LENGTH-tempDataIndex], dataBuffers[i], tempDataIndex * sizeof(int));
 			
-			/*for(j=0;j<BUFFER_LENGTH;j++)
-			{
-				if((j%8) > 3)
-					timeBuffer[j] = 0x10000000;
-				else
-					timeBuffer[j] = 0;
-				//uart_write((unsigned char)((timeBuffer[j] & 0xFF000000)>>24));
-				//uart_write(timeBuffer[j]);
-			}*/
-			//uart_write(0x09);
-			//uart_write(0x05);
-			//uart_write(0x07);
-			
-			//for(j=0;j<3;j++){
-				//uart_write((unsigned char)((timeBuffer[j] & 0xFF000000)>>24));
-				//uart_write(timeBuffer[j]);
-				//uart_write(0x12);
-			//}
-			
 			//compute the fft, also does magnitude and condenses into first BUFFER_LENGTH/2 +1 spots
 			realFFT128(timeBuffer, fftBuffer);
-			//StopFFTTimer();
-			/*
-			for(j=0;j<BUFFER_LENGTH;j++)
-			{
-				uart_write((unsigned char)((timeBuffer[j]>>24) & 0xFF));
-				//uart_write(timeBuffer[j]);
-			}
-			uart_write(CONTROL_BYTE);	
-			
-			for(j=0;j<BUFFER_LENGTH/2;j++)
-			{
-				uart_write((unsigned char)((((unsigned int)fftBuffer[j])>>24) & 0xFF));
-				//uart_write(timeBuffer[j]);
-			}*/
-			//return;
-			
-			//uart_write(CONTROL_BYTE);	
 			
 			//make a copy of the bins that are deemed useful, calculate and divide out the scaling value
 			combineDataToBins(fftBuffer, transformBins, &transformScalingValue);
 			
-			//uart_write(CONTROL_BYTE);	
-			
 			//send stuff out over bluetooth
 			sendFFTData(transformBins, transformScalingValue);
-			
 		}
 	}
 	
 	//send the control byte to indicate end of ffts
-	//uart_write(CONTROL_BYTE);	
 	uart_write(CONTROL_BYTE);	
 }
 

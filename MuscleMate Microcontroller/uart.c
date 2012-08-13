@@ -29,7 +29,6 @@ unsigned int uartSendBufferEmpty = 1;
 void UART_IRQHandler()
 {
 	unsigned char iirValue;
-	//unsigned char temp;
 	
 	iirValue = LPC_UART->IIR;	//get the interrupt indentification
 	

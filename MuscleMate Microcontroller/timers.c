@@ -9,9 +9,13 @@ void (*timer32_0CallbackFunction)();
 
 void TIMER16_1_IRQHandler()
 {
+	LPC_GPIO3->DATA |= (1<<2);
+		
 	//calculate all the frequency domain stuff and send it off
 	ComputeAndSendTransforms();
 	
+	LPC_GPIO3->DATA &= ~(1<<2);
+		
 	//reset match 0 interrupt - other match/capture interrupts are disabled
 	LPC_TMR16B1->IR = 0x1;
 }

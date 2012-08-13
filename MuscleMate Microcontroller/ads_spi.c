@@ -195,7 +195,7 @@ void initDRDYInterrupt(void)
 
 void PIOINT0_IRQHandler(void)									
 {								
-	int a;// ,b, data;
+	int a;
 
 	/*Read data (216bits) from the ads through SPI*/
 	
@@ -223,15 +223,8 @@ void PIOINT0_IRQHandler(void)
 	}
 	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
 	{
-		
 			int downSampledData[NUM_CHANNELS];
-			int currentData[NUM_CHANNELS];
-		
-		for(a=0;a<NUM_CHANNELS;a++)
-		{
-			currentData[a] = cu[a+1].value;
-		}
-		
+			
 			//performDownSampling returns true if the value should be counted, false if it's between samples to be saved
 			if(performDownSampling(((int*)&cu)+1, downSampledData))
 			//if(performDownSampling(currentData, downSampledData))
@@ -239,18 +232,11 @@ void PIOINT0_IRQHandler(void)
 				for(a=0;a<NUM_CHANNELS;a++)
 				{
 					dataBuffers[a][dataIndex] = SCALE_INTEGER(downSampledData[a]);
-					//dataBuffers[a][dataIndex] = SCALE_INTEGER(currentData[a]);
 				}
 				dataIndex++;
 				dataIndex %= BUFFER_LENGTH;
 			}
-		
-			/*
-			dataBuffers[0][dataIndex] = SCALE_INTEGER(currentData[0]);
-			dataIndex++;
-			dataIndex %= BUFFER_LENGTH;
-			*/
-	}
+		}
 	
 	LPC_GPIO(DRDY_PORT)->IC = 0xFF;	/*clear all interrupts on the port*/
 }
