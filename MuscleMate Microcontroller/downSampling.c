@@ -1,5 +1,6 @@
 #include "downSampling.h"
 #include "string.h"
+#include "lpc13xx.h"
 
 float interpolationCounter = 0.0f;
 float downSampleRate = ((float)ADS_SPS_NUMERICAL) / ((float)SAMPLES_PER_SECOND);
@@ -13,9 +14,11 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 {
 	int i;
 	float otherWeight;
-	interpolationCounter++;
+	interpolationCounter+= 1.0;
 	if(interpolationCounter > downSampleRate)
 	{
+		
+		LPC_GPIO3->DATA ^= (1<<2);
 		//it's time to take a sample.  Do this by interpolating between the current and previous sample values
 		
 		//next line assumes that downSampleRate > 1, which should always be the case(compiler will error otherwise)
@@ -29,6 +32,8 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 		for(i=0;i<NUM_CHANNELS;i++)
 		{
 			output[i] = interpolationCounter * lastSamples[i] + otherWeight * input[i];
+			
+			//output[i] = input[i];
 		}
 		
 		//copy the current samples for next time.  We could probably avoid doing this as long as downSampleRate > 2
@@ -37,11 +42,11 @@ int performDownSampling(int input[NUM_CHANNELS], int output[NUM_CHANNELS])
 	}
 	
 	//if we need to interpolate next time around
-	if(interpolationCounter - downSampleRate < 1)	// - remove this optimization for now
+	else if(interpolationCounter - downSampleRate < 1)	
 	{
-	//memcpy(&lastSamples[0], &input[0], NUM_CHANNELS * sizeof(int));
-	for(i=0;i<NUM_CHANNELS;i++)
-		lastSamples[i] = input[i];
+		//memcpy(&lastSamples[0], &input[0], NUM_CHANNELS * sizeof(int));
+		for(i=0;i<NUM_CHANNELS;i++)
+			lastSamples[i] = input[i];
 	}
 	
 	return 0;

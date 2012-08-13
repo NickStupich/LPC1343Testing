@@ -13,7 +13,7 @@
 //struct and union to read data from the ads and convert to useful
 #pragma pack(1)
 typedef struct{
-	unsigned char bytes[4];
+	char bytes[4];
 } channelBytes;
 
 typedef union{
@@ -178,7 +178,7 @@ void initDRDYInterrupt(void)
 	__disable_irq();
 	
 	NVIC_EnableIRQ(GPIO_IRQNUM(DRDY_PORT));
-	NVIC_SetPriority(GPIO_IRQNUM(DRDY_PORT), INTERRUPT_PRI_DRDY);
+	//NVIC_SetPriority(GPIO_IRQNUM(DRDY_PORT), INTERRUPT_PRI_DRDY);
 	
 	LPC_GPIO(DRDY_PORT)->DIR &= ~(1<<DRDY_PIN);						//input
 	LPC_GPIO(DRDY_PORT)->IS  &= ~(1<<DRDY_PIN);						//edge sensitive
@@ -223,19 +223,33 @@ void PIOINT0_IRQHandler(void)
 	}
 	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
 	{
+		
 			int downSampledData[NUM_CHANNELS];
+			int currentData[NUM_CHANNELS];
+		
+		for(a=0;a<NUM_CHANNELS;a++)
+		{
+			currentData[a] = cu[a+1].value;
+		}
 		
 			//performDownSampling returns true if the value should be counted, false if it's between samples to be saved
 			if(performDownSampling(((int*)&cu)+1, downSampledData))
+			//if(performDownSampling(currentData, downSampledData))
 			{
 				for(a=0;a<NUM_CHANNELS;a++)
 				{
 					dataBuffers[a][dataIndex] = SCALE_INTEGER(downSampledData[a]);
+					//dataBuffers[a][dataIndex] = SCALE_INTEGER(currentData[a]);
 				}
+				dataIndex++;
+				dataIndex %= BUFFER_LENGTH;
 			}
-			
+		
+			/*
+			dataBuffers[0][dataIndex] = SCALE_INTEGER(currentData[0]);
 			dataIndex++;
 			dataIndex %= BUFFER_LENGTH;
+			*/
 	}
 	
 	LPC_GPIO(DRDY_PORT)->IC = 0xFF;	/*clear all interrupts on the port*/

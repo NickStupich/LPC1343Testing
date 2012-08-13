@@ -1,1 +1,0 @@
-"downSampling.c" -E -c --cpu Cortex-M3 -D__EVAL -O3 --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC13xx -o "downsampling.i"

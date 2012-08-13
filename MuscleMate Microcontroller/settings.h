@@ -42,9 +42,11 @@ enum AdsSampleRates{
 	SPS_500 = 0x6
 };
 
-#define 					ADS_SPS_FFT									SPS_8k
+#define 					ADS_SPS_FFT									SPS_4k
 #define 					ADS_SPS_TIME								SPS_2k
 
+#define 					ADS_SPS_NUMERICAL						3972
+/*
 #if ADS_SPS_FFT == SPS_32k
 #define ADS_SPS_NUMERICAL			32000
 #elif ADS_SPS_FFT == SPS_16k
@@ -60,14 +62,14 @@ enum AdsSampleRates{
 #elif ADS_SPS_FFT == SPS_500
 #define ADS_SPS_NUMERICAL			500
 #endif
-
+*/
 
 /* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
 #define						INTERRUPT_PRI_DRDY					0x06
 #define 					INTERRUPT_PRI_UART					0x01
-#define 					INTERRUPT_PRI_FFT_TIMER			0x08
+#define 					INTERRUPT_PRI_FFT_TIMER			0x0B
 #define 					INTERRUPT_PRI_ASYNC_TIMER		0x10
-#define						INTERRUPT_PRI_PWDN_TIMER		0x1F
+#define						INTERRUPT_PRI_PWDN_TIMER		0x1E
 
 /* Run modes */
 enum RunMode{

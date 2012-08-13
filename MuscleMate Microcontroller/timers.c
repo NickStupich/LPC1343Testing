@@ -32,6 +32,7 @@ void StopFFTTimer()
 /* Initializes a timer to interrupt FFT_FREQUENCY times a second an run the fft algorithm stuff */
 void FFTTimerInit()
 {
+	//unsigned int x;
 	__disable_irq();
 	
 	LPC_SYSCON->SYSAHBCLKCTRL |= SCB_SYSAHBCLKCTRL_TMR16_1;	//timer 16_1 gets a clock
@@ -44,11 +45,16 @@ void FFTTimerInit()
 	
 	LPC_TMR16B1->MR0 = 250000 / FFT_FREQUENCY;
 	
+	__enable_irq();
+	
 	NVIC_EnableIRQ(TIMER_16_1_IRQn);					//enable tmr16_1 interrupts
 	NVIC_SetPriority(TIMER_16_1_IRQn, INTERRUPT_PRI_FFT_TIMER);	//priority set to lowish
 	
+	//x = NVIC_GetPriority(TIMER_16_1_IRQn);
+	//NVIC->IP[(uint32_t)TIMER_16_1_IRQn] = (INTERRUPT_PRI_FFT_TIMER);// <<3);
 	
-	__enable_irq();
+	//(*(volatile uint32_t*)(0xE000E428)) = INTERRUPT_PRI_FFT_TIMER << 19;
+	//uart_write(x);
 }
 
 /* sets up a timer to run for delay() functions */
