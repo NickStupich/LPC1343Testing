@@ -502,6 +502,11 @@
               <FileType>1</FileType>
               <FilePath>.\settings.c</FilePath>
             </File>
+            <File>
+              <FileName>handControl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\handControl.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
