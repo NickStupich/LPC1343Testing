@@ -193,6 +193,9 @@ void initDRDYInterrupt(void)
 
 
 
+
+//unsigned int blinkCount = 0;
+//char byte1, byte2, byte3;
 void PIOINT0_IRQHandler(void)									
 {								
 	int a;
@@ -217,11 +220,12 @@ void PIOINT0_IRQHandler(void)
 		//send "backwards" as msb first
 		//index is timeEnabledChannel+1 since first is status bits
 		cuPtr	= &cu[timeEnabledChannel+1];
+		
 		uart_write(cuPtr->raw.bytes[3]);
 		uart_write(cuPtr->raw.bytes[2]);
 		uart_write(cuPtr->raw.bytes[1]);	
 	}
-	else if(_runMode == RUN_MODE_FREQ_DOMAIN)
+	else if(_runMode == RUN_MODE_FREQ_DOMAIN || _runMode == RUN_MODE_TIM_HAND)
 	{
 			int downSampledData[NUM_CHANNELS];
 			

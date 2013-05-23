@@ -8,6 +8,7 @@
 #include "ads_spi.h"
 #include "lpc1343Constants.h"
 #include "uart.h"
+#include "handControl.h"
 
 int main()
 {		
@@ -30,9 +31,7 @@ int main()
 	//start up the uart - bluetooth connection. Do this last in case we get something right away
 	uartInit();
 	
-	LPC_IOCON->PIO3_2 = 0xD8;
-	LPC_GPIO3->DIR |= (1<<2);
-	LPC_GPIO3->DATA &= ~(1<<2);
+	handControlInit();
 	
 	pwup();
 	pwdnTimerInit();
@@ -45,6 +44,7 @@ int main()
 		//delay(60000);
 	}
 }
+
 
 /* Don't use this.  Was causing problems - setting address of function pointers to 0 for some unknown reason */
 void SystemInit(){}

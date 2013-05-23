@@ -8,6 +8,8 @@
 #include "lpc13xx.h"
 #include "lpc1343Constants.h"
 #include "core_cm3.h"
+#include "handControl.h"
+
 
 #define CHANNEL_IS_ENABLED(x)		((1<<x) & fftEnabledChannels)
 
@@ -133,6 +135,31 @@ void ProcessUartCommand(unsigned int cmd)
 			ResetIntoISP();
 			break;
 		
+		case UART_CMD_START_HAND:
+			if(_runMode != RUN_MODE_STOPPED)
+			{
+				goto fail;
+			}
+		
+			fftEnabledChannels = UART_GET_CHANNELS(cmd);
+			if(fftEnabledChannels == 0)
+			{
+				goto fail;
+			}
+			
+			//get the ads ready to start
+			initSpiWithAds(RUN_MODE_FREQ_DOMAIN);
+			
+			//start receiving spi updates
+			initDRDYInterrupt();
+			
+			//set up FFTTimerInit to run in 1 second, and start doing FFTs
+			AsyncTimerFunctionCall(1000000, StartFFTTimer);
+			
+			_runMode = RUN_MODE_TIM_HAND;
+			
+			break;
+		
 		default:
 			goto fail;
 	}
@@ -150,13 +177,20 @@ void ProcessUartCommand(unsigned int cmd)
 /*
 makes a copy of the time domain data to deal with synchronicity type stuff, calculates fft, combines bins and sends them off 
 */
+
 void ComputeAndSendTransforms()
 {
-	int i;
+	int i, j;
 	unsigned char transformScalingValue;
 	unsigned char transformBins[FFT_BIN_COUNT];
-	
+				
 	int tempDataIndex;
+	unsigned int channelTotal;
+	
+	if(_runMode == RUN_MODE_TIM_HAND)
+	{
+		LPC_ADC->CR |= (1<<24);
+	}
 	
 	for(i=0;i<NUM_CHANNELS;i++)
 	{
@@ -174,8 +208,46 @@ void ComputeAndSendTransforms()
 			//make a copy of the bins that are deemed useful, calculate and divide out the scaling value
 			combineDataToBins(fftBuffer, transformBins, &transformScalingValue);
 			
-			//send stuff out over bluetooth
-			sendFFTData(transformBins, transformScalingValue);
+			if(_runMode == RUN_MODE_TIM_HAND)
+			{
+				if(i == OUTPUT_0_CHANNEL || i == OUTPUT_1_CHANNEL)
+				{
+					channelTotal = 0;
+					for(j=0;j<FFT_BIN_COUNT;j++)
+					{
+						channelTotal += transformBins[i];
+					}
+					channelTotal *= transformScalingValue;
+					
+					if( i == OUTPUT_0_CHANNEL)
+					{
+						if(channelTotal > output0Threshold)
+						{
+							GPIO_OUTPUT(OUTPUT_0_PORT, OUTPUT_0_PIN, HIGH);
+						}
+						else
+						{
+							GPIO_OUTPUT(OUTPUT_0_PORT, OUTPUT_0_PIN, LOW);
+						}
+					}
+					else
+					{
+						if(channelTotal > output1Threshold)
+						{
+							GPIO_OUTPUT(OUTPUT_1_PORT, OUTPUT_1_PIN, HIGH);
+						}
+						else
+						{
+							GPIO_OUTPUT(OUTPUT_1_PORT, OUTPUT_1_PIN, LOW);
+						}
+					}
+				}
+			}
+			else
+			{
+				//send stuff out over bluetooth
+				sendFFTData(transformBins, transformScalingValue);
+			}
 		}
 	}
 	

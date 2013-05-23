@@ -75,7 +75,7 @@
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>0</CpuCode>
+      <CpuCode>8</CpuCode>
       <DllOpt>
         <SimDllName>SARMCM3.DLL</SimDllName>
         <SimDllArguments></SimDllArguments>
@@ -103,6 +103,7 @@
         <tRmem>1</tRmem>
         <tRfunc>0</tRfunc>
         <tRbox>1</tRbox>
+        <tRtrace>0</tRtrace>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <nTsel>0</nTsel>
@@ -164,6 +165,9 @@
           <Expression></Expression>
         </Bp>
       </Breakpoint>
+      <Tracepoint>
+        <THDelay>0</THDelay>
+      </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
         <periodic>0</periodic>
@@ -200,6 +204,7 @@
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>1</GroupNumber>
       <FileNumber>1</FileNumber>
@@ -213,6 +218,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\Ek_FFT128Real_32b.s</PathWithFileName>
       <FilenameWithoutPath>Ek_FFT128Real_32b.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -227,6 +234,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\Ek_Magnitude.s</PathWithFileName>
       <FilenameWithoutPath>Ek_Magnitude.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -241,6 +250,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\startup_LPC13xx.s</PathWithFileName>
       <FilenameWithoutPath>startup_LPC13xx.s</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -255,6 +266,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\coreFunctions.c</PathWithFileName>
       <FilenameWithoutPath>coreFunctions.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -269,6 +282,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\fft.c</PathWithFileName>
       <FilenameWithoutPath>fft.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -283,6 +298,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -297,6 +314,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\systemClock.c</PathWithFileName>
       <FilenameWithoutPath>systemClock.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -311,6 +330,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\timers.c</PathWithFileName>
       <FilenameWithoutPath>timers.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -325,6 +346,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\uart.c</PathWithFileName>
       <FilenameWithoutPath>uart.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -339,6 +362,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\coreFunctions.h</PathWithFileName>
       <FilenameWithoutPath>coreFunctions.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -353,6 +378,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\fft.h</PathWithFileName>
       <FilenameWithoutPath>fft.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -367,6 +394,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\lpc1343Constants.h</PathWithFileName>
       <FilenameWithoutPath>lpc1343Constants.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -381,6 +410,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\settings.h</PathWithFileName>
       <FilenameWithoutPath>settings.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -395,6 +426,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\systemClock.h</PathWithFileName>
       <FilenameWithoutPath>systemClock.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -409,6 +442,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\timers.h</PathWithFileName>
       <FilenameWithoutPath>timers.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -423,6 +458,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\uart.h</PathWithFileName>
       <FilenameWithoutPath>uart.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -437,6 +474,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\ads_spi.c</PathWithFileName>
       <FilenameWithoutPath>ads_spi.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -451,6 +490,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\ads_spi.h</PathWithFileName>
       <FilenameWithoutPath>ads_spi.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -465,6 +506,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\events.c</PathWithFileName>
       <FilenameWithoutPath>events.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -479,6 +522,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\downSampling.c</PathWithFileName>
       <FilenameWithoutPath>downSampling.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -493,6 +538,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\ads1298Constants.h</PathWithFileName>
       <FilenameWithoutPath>ads1298Constants.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
@@ -507,6 +554,8 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\settings.c</PathWithFileName>
       <FilenameWithoutPath>settings.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
     </File>
   </Group>
 

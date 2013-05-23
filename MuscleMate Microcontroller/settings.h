@@ -25,6 +25,7 @@ extern const unsigned char binIndeces[FFT_BIN_COUNT][NUM_BINS_COMBINED];
 #define 					UART_CMD_START_FFT					0x2
 #define 					UART_CMD_START_TIME					0x4
 #define						UART_CMD_ENTER_ISP					0x8
+#define 					UART_CMD_START_HAND					0x10
 
 #define 					UART_GET_CMD(x)							((x & UART_CMD_CMD_MASK)>>24)
 #define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
@@ -76,6 +77,7 @@ enum RunMode{
 	RUN_MODE_STOPPED		 = 0,
 	RUN_MODE_TIME_DOMAIN = 1,
 	RUN_MODE_FREQ_DOMAIN = 2,
+	RUN_MODE_TIM_HAND		 = 3,
 };
 
 /* Event processing stuff.  Event processing loop is in main.c */
