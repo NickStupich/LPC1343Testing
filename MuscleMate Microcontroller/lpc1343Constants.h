@@ -106,4 +106,23 @@ typedef void (*IAP)(unsigned int[], unsigned int[]);
 #define			DEEPSLEEP					1
 #define			PWDN							2
 
+/*Uart Baud rate stuff*/
+#define			BAUD_115K										0x1
+#define			BAUD_57K										0x2
+#define			BAUD_230K										0x4
+
+#define			FDR_115K										(1<<4)
+#define			DLM_115K										0
+#define			DLL_115K										39	
+
+#define			FDR_57K											(1<<4)
+#define			DLM_57K											0
+#define			DLL_57K											78
+
+#define			FDR_230K										(1 | (12<<4))
+#define			DLM_230K										0
+#define			DLL_230K										18
+
+
+
 #endif

@@ -1,0 +1,154 @@
+#ifndef _SETTINGS
+#define _SETTINGS
+
+#include "lpc1343Constants.h"
+
+/* General settings on fft related stuff */
+#define 					BUFFER_LENGTH								128
+#define						SAMPLES_PER_SECOND					768
+#define 					NUM_CHANNELS								8
+#define 					FFT_FREQUENCY								30
+#define 					FFT_BIN_COUNT								10
+#define						NUM_BINS_COMBINED						2
+
+
+extern const unsigned char binIndeces[FFT_BIN_COUNT][NUM_BINS_COMBINED];
+
+/* Data protocol stuff.  Should match values on the other end of bluetooth*/
+#define 					CONTROL_BYTE								0xFF
+#define						MAX_PROTOCOL_VALUE					254
+#define						UART_CMD_LENGTH							0x4
+
+#define 					UART_CMD_CMD_MASK						0xFF000000
+#define 					UART_CMD_CHANNELS_MASK			0xFF0000
+#define 					UART_CMD_CHECK_MASK					0xFF
+
+#define 					UART_CMD_STOP								0x1
+#define 					UART_CMD_START_FFT					0x2
+#define 					UART_CMD_START_TIME					0x4
+#define						UART_CMD_ENTER_ISP					0x8
+
+#define 					UART_GET_CMD(x)							((x & UART_CMD_CMD_MASK)>>24)
+#define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
+#define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
+
+#define						BAUD_RATE										BAUD_115K
+
+
+#if BAUD_RATE == BAUD_115K
+#define						UART_FDR										FDR_115K
+#define						UART_DLM										DLM_115K
+#define						UART_DLL										DLL_115K
+#elif BAUD_RATE == BAUD_57K
+#define						UART_FDR										FDR_57K
+#define						UART_DLM										DLM_57K
+#define						UART_DLL										DLL_57K
+#elif BAUD_RATE == BAUD_230K
+#define						UART_FDR										FDR_230K
+#define						UART_DLM										DLM_230K
+#define						UART_DLL										DLL_230K
+#endif
+
+
+/* ADS sampling rate stuff */
+enum AdsSampleRates{
+	SPS_32k = 0x0,
+	SPS_16k = 0x1,
+	SPS_8k = 0x2,
+	SPS_4k = 0x3,
+	SPS_2k = 0x4,
+	SPS_1k = 0x5,
+	SPS_500 = 0x6
+};
+
+#define 					ADS_SPS_FFT									SPS_8k
+#define 					ADS_SPS_TIME								SPS_2k
+
+#define						ADS_SPS_NUMERICAL						7944
+/*
+#if ADS_SPS_FFT == SPS_32k
+#define ADS_SPS_NUMERICAL			32000
+#elif ADS_SPS_FFT == SPS_16k
+#define ADS_SPS_NUMERICAL			16000
+#elif ADS_SPS_FFT == SPS_8k
+#define ADS_SPS_NUMERICAL			8000
+#elif ADS_SPS_FFT == SPS_4k
+#define ADS_SPS_NUMERICAL			4000
+#elif ADS_SPS_FFT == SPS_2k
+#define ADS_SPS_NUMERICAL			2000
+#elif ADS_SPS_FFT == SPS_1k
+#define ADS_SPS_NUMERICAL			1000
+#elif ADS_SPS_FFT == SPS_500
+#define ADS_SPS_NUMERICAL			500
+#endif
+*/
+
+/* Interrupt priorities. range 0x0 - 0x1F.  Should be unique */
+#define						INTERRUPT_PRI_DRDY					0x06
+#define 					INTERRUPT_PRI_UART					0x01
+#define 					INTERRUPT_PRI_FFT_TIMER			0x0B
+#define 					INTERRUPT_PRI_ASYNC_TIMER		0x10
+#define						INTERRUPT_PRI_PWDN_TIMER		0x1E
+
+/* Run modes */
+enum RunMode{
+	RUN_MODE_STOPPED		 = 0,
+	RUN_MODE_TIME_DOMAIN = 1,
+	RUN_MODE_FREQ_DOMAIN = 2,
+};
+
+/* Event processing stuff.  Event processing loop is in main.c */
+#define						EVENT_PROCESS_UART_CMD			0x0
+#define						EVENT_PROCESS_UART_MASK			EVENT_CMD_TO_MASK(EVENT_PROCESS_UART_CMD)
+
+#define						EVENT_CMD_TO_MASK(x)				(1<<x)
+#define						EVENT_PROCESS_NUM_CMDS			0x1
+
+/* Physical connection settings */
+#define 					DRDY_PORT										0
+#define						DRDY_PIN										5
+
+#define						START_PORT									2
+#define						START_PIN										5
+
+#define						CS_PORT											0
+#define						CS_PIN											2
+
+#define						MISO_PORT										0
+#define						MISO_PIN										8
+
+#define 					MOSI_PORT										0
+#define						MOSI_PIN										9
+
+#define						RESET_PORT									0
+#define						RESET_PIN										7
+
+#define						SCLK_PORT										2
+#define						SCLK_PIN										11
+
+#define						RX_PORT											1
+#define						RX_PIN											6
+
+#define						TX_PORT											1
+#define						TX_PIN											7
+
+#define 					ADS_PWDN_PORT								3
+#define						ADS_PWDN_PIN								0
+
+#define						BLUETOOTH_RESET_PORT				3
+#define						BLUETOOTH_RESET_PIN					1
+
+#define						OSCILLATOR_ENABLE_PORT			2
+#define						OSCILLATOR_ENABLE_PIN				7
+
+/* Debug settings */
+#define						SEND_REGISTERS_OVER_UART		0
+
+/* Delay times */
+#define 					ISP_RESET_ADS_STOP_DELAY		1000
+// delays required by the ads between spi talkings
+#define RESET_DELAY_US		(4000)
+#define SPI_WRITE_DELAY   (400)
+#define ADS_START_DELAY   (800)
+
+#endif

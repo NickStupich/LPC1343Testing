@@ -1,6 +1,8 @@
 #ifndef _SETTINGS
 #define _SETTINGS
 
+#include "lpc1343Constants.h"
+
 /* General settings on fft related stuff */
 #define 					BUFFER_LENGTH								128
 #define						SAMPLES_PER_SECOND					768
@@ -29,6 +31,23 @@ extern const unsigned char binIndeces[FFT_BIN_COUNT][NUM_BINS_COMBINED];
 #define 					UART_GET_CMD(x)							((x & UART_CMD_CMD_MASK)>>24)
 #define						UART_GET_CHANNELS(x)				((x & UART_CMD_CHANNELS_MASK) >> 16)
 #define						UART_GET_CHECK(x)						((x & UART_CMD_CHECK_MASK))
+
+#define						BAUD_RATE										BAUD_115K
+
+
+#if BAUD_RATE == BAUD_115K
+#define						UART_FDR										FDR_115K
+#define						UART_DLM										DLM_115K
+#define						UART_DLL										DLL_115K
+#elif BAUD_RATE == BAUD_57K
+#define						UART_FDR										FDR_57K
+#define						UART_DLM										DLM_57K
+#define						UART_DLL										DLL_57K
+#elif BAUD_RATE == BAUD_230K
+#define						UART_FDR										FDR_230K
+#define						UART_DLM										DLM_230K
+#define						UART_DLL										DLL_230K
+#endif
 
 
 /* ADS sampling rate stuff */

@@ -31,12 +31,12 @@ unsigned int timeEnabledChannel;
 
 /* mode that we're rcurrently running in.  Either time or fft for now*/
 enum RunMode _runMode;
-
+unsigned int cmdGlobal;
 void ProcessUartCommand(unsigned int cmd)
 {
 	int i;
 	unsigned int j;
-	
+	cmdGlobal = cmd;
 	stopPwdnTimer();
 		
 	if(UART_GET_CHECK(cmd))	//error, this byte should be zero
@@ -145,6 +145,7 @@ void ProcessUartCommand(unsigned int cmd)
 	startPwdnTimer();
 	//we fucked up.  send back 0xFF FF FF FF to indicate this (no error codes...for now)
 	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write(0xFF);
+	for(i=UART_CMD_LENGTH-1;i>=0;i--) uart_write((cmd & (0xFF<<(i*8)))>>(i*8));
 }
 
 /*

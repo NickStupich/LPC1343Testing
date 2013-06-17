@@ -34,9 +34,9 @@ int main()
 	LPC_GPIO3->DIR |= (1<<2);
 	LPC_GPIO3->DATA &= ~(1<<2);
 	
-	pwup();
-	pwdnTimerInit();
-	startPwdnTimer();
+	//pwup();
+	//pwdnTimerInit();
+	//startPwdnTimer();
 
 	while(1)
 	{

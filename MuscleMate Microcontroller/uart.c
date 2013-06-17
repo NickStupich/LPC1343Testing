@@ -29,6 +29,7 @@ unsigned int uartSendBufferEmpty = 1;
 void UART_IRQHandler()
 {
 	unsigned char iirValue;
+	unsigned char val;
 	
 	iirValue = LPC_UART->IIR;	//get the interrupt indentification
 	
@@ -54,14 +55,23 @@ void UART_IRQHandler()
 	case UART_IntId_RDA:		//receive data available
 	
 		//reading from rbr clears the interrupt
-		uartReceiveBuffer.raw[uartReceiveBufferIndex--] = LPC_UART->RBR;	//store backwards since little endian
-		if(uartReceiveBufferIndex < 0)
+	  val = LPC_UART->RBR;
+		if(uartReceiveBufferIndex < UART_RECEIVE_BUF_LENGTH-1 || val > 0)
 		{
-			//have a full command of data, process it (on another 'thread')
-			AddEvent(EVENT_PROCESS_UART_CMD, uartReceiveBuffer.cmd);
-			
-			//reset the receive buffer index to receive another command
-			uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
+			uartReceiveBuffer.raw[uartReceiveBufferIndex--] = val;	//store backwards since little endian
+			if(uartReceiveBufferIndex < 0)
+			{
+				//have a full command of data, process it (on another 'thread')
+				AddEvent(EVENT_PROCESS_UART_CMD, uartReceiveBuffer.cmd);
+				
+				//reset the receive buffer index to receive another command
+				uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
+			}
+		}
+		else
+		{
+			for(val=0;val<20;val++)
+				uart_write(0xFF);
 		}
 		break;
 		
@@ -103,12 +113,6 @@ void uartInit(void)
 		//enable clock to the uart peripheral
 		LPC_SYSCON->SYSAHBCLKCTRL |=	SCB_SYSAHBCLKCTRL_UART;
 	
-		//set buffer indeces
-		uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
-		uartSendBufferIn = 0;
-		uartSendBufferOut = 0;
-		uartSendBufferEmpty = 1;
-	
 		//set rx and tx pins as being used for uart
 		LPC_IOCON_PIO(RX_PORT, RX_PIN) = IOCON_FUNC_1;
 		LPC_IOCON_PIO(TX_PORT, TX_PIN) = IOCON_FUNC_1;
@@ -123,9 +127,9 @@ void uartInit(void)
 												UART_LCR_Divisor_Latch_Access_Enabled);
 	
 		//baud rate divider section
-		LPC_UART->FDR = 1<<4;
-		LPC_UART->DLM = 0;
-		LPC_UART->DLL = 39;
+		LPC_UART->FDR = UART_FDR;
+		LPC_UART->DLM = UART_DLM;
+		LPC_UART->DLL = UART_DLL;
 		
 		  /* Set DLAB back to 0 */
 		LPC_UART->LCR &= ~UART_LCR_Divisor_Latch_Access_Enabled;
@@ -151,6 +155,12 @@ void uartInit(void)
 			
 		NVIC_SetPriority(UART_IRQn, INTERRUPT_PRI_UART);	//high-ish priority
 		NVIC_EnableIRQ(UART_IRQn);					//enable interrupts on uart		
+		
+		//set buffer indeces
+		uartReceiveBufferIndex = UART_RECEIVE_BUF_LENGTH-1;
+		uartSendBufferIn = 0;
+		uartSendBufferOut = 0;
+		uartSendBufferEmpty = 1;
 		
 		__enable_irq();
 }
